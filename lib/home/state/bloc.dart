@@ -1,5 +1,7 @@
+import 'package:arch_components/home/domain/load_merchants_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:merchants_data/merchants_data.dart';
 
 import '../shared/view_data_model.dart';
 
@@ -48,18 +50,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     emit(state.copyWith(status: () => HomeStatus.loading));
 
-    /// TODO: Call repository or use case
-    await Future.delayed(const Duration(milliseconds: 2100));
+    final result = await LoadMerchantsUseCase(
+      repository: FakeMerchantsRepository(),
+    ).run();
 
     emit(state.copyWith(
-      status: () => HomeStatus.success,
-      merchantNames: () => [
-        const MerchantViewData(id: 'xiaomi', name: 'Xiaomi'),
-        const MerchantViewData(id: 'doto', name: 'Tío Doto'),
-        const MerchantViewData(id: 'meibi', name: 'Meibi'),
-        const MerchantViewData(id: 'gaia', name: 'GAIA Design'),
-      ],
-    ));
+        status: () => HomeStatus.success,
+        merchantNames: () => MerchantViewData.listFrom(result)));
   }
 
   Future<void> _onClearMerchantsEvent(

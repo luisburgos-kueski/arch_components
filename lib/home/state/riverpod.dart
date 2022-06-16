@@ -1,3 +1,4 @@
+import 'package:arch_components/home/domain/load_merchants_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:merchants_data/merchants_data.dart';
@@ -46,7 +47,11 @@ class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>> {
     ///  Unhandled Exception:
     ///  Bad state: Tried to use HomeScreenRiverpodController after
     ///  `dispose` was called.
-    state = await AsyncValue.guard(repository.loadMerchantsList);
+    state = await AsyncValue.guard(
+      LoadMerchantsUseCase(
+        repository: repository,
+      ).run,
+    );
   }
 
   Future<void> clearMerchants() async {

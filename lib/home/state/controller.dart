@@ -1,4 +1,6 @@
+import 'package:arch_components/home/domain/load_merchants_use_case.dart';
 import 'package:get/get.dart';
+import 'package:merchants_data/merchants_repository.dart';
 
 import '../shared/view_data_model.dart';
 
@@ -9,18 +11,13 @@ class HomeController extends GetxController {
   Future<void> onLoadMerchantsEvent() async {
     status(HomeStatus.loading);
 
-    /// TODO: Call repository or use case
-    await Future.delayed(const Duration(milliseconds: 2100));
+    final result = await LoadMerchantsUseCase(
+      repository: FakeMerchantsRepository(),
+    ).run();
 
     status(HomeStatus.success);
-    merchantData.addAll(
-      [
-        const MerchantViewData(id: 'xiaomi', name: 'Xiaomi'),
-        const MerchantViewData(id: 'doto', name: 'Tío Doto'),
-        const MerchantViewData(id: 'meibi', name: 'Meibi'),
-        const MerchantViewData(id: 'gaia', name: 'GAIA Design'),
-      ],
-    );
+    merchantData.clear();
+    merchantData.addAll(MerchantViewData.listFrom(result));
   }
 
   Future<void> onClearMerchantsEvent() async {
