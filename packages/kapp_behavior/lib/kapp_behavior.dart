@@ -22,6 +22,6 @@ class KAppBehavior {
           'Prefix "$kReservedPrefix" is reserved and cannot be used.');
     }
 
-    dev.log('[$name, ${DateTime.now()}, $parameters]');
+    dev.log('[$kReservedPrefix$name, ${DateTime.now()}, $parameters]');
   }
 }
