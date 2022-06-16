@@ -27,10 +27,10 @@ class HomeControllerView extends StatelessWidget {
         failureViewBuilder: () => const Center(
           child: Text('TODO: Handle error'),
         ),
-        onLoadMerchants: () {
+        onLoadMerchantsPressed: () {
           controller.onLoadMerchantsEvent();
         },
-        onClearMerchants: () {
+        onClearMerchantsPressed: () {
           controller.onClearMerchantsEvent();
         },
       );

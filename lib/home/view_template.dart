@@ -11,14 +11,14 @@ class HomeViewTemplate extends StatelessWidget {
     this.displayFailure = false,
     required this.failureViewBuilder,
     required this.merchantsList,
-    required this.onLoadMerchants,
-    required this.onClearMerchants,
+    this.onLoadMerchantsPressed,
+    this.onClearMerchantsPressed,
   }) : super(key: key);
 
   final String tag;
   final Widget merchantsList;
-  final Function() onLoadMerchants;
-  final Function() onClearMerchants;
+  final Function()? onLoadMerchantsPressed;
+  final Function()? onClearMerchantsPressed;
   final Widget Function() failureViewBuilder;
   final bool displayFailure;
   final bool isLoading;
@@ -50,10 +50,10 @@ class HomeViewTemplate extends StatelessWidget {
                             child: Column(
                               children: [
                                 LoadMerchantsTextButton(
-                                  onLoad: onLoadMerchants,
+                                  onLoad: onLoadMerchantsPressed,
                                 ),
                                 ClearMerchantsTextButton(
-                                  onClear: onClearMerchants,
+                                  onClear: onClearMerchantsPressed,
                                 ),
                               ],
                             ),
