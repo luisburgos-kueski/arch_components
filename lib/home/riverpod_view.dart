@@ -1,3 +1,4 @@
+import 'package:arch_components/home/view_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,46 +11,52 @@ class HomeRiverpodView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final merchantsDataState = ref.watch(merchantListStateChangesProvider);
-
-    ///IMPORTANT: Using HomeViewTemplate as next is NOT suggested.
-    return merchantsDataState.when(
-      loading: () => HomeViewTemplate(
+    final state = ref.watch(merchantListStateChangesProvider);
+    if (state.isData) {
+      return HomeViewTemplate(
         tag: 'riverpod',
-        isLoading: true,
-        merchantsList: Container(),
-        failureViewBuilder: () => Container(),
-        onLoadMerchants: _onLoadMerchants,
-        onClearMerchants: _onClearMerchants,
-      ),
-      error: (err, stack) => HomeViewTemplate(
-        tag: 'riverpod',
-        displayFailure: true,
-        merchantsList: Container(),
-        failureViewBuilder: () => Text('Oops! $err'),
-        onLoadMerchants: _onLoadMerchants,
-        onClearMerchants: _onClearMerchants,
-      ),
-      data: (data) => HomeViewTemplate(
-        tag: 'riverpod',
-        merchantsList: MerchantsList(
-          items: data,
+        merchantsList: _MerchantsListDataWatcher(
           onGoToMerchantDetail: (d) {
             ref.read(homeScreenControllerProvider.notifier).navigateTo(d);
           },
         ),
         failureViewBuilder: () => Container(),
-        onLoadMerchants: () {
+        onLoadMerchantsPressed: () {
           ref.read(homeScreenControllerProvider.notifier).loadMerchants();
         },
-        onClearMerchants: () {
+        onClearMerchantsPressed: () {
           ref.read(homeScreenControllerProvider.notifier).clearMerchants();
         },
+      );
+    }
+    return const CircularProgressIndicator();
+  }
+}
+
+class _MerchantsListDataWatcher extends ConsumerWidget {
+  const _MerchantsListDataWatcher({
+    Key? key,
+    required this.onGoToMerchantDetail,
+  }) : super(key: key);
+
+  final Function(MerchantViewData) onGoToMerchantDetail;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(merchantListStateChangesProvider);
+    return state.maybeWhen(
+      loading: () => MerchantsList(
+        items: const [],
+        onGoToMerchantDetail: onGoToMerchantDetail,
+      ),
+      orElse: () => MerchantsList(
+        items: const [],
+        onGoToMerchantDetail: onGoToMerchantDetail,
+      ),
+      data: (data) => MerchantsList(
+        items: data,
+        onGoToMerchantDetail: onGoToMerchantDetail,
       ),
     );
   }
-
-  void _onLoadMerchants() {}
-
-  void _onClearMerchants() {}
 }
