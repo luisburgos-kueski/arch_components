@@ -14,8 +14,6 @@ class NavigateToMerchantDetailEvent extends HomeEvent {
   final MerchantViewData merchantData;
 }
 
-enum HomeStatus { initial, loading, success, failure }
-
 class HomeState {
   const HomeState({
     this.merchantNames = const [],

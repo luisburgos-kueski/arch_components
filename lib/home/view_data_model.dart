@@ -7,3 +7,5 @@ class MerchantViewData {
   final String id;
   final String name;
 }
+
+enum HomeStatus { initial, loading, success, failure }
