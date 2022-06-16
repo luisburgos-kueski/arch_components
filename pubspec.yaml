@@ -40,6 +40,8 @@ dependencies:
     path: './packages/datasources_data'
   kevent_tracker:
     path: '../../libraries/kevent_tracker'
+  kapp_behavior:
+    path: './packages/kapp_behavior'
   kufemia:
     git:
       url: git@github.com:kueski-dev/kufemia.git

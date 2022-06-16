@@ -205,6 +205,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.5.0"
+  kapp_behavior:
+    dependency: "direct main"
+    description:
+      path: "packages/kapp_behavior"
+      relative: true
+    source: path
+    version: "0.0.1"
   kevent_tracker:
     dependency: "direct main"
     description:
