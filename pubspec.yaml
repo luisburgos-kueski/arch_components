@@ -32,7 +32,12 @@ dependencies:
   flutter_bloc: ^8.0.0
   get: 4.6.5
   provider: 6.0.3
-  flutter_mobx: 2.0.6+1
+  flutter_riverpod: 1.0.3
+  hooks_riverpod: 1.0.3
+  merchants_data:
+    path: './packages/merchants_data'
+  datasources_data:
+    path: './packages/datasources_data'
   kevent_tracker:
     path: '../../libraries/kevent_tracker'
   kufemia:
