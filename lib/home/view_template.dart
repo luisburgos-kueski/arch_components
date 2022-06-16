@@ -16,7 +16,7 @@ class HomeViewTemplate extends StatelessWidget {
   }) : super(key: key);
 
   final String tag;
-  final MerchantsList merchantsList;
+  final Widget merchantsList;
   final Function() onLoadMerchants;
   final Function() onClearMerchants;
   final Widget Function() failureViewBuilder;
