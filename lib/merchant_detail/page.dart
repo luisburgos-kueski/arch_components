@@ -28,6 +28,7 @@ class MerchantDetailPage extends StatelessWidget {
                 Text(merchantName),
                 BackToHomeTextButton(
                   onBackClicked: () {
+                    /// TODO: Should this be called directly?
                     Get.back();
                   },
                 )

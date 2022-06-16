@@ -92,6 +92,8 @@ class ClearMerchantsTextButton extends StatelessWidget {
           publisher.publishUiEvent(
             OnClicked(widgetId: widgetId),
           );
+
+          ///TODO: Could this trigger an AppBehavior event?
           showSnackBar(context, 'Long press to clear');
         },
         onLongPress: () {
