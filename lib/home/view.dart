@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc.dart';
 import 'components.dart';
+import 'view_data_model.dart';
 import 'view_template.dart';
 
 class HomeView extends StatelessWidget {
@@ -13,6 +14,7 @@ class HomeView extends StatelessWidget {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         return HomeViewTemplate(
+          tag: 'bloc',
           isLoading: state.status == HomeStatus.loading,
           displayFailure: state.status == HomeStatus.failure,
           merchantsList: MerchantsList(
