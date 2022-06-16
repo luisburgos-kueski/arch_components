@@ -2,6 +2,7 @@ import 'dart:developer' as dev;
 
 import 'package:arch_components/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 import 'package:kufemia/kufemia.dart';
@@ -54,12 +55,14 @@ class MyApp extends StatelessWidget {
       ),
       child: AppLifecycleNotifier(
         key: const Key('app_v1'),
-        child: GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Event Tracker Example',
-          themeMode: ThemeMode.dark,
-          home: const SplashPage(),
-          getPages: pages,
+        child: ProviderScope(
+          child: GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Event Tracker Example',
+            themeMode: ThemeMode.dark,
+            home: const SplashPage(),
+            getPages: pages,
+          ),
         ),
       ),
     );

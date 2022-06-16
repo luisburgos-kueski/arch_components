@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc_view.dart';
+import 'riverpod_view.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/home';
@@ -20,6 +21,10 @@ class HomePage extends StatelessWidget {
           child: const HomeBlocView(),
         ),
       );
+    }
+
+    if (TempStaticFeatureToggles.useRiverpod) {
+      return const Scaffold(body: HomeRiverpodView());
     }
 
     return const Scaffold(body: HomeControllerView());
