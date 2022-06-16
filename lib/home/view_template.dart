@@ -11,6 +11,7 @@ class MerchantName {
 class HomeViewTemplate extends StatelessWidget {
   const HomeViewTemplate({
     Key? key,
+    required this.tag,
     this.isLoading = false,
     this.displayFailure = false,
     required this.failureViewBuilder,
@@ -19,6 +20,7 @@ class HomeViewTemplate extends StatelessWidget {
     required this.onClearMerchants,
   }) : super(key: key);
 
+  final String tag;
   final MerchantsList merchantsList;
   final Function() onLoadMerchants;
   final Function() onClearMerchants;
@@ -41,9 +43,9 @@ class HomeViewTemplate extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text(
-                            'Home Screen',
-                            style: TextStyle(
+                          Text(
+                            'Home Screen ($tag)',
+                            style: const TextStyle(
                               color: Colors.black,
                             ),
                           ),
