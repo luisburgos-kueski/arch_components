@@ -41,6 +41,11 @@ class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>> {
 
   Future<void> loadMerchants() async {
     state = const AsyncValue.loading();
+
+    /// FIXME:
+    ///  Unhandled Exception:
+    ///  Bad state: Tried to use HomeScreenRiverpodController after
+    ///  `dispose` was called.
     state = await AsyncValue.guard(repository.loadMerchantsList);
   }
 
