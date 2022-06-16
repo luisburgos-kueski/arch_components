@@ -11,6 +11,6 @@ void showSnackBar(BuildContext context, String message) {
 }
 
 class TempStaticFeatureToggles {
-  static bool useBloc = false;
+  static bool useBloc = true;
   static bool useRiverpod = true;
 }

@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:merchants_data/merchants_data.dart';
 
-import 'view_data_model.dart';
+import '../shared/view_data_model.dart';
 
 final merchantsRepositoryProvider = Provider<FakeMerchantsRepository>((ref) {
   final merchants = FakeMerchantsRepository();

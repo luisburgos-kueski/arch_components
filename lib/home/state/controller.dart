@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import 'view_data_model.dart';
+import '../shared/view_data_model.dart';
 
 class HomeController extends GetxController {
   RxList<MerchantViewData> merchantData = RxList();

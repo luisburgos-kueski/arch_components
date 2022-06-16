@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
-import 'components.dart';
+import '../view/components.dart';
 
 class HomeViewTemplate extends StatelessWidget {
   const HomeViewTemplate({

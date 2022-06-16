@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
-import '../utils.dart';
-import 'view_data_model.dart';
+import '../../utils.dart';
+import '../shared/view_data_model.dart';
 
 class MerchantsList extends StatelessWidget {
   const MerchantsList({

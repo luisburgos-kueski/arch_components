@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc.dart';
+import '../shared/view_data_model.dart';
+import '../shared/view_template.dart';
+import '../state/bloc.dart';
 import 'components.dart';
-import 'view_data_model.dart';
-import 'view_template.dart';
 
 class HomeBlocView extends StatelessWidget {
   const HomeBlocView({Key? key}) : super(key: key);

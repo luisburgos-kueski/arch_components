@@ -1,10 +1,10 @@
-import 'package:arch_components/home/view_data_model.dart';
+import 'package:arch_components/home/shared/view_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../shared/view_template.dart';
+import '../state/riverpod.dart';
 import 'components.dart';
-import 'riverpod.dart';
-import 'view_template.dart';
 
 class HomeRiverpodView extends ConsumerWidget {
   const HomeRiverpodView({Key? key}) : super(key: key);

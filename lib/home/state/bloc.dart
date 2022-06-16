@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-import 'view_data_model.dart';
+import '../shared/view_data_model.dart';
 
 class HomeEvent {}
 
