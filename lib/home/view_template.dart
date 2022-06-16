@@ -3,11 +3,6 @@ import 'package:kevent_tracker/kevent_tracker.dart';
 
 import 'components.dart';
 
-class MerchantName {
-  const MerchantName(this.value);
-  final String value;
-}
-
 class HomeViewTemplate extends StatelessWidget {
   const HomeViewTemplate({
     Key? key,
