@@ -6,8 +6,8 @@ import 'components.dart';
 import 'view_data_model.dart';
 import 'view_template.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+class HomeBlocView extends StatelessWidget {
+  const HomeBlocView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:arch_components/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'view.dart';
+import 'bloc_view.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/home';
@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
       return Scaffold(
         body: BlocProvider(
           create: (_) => HomeBloc(),
-          child: const HomeView(),
+          child: const HomeBlocView(),
         ),
       );
     }
