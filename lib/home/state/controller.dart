@@ -1,3 +1,4 @@
+import 'package:arch_components/home/domain/clear_merchants_use_case.dart';
 import 'package:arch_components/home/domain/load_merchants_use_case.dart';
 import 'package:get/get.dart';
 import 'package:merchants_data/merchants_repository.dart';
@@ -23,8 +24,9 @@ class HomeController extends GetxController {
   Future<void> onClearMerchantsEvent() async {
     status(HomeStatus.loading);
 
-    /// TODO: Call repository or use case
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await ClearMerchantsUseCase(
+      repository: FakeMerchantsRepository(),
+    ).run();
 
     status(HomeStatus.success);
     merchantData.clear();

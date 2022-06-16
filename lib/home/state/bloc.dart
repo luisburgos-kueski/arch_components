@@ -1,3 +1,4 @@
+import 'package:arch_components/home/domain/clear_merchants_use_case.dart';
 import 'package:arch_components/home/domain/load_merchants_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -55,8 +56,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ).run();
 
     emit(state.copyWith(
-        status: () => HomeStatus.success,
-        merchantNames: () => MerchantViewData.listFrom(result)));
+      status: () => HomeStatus.success,
+      merchantNames: () => MerchantViewData.listFrom(result),
+    ));
   }
 
   Future<void> _onClearMerchantsEvent(
@@ -65,8 +67,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     emit(state.copyWith(status: () => HomeStatus.loading));
 
-    /// TODO: Call repository or use case
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await ClearMerchantsUseCase(
+      repository: FakeMerchantsRepository(),
+    ).run();
 
     emit(state.copyWith(
       status: () => HomeStatus.success,
@@ -83,7 +86,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     Get.toNamed('/home/$merchantId');
 
-    ///TODO: Validate if makes sense to have this non-emitter method.
-    //emit(state.copyWith(status: () => HomeStatus.success));
+    ///TODO: Validate if makes sense to have this non-emitter method
+    ///TODO: Should we emit app behavior events here?
+    ///TODO: Evaluate navigation command handler strategy
   }
 }

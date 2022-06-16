@@ -1,3 +1,4 @@
+import 'package:arch_components/home/domain/clear_merchants_use_case.dart';
 import 'package:arch_components/home/domain/load_merchants_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
@@ -56,7 +57,11 @@ class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>> {
 
   Future<void> clearMerchants() async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(repository.wipeMerchantsList);
+    state = await AsyncValue.guard(
+      ClearMerchantsUseCase(
+        repository: repository,
+      ).run,
+    );
   }
 }
 
