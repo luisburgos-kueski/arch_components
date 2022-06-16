@@ -9,3 +9,7 @@ void showSnackBar(BuildContext context, String message) {
       ),
     );
 }
+
+class TempStaticFeatureToggles {
+  static bool useBloc = true;
+}
