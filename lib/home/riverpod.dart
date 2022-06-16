@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:merchants_data/merchants_data.dart';
 
 import 'view_data_model.dart';
@@ -24,4 +25,34 @@ final merchantListStateChangesProvider =
           ),
         ),
       );
+});
+
+class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>> {
+  HomeScreenRiverpodController({
+    required this.repository,
+  }) : super(const AsyncData(null));
+
+  final FakeMerchantsRepository repository;
+
+  Future<void> navigateTo(MerchantViewData data) async {
+    final String merchantId = data.id;
+    Get.toNamed('/home/$merchantId');
+  }
+
+  Future<void> loadMerchants() async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(repository.loadMerchantsList);
+  }
+
+  Future<void> clearMerchants() async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(repository.wipeMerchantsList);
+  }
+}
+
+final homeScreenControllerProvider = StateNotifierProvider.autoDispose<
+    HomeScreenRiverpodController, AsyncValue<void>>((ref) {
+  return HomeScreenRiverpodController(
+    repository: ref.watch(merchantsRepositoryProvider),
+  );
 });

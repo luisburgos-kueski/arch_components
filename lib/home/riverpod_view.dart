@@ -33,14 +33,18 @@ class HomeRiverpodView extends ConsumerWidget {
       data: (data) => HomeViewTemplate(
         tag: 'riverpod',
         merchantsList: MerchantsList(
-          items: data ?? [],
+          items: data,
           onGoToMerchantDetail: (d) {
-            //TODO: Implement Action with params
+            ref.read(homeScreenControllerProvider.notifier).navigateTo(d);
           },
         ),
         failureViewBuilder: () => Container(),
-        onLoadMerchants: _onLoadMerchants,
-        onClearMerchants: _onClearMerchants,
+        onLoadMerchants: () {
+          ref.read(homeScreenControllerProvider.notifier).loadMerchants();
+        },
+        onClearMerchants: () {
+          ref.read(homeScreenControllerProvider.notifier).clearMerchants();
+        },
       ),
     );
   }
