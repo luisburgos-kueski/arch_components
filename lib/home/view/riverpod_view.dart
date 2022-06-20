@@ -11,25 +11,26 @@ class HomeRiverpodView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(merchantListStateChangesProvider);
-    if (state.isData) {
-      return HomeViewTemplate(
-        tag: 'riverpod',
-        merchantsList: _MerchantsListDataWatcher(
-          onGoToMerchantDetail: (d) {
-            ref.read(homeScreenControllerProvider.notifier).navigateTo(d);
-          },
-        ),
-        failureViewBuilder: () => Container(),
-        onLoadMerchantsPressed: () {
-          ref.read(homeScreenControllerProvider.notifier).loadMerchants();
-        },
-        onClearMerchantsPressed: () {
-          ref.read(homeScreenControllerProvider.notifier).clearMerchants();
-        },
-      );
+    final state = ref.watch(homeScreenControllerProvider);
+    if (state.isLoading) {
+      return const CircularProgressIndicator();
     }
-    return const CircularProgressIndicator();
+
+    return HomeViewTemplate(
+      tag: 'riverpod',
+      merchantsList: _MerchantsListDataWatcher(
+        onGoToMerchantDetail: (d) {
+          ref.read(homeScreenControllerProvider.notifier).navigateTo(d);
+        },
+      ),
+      failureViewBuilder: () => Container(),
+      onLoadMerchantsPressed: () {
+        ref.read(homeScreenControllerProvider.notifier).loadMerchants();
+      },
+      onClearMerchantsPressed: () {
+        ref.read(homeScreenControllerProvider.notifier).clearMerchants();
+      },
+    );
   }
 }
 
