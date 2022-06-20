@@ -32,3 +32,53 @@ External Packages:
 ## Domain Layer
 
 ## Data Layer
+
+# Further Work
+
+## Blueprints for...
+
+### ViewTemplates
+
+Blueprint:
+```dart
+abstract class IViewTemplate {
+  
+}
+```
+
+Initial Version:
+```dart
+class ViewTemplateA1 implements IViewTemplate {
+  
+}
+```
+
+New Version:
+```dart
+class ViewTemplateA2 implements IViewTemplate {
+  
+}
+```
+
+### UseCases
+
+Blueprint:
+```dart
+abstract class IUseCase {
+  
+}
+```
+
+Initial Version:
+```dart
+class UseCaseA1 implements IUseCase {
+  
+}
+```
+
+New Version:
+```dart
+class UseCaseA2 implements IUseCase {
+  
+}
+```
