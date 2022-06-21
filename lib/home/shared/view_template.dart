@@ -40,30 +40,32 @@ class HomeViewTemplate extends StatelessWidget {
                 return Center(child: failureViewBuilder());
               }
 
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Home Screen ($tag)',
-                    style: const TextStyle(
-                      color: Colors.black,
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Home Screen ($tag)',
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                  Expanded(child: merchantsList),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        LoadMerchantsTextButton(
-                          onLoad: onLoadMerchantsPressed,
-                        ),
-                        ClearMerchantsTextButton(
-                          onClear: onClearMerchantsPressed,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                    Expanded(child: merchantsList),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          LoadMerchantsTextButton(
+                            onLoad: onLoadMerchantsPressed,
+                          ),
+                          ClearMerchantsTextButton(
+                            onClear: onClearMerchantsPressed,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               );
             },
           ),
