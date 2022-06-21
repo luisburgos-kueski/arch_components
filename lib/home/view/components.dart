@@ -94,7 +94,7 @@ class ClearMerchantsTextButton extends StatelessWidget {
           );
 
           ///TODO: Could this trigger an AppBehavior event?
-          showSnackBar(context, 'Long press to clear');
+          KMessenger.showSnackBar(context, 'Long press to clear');
         },
         onLongPress: () {
           publisher.publishUiEvent(
