@@ -34,6 +34,7 @@ class MyEventObserver extends KEventObserver {
   }
 }
 
+///FIXME: dev.log calls are not printing to console
 class MyRouteObserver extends KRouteObserver {
   @override
   void didPush(Route route, Route? previousRoute) {
