@@ -34,17 +34,16 @@ class MyEventObserver extends KEventObserver {
   }
 }
 
-///FIXME: dev.log calls are not printing to console
 class MyRouteObserver extends KRouteObserver {
   @override
   void didPush(Route route, Route? previousRoute) {
-    dev.log("Route Pushed: $route");
+    dev.log("$runtimeType didPush: $route");
     super.didPush(route, previousRoute);
   }
 
   @override
   void didPop(Route route, Route? previousRoute) {
-    dev.log("Route Popped: $route");
+    dev.log("$runtimeType didPop: $route");
     super.didPop(route, previousRoute);
   }
 }
@@ -70,6 +69,9 @@ class MyApp extends StatelessWidget {
             themeMode: ThemeMode.dark,
             home: const SplashPage(),
             getPages: pages,
+            navigatorObservers: [
+              MyRouteObserver(),
+            ],
           ),
         ),
       ),
