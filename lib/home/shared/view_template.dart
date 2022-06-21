@@ -1,7 +1,6 @@
+import 'package:arch_components/home/view/components.dart';
 import 'package:flutter/material.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
-
-import '../view/components.dart';
 
 class HomeViewTemplate extends StatelessWidget {
   const HomeViewTemplate({
@@ -25,42 +24,49 @@ class HomeViewTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Reduce hadouken
     return SafeArea(
       child: NavigationNotifier(
         key: const Key('home_screen'),
         child: Scaffold(
-          body: isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : displayFailure
-                  ? Center(child: failureViewBuilder())
-                  : Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'Home Screen ($tag)',
-                            style: const TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                          Expanded(child: merchantsList),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                LoadMerchantsTextButton(
-                                  onLoad: onLoadMerchantsPressed,
-                                ),
-                                ClearMerchantsTextButton(
-                                  onClear: onClearMerchantsPressed,
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+          body: Builder(
+            builder: (context) {
+              if (isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              if (displayFailure) {
+                return Center(child: failureViewBuilder());
+              }
+
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Home Screen ($tag)',
+                    style: const TextStyle(
+                      color: Colors.black,
                     ),
+                  ),
+                  Expanded(child: merchantsList),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        LoadMerchantsTextButton(
+                          onLoad: onLoadMerchantsPressed,
+                        ),
+                        ClearMerchantsTextButton(
+                          onClear: onClearMerchantsPressed,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
