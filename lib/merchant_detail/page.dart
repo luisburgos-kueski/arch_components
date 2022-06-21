@@ -1,6 +1,9 @@
+import 'package:arch_components/merchant_detail/view/bloc_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:kevent_tracker/kevent_tracker.dart';
+
+import 'state/bloc.dart';
 
 //TODO: Divide into classes, files and components
 class MerchantDetailPage extends StatelessWidget {
@@ -12,55 +15,15 @@ class MerchantDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// TODO: Inject from above
+    /// TODO: Evaluate direct call to Get here is ok.
     final merchantName = Get.parameters['id'] as String;
 
     return Scaffold(
-      body: SafeArea(
-        child: NavigationNotifier(
-          key: const Key('merchant_detail_screen'),
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(merchantName),
-                BackToHomeTextButton(
-                  onBackClicked: () {
-                    /// TODO: Should this be called directly?
-                    Get.back();
-                  },
-                )
-              ],
-            ),
-          ),
+      body: BlocProvider(
+        create: (_) => MerchantDetailBloc(),
+        child: MerchantDetailView(
+          merchantName: merchantName,
         ),
-      ),
-    );
-  }
-}
-
-class BackToHomeTextButton extends StatelessWidget {
-  const BackToHomeTextButton({
-    Key? key,
-    this.onBackClicked,
-  }) : super(key: key);
-
-  final Function()? onBackClicked;
-
-  @override
-  Widget build(BuildContext context) {
-    return UiEventNotifier(
-      key: const Key('back_to_home_text_button'),
-      builder: (widgetId, publisher) => TextButton(
-        onPressed: () {
-          publisher.publishUiEvent(
-            OnClicked(widgetId: widgetId),
-          );
-          if (onBackClicked != null) onBackClicked!();
-        },
-        child: const Text('Back to home'),
       ),
     );
   }
