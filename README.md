@@ -69,6 +69,12 @@ abstract class IUseCase {
 }
 ```
 
+# Questions
+
+- How can we take advantage of the state management libraries to have modular widgets that only listens to individual properties inside the state instead of the whole state?
+- Should we enforce `ViewDataModels` asap?
+- 
+
 Initial Version:
 ```dart
 class UseCaseA1 implements IUseCase {
