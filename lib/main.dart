@@ -2,14 +2,18 @@ import 'dart:developer' as dev;
 
 import 'package:arch_components/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 import 'package:kufemia/kufemia.dart';
 
+import 'bloc_observer.dart';
 import 'splash/page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   KEventTracker.init(
     observerFacade: ObserverFacade(
       routeObserver: MyRouteObserver(),
@@ -17,7 +21,10 @@ void main() {
     ),
   );
 
-  runApp(const MyApp());
+  BlocOverrides.runZoned(
+    () => runApp(const MyApp()),
+    blocObserver: MyBlocObserver(),
+  );
 }
 
 class MyEventObserver extends KEventObserver {
