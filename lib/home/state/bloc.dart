@@ -7,23 +7,30 @@ import 'package:merchants_data/merchants_data.dart';
 
 import '../shared/view_data_model.dart';
 
-abstract class HomeEvent implements KAppBehaviorEvent {
-  @override
-  // TODO: Validate formatting
-  String get name => '$runtimeType';
+abstract class HomeEvent {}
+
+class LoadMerchantsPressed extends HomeEvent implements KAppBehaviorEvent2 {
+  LoadMerchantsPressed() : timestamp = DateTime.now();
 
   @override
-  Map<String, Object?>? get parameters => null;
+  String get name => "load_merchants";
+
+  @override
+  Map<String, dynamic>? get params => null;
+
+  @override
+  final DateTime timestamp;
 }
-
-class LoadMerchantsPressed extends HomeEvent {}
 
 class ClearMerchantsPressed extends HomeEvent {}
 
 class NavigateToMerchantDetailEvent extends HomeEvent {
   NavigateToMerchantDetailEvent(this.merchantData);
+
   final MerchantViewData merchantData;
 }
+
+enum F { a, b }
 
 class HomeState {
   const HomeState({
@@ -67,6 +74,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       status: () => HomeStatus.success,
       merchantNames: () => MerchantViewData.listFrom(result),
     ));
+    // bloc.add(Event())
   }
 
   Future<void> _onClearMerchantsEvent(

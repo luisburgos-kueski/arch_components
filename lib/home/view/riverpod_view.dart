@@ -11,11 +11,10 @@ class HomeRiverpodView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(homeScreenControllerProvider);
+    final AsyncValue<void> state = ref.watch(homeScreenControllerProvider);
     if (state.isLoading) {
-      return const CircularProgressIndicator();
+      return const Center(child: CircularProgressIndicator());
     }
-
     return HomeViewTemplate(
       tag: 'riverpod',
       merchantsList: _MerchantsListDataWatcher(

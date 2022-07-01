@@ -5,14 +5,21 @@ homepage: none
 
 environment:
   sdk: ">=2.15.1 <3.0.0"
+  flutter: ">=1.17.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
   http: ^0.13.0
   rxdart: 0.27.4
 
 dev_dependencies:
+  flutter_test:
+    sdk: flutter
   coverage: ^1.0.2
   test: ^1.16.0
   yaml: ^3.0.0
   lints: ^1.0.0
 
+# The following section is specific to Flutter.
+flutter:

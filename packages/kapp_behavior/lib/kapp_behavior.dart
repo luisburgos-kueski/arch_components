@@ -1,5 +1,10 @@
 library kapp_behavior;
 
+export 'event/kapp_behavior_event.dart';
+export 'observer/kapp_behavior_observer.dart';
+export 'notifier/kapp_behavior_notifier.dart';
+export 'widget/kroute_aware_screen.dart';
+
 import 'dart:developer' as dev;
 
 /// TODO: Evaluate use InMemoryStore
@@ -7,6 +12,7 @@ import 'dart:developer' as dev;
 /// TODO: Should the API call be made from here?
 class KAppBehavior {
   KAppBehavior._();
+
   static final KAppBehavior _instance = KAppBehavior._();
 
   factory KAppBehavior() => _instance;

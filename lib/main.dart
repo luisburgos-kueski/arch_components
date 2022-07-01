@@ -5,11 +5,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:kapp_behavior/kapp_behavior.dart';
+import 'package:kapp_behavior/kapp_behavior_2.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 import 'package:kufemia/kufemia.dart';
 
-import 'bloc_observer.dart';
 import 'splash/page.dart';
+import 'tools/klogger.dart';
+
+class DefaultKAppObserver implements KAppEventObserver {
+  const DefaultKAppObserver();
+
+  @override
+  void onEvent(KAppBehaviorEvent2 event) {
+    KLogger.log(event.toString(), 'KAPPOBS');
+  }
+}
+
+/// TODO: Validate if this should be part of the library
+class MyBlocObserver extends BlocObserver with KAppBehaviorEventNotifier {
+  @override
+  void onEvent(Bloc bloc, Object? event) {
+    if (event is KAppBehaviorEvent2) {
+      notify(event);
+    }
+    super.onEvent(bloc, event);
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +41,12 @@ void main() async {
       routeObserver: MyRouteObserver(),
       eventObserver: MyEventObserver(),
     ),
+  );
+  // TODO: Register observer in app
+  final kAppRouteObserver = KAppRouteObserver();
+  KAppBehavior2.init(
+    const DefaultKAppObserver(),
+    kAppRouteObserver,
   );
 
   BlocOverrides.runZoned(
