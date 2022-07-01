@@ -60,7 +60,7 @@ packages:
   datasources_data:
     dependency: "direct main"
     description:
-      path: "packages/datasources_data"
+      path: "packages/kdata_sources_flutter"
       relative: true
     source: path
     version: "0.0.1"
