@@ -32,8 +32,8 @@ dependencies:
   flutter_bloc: ^8.0.0
   get: 4.6.5
   provider: 6.0.3
-  flutter_riverpod: 2.0.0-dev.6
-  hooks_riverpod: 2.0.0-dev.6
+  flutter_riverpod: 2.0.0-dev.0
+  hooks_riverpod: 2.0.0-dev.0
   merchants_data:
     path: './packages/merchants_data'
   kdata_sources:

@@ -2,10 +2,7 @@ import 'dart:async';
 
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
-
-import '../event/kapp_behavior_event.dart';
-import '../kapp_behavior_2.dart';
-import '../notifier/kapp_behavior_notifier.dart';
+import '../kapp_behavior.dart';
 
 /// TODO: Validate with tabs
 /// Widget - Tabs **
@@ -36,7 +33,7 @@ abstract class KRouteAwareState<T extends KRouteAwareScreen> extends State<T>
   @mustCallSuper
   void afterFirstLayout(BuildContext context) {
     if (mounted) {
-      KAppBehavior2.routeObserver.subscribe(
+      KAppBehavior.routeObserver.subscribe(
         this,
         ModalRoute.of(context) as PageRoute,
       );
@@ -60,7 +57,7 @@ abstract class KRouteAwareState<T extends KRouteAwareScreen> extends State<T>
     if (enteredScreen) {
       _leaveScreen();
     }
-    KAppBehavior2.routeObserver.unsubscribe(this);
+    KAppBehavior.routeObserver.unsubscribe(this);
     super.dispose();
   }
 

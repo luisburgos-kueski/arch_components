@@ -6,18 +6,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
-import 'package:kapp_behavior/kapp_behavior_2.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 import 'package:kufemia/kufemia.dart';
 
 import 'splash/page.dart';
 import 'tools/klogger.dart';
 
-class DefaultKAppObserver implements KAppEventObserver {
-  const DefaultKAppObserver();
+class KDefaultAppObserver implements KAppEventObserver {
+  const KDefaultAppObserver();
 
   @override
-  void onEvent(KAppBehaviorEvent2 event) {
+  void onEvent(KAppBehaviorEvent event) {
     KLogger.log(event.toString(), 'KAPPOBS');
   }
 }
@@ -26,12 +25,15 @@ class DefaultKAppObserver implements KAppEventObserver {
 class MyBlocObserver extends BlocObserver with KAppBehaviorEventNotifier {
   @override
   void onEvent(Bloc bloc, Object? event) {
-    if (event is KAppBehaviorEvent2) {
+    if (event is KAppBehaviorEvent) {
       notify(event);
     }
     super.onEvent(bloc, event);
   }
 }
+
+// TODO: Register observer in app
+final kAppRouteObserver = KAppRouteObserver();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,10 +44,9 @@ void main() async {
       eventObserver: MyEventObserver(),
     ),
   );
-  // TODO: Register observer in app
-  final kAppRouteObserver = KAppRouteObserver();
-  KAppBehavior2.init(
-    const DefaultKAppObserver(),
+
+  KAppBehavior.init(
+    const KDefaultAppObserver(),
     kAppRouteObserver,
   );
 

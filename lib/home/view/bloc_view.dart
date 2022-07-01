@@ -42,7 +42,7 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorEventNotifier {
   }
 }
 
-class OnLoadMerchantsButtonPressed with KAppBehaviorEvent2 {
+class OnLoadMerchantsButtonPressed with KAppBehaviorEvent {
   @override
   final String name = 'load_merchants_button_pressed';
 

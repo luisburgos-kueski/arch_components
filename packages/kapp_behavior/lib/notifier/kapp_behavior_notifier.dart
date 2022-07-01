@@ -1,8 +1,7 @@
-import '../event/kapp_behavior_event.dart';
-import '../kapp_behavior_2.dart';
+import '../kapp_behavior.dart';
 
 abstract class KAppBehaviorEventNotifier {
-  void notify(KAppBehaviorEvent2 event) {
-    KAppBehavior2.observer.onEvent(event);
+  void notify(KAppBehaviorEvent event) {
+    KAppBehavior.observer.onEvent(event);
   }
 }

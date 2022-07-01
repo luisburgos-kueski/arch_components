@@ -1,17 +1,31 @@
-abstract class KAppBehaviorEvent2 {
+/// TODO: Should this be non-abstract? So we can have named constructors?
+abstract class KAppBehaviorEvent {
   String get name;
-
   Map<String, dynamic>? get params;
-
   DateTime get timestamp;
 
   @override
   String toString() {
+    ///TODO: Should we add timestamp here?
     return "[$name, $params]";
   }
 }
 
-class KScreenEvent with KAppBehaviorEvent2 {
+class KDefaultAppBehaviorEvent with KAppBehaviorEvent {
+  @override
+  final String name;
+  @override
+  final Map<String, dynamic> params;
+  @override
+  final DateTime timestamp;
+
+  KDefaultAppBehaviorEvent.named(
+    this.name, {
+    this.params = const {},
+  }) : timestamp = DateTime.now();
+}
+
+class KScreenEvent with KAppBehaviorEvent {
   @override
   final String name;
   @override

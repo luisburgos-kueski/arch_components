@@ -14,7 +14,7 @@ class LoadMerchantsUseCase {
     await repository.loadMerchantsList();
     final list = repository.currentMerchantList ?? [];
 
-    await KAppBehavior().logEvent(
+    await KAppBehavior().registerDefault(
       name: 'on_merchant_list_loaded',
       parameters: {
         'list_length': list.length,

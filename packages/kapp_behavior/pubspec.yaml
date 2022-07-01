@@ -9,6 +9,8 @@ environment:
 
 dependencies:
   after_layout: ^1.1.1+1
+  core:
+    path: '../core'
   flutter:
     sdk: flutter
 

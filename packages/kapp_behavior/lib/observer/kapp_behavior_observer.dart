@@ -4,7 +4,7 @@ import '../event/kapp_behavior_event.dart';
 import '../notifier/kapp_behavior_notifier.dart';
 
 abstract class KAppEventObserver {
-  void onEvent(KAppBehaviorEvent2 event);
+  void onEvent(KAppBehaviorEvent event);
 }
 
 // TODO: Validate how use a contract for the route using MaterialPageRoute and GetPageRoute

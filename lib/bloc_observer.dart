@@ -5,8 +5,8 @@ class MyBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    if (event is KAppBehaviorEvent) {
-      KAppBehavior().log(event);
+    if (event is KDefaultAppBehaviorEvent) {
+      KAppBehavior().registerEvent(event);
     }
   }
 }

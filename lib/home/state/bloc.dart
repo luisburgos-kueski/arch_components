@@ -9,7 +9,7 @@ import '../shared/view_data_model.dart';
 
 abstract class HomeEvent {}
 
-class LoadMerchantsPressed extends HomeEvent implements KAppBehaviorEvent2 {
+class LoadMerchantsPressed extends HomeEvent implements KAppBehaviorEvent {
   LoadMerchantsPressed() : timestamp = DateTime.now();
 
   @override
