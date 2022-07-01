@@ -32,20 +32,22 @@ dependencies:
   flutter_bloc: ^8.0.0
   get: 4.6.5
   provider: 6.0.3
-  flutter_riverpod: 2.0.0-dev.0
-  hooks_riverpod: 2.0.0-dev.0
+  flutter_riverpod: 2.0.0-dev.6
+  hooks_riverpod: 2.0.0-dev.6
   merchants_data:
     path: './packages/merchants_data'
   kdata_sources:
     path: './packages/kdata_sources'
-  kevent_tracker:
-    path: '../../libraries/kevent_tracker'
   kapp_behavior:
     path: './packages/kapp_behavior'
   kufemia:
     git:
       url: git@github.com:kueski-dev/kufemia.git
       ref: v0.15
+  kevent_tracker:
+    git:
+      url: git@github.com:kueski-dev/kevent_tracker.git
+      ref: v1.0.0
 
 dev_dependencies:
   flutter_test:

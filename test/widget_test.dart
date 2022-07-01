@@ -10,21 +10,36 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:arch_components/main.dart';
 
+abstract class TrackedScreen {
+  String get routeName;
+
+  String get className;
+}
+
+class LoginScreen extends StatelessWidget implements TrackedScreen {
+  static const String route = "/login";
+
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  String get className => runtimeType.toString();
+
+  @override
+  String get routeName => route;
+
+  @override
+  Widget build(BuildContext context) {
+    throw Container();
+  }
+}
+
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
-
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+  const TrackedScreen screen = LoginScreen();
+  test(
+    "test contract",
+    () {
+      expect(screen.routeName, LoginScreen.route);
+      expect(screen.className, 'LoginScreen');
+    },
+  );
 }

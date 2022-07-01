@@ -1,11 +1,12 @@
 import 'package:arch_components/home/domain/clear_merchants_use_case.dart';
 import 'package:arch_components/home/domain/load_merchants_use_case.dart';
 import 'package:get/get.dart';
+import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_repository.dart';
 
 import '../shared/view_data_model.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController with KAppBehaviorEventNotifier {
   RxList<MerchantViewData> merchantData = RxList();
   Rx<HomeStatus> status = HomeStatus.initial.obs;
 
