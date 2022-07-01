@@ -36,8 +36,8 @@ dependencies:
   hooks_riverpod: 2.0.0-dev.0
   merchants_data:
     path: './packages/merchants_data'
-  datasources_data:
-    path: './packages/datasources_data'
+  kdata_sources:
+    path: './packages/kdata_sources'
   kevent_tracker:
     path: '../../libraries/kevent_tracker'
   kapp_behavior:

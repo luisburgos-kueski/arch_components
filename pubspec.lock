@@ -57,13 +57,6 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  datasources_data:
-    dependency: "direct main"
-    description:
-      path: "packages/kdata_sources_flutter"
-      relative: true
-    source: path
-    version: "0.0.1"
   derived_colors:
     dependency: transitive
     description:
@@ -209,6 +202,13 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/kapp_behavior"
+      relative: true
+    source: path
+    version: "0.0.1"
+  kdata_sources:
+    dependency: "direct main"
+    description:
+      path: "packages/kdata_sources"
       relative: true
     source: path
     version: "0.0.1"
