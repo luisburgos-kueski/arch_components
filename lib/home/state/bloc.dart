@@ -7,7 +7,7 @@ import 'package:merchants_data/merchants_data.dart';
 
 import '../shared/view_data_model.dart';
 
-class HomeEvent implements KAppBehaviorEvent {
+abstract class HomeEvent implements KAppBehaviorEvent {
   @override
   // TODO: Validate formatting
   String get name => '$runtimeType';
@@ -16,9 +16,9 @@ class HomeEvent implements KAppBehaviorEvent {
   Map<String, Object?>? get parameters => null;
 }
 
-class LoadMerchantsEvent extends HomeEvent {}
+class LoadMerchantsPressed extends HomeEvent {}
 
-class ClearMerchantsEvent extends HomeEvent {}
+class ClearMerchantsPressed extends HomeEvent {}
 
 class NavigateToMerchantDetailEvent extends HomeEvent {
   NavigateToMerchantDetailEvent(this.merchantData);
@@ -48,13 +48,13 @@ class HomeState {
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState()) {
-    on<LoadMerchantsEvent>(_onLoadMerchantsEvent);
-    on<ClearMerchantsEvent>(_onClearMerchantsEvent);
+    on<LoadMerchantsPressed>(_onLoadMerchantsEvent);
+    on<ClearMerchantsPressed>(_onClearMerchantsEvent);
     on<NavigateToMerchantDetailEvent>(_onNavigateToMerchantDetailEvent);
   }
 
   Future<void> _onLoadMerchantsEvent(
-    LoadMerchantsEvent event,
+    LoadMerchantsPressed event,
     Emitter<HomeState> emit,
   ) async {
     emit(state.copyWith(status: () => HomeStatus.loading));
@@ -70,7 +70,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _onClearMerchantsEvent(
-    ClearMerchantsEvent event,
+    ClearMerchantsPressed event,
     Emitter<HomeState> emit,
   ) async {
     emit(state.copyWith(status: () => HomeStatus.loading));

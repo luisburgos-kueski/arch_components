@@ -29,10 +29,10 @@ class HomeBlocView extends StatelessWidget {
             child: Text('TODO: Handle error'),
           ),
           onLoadMerchantsPressed: () {
-            context.read<HomeBloc>().add(LoadMerchantsEvent());
+            context.read<HomeBloc>().add(LoadMerchantsPressed());
           },
           onClearMerchantsPressed: () {
-            context.read<HomeBloc>().add(ClearMerchantsEvent());
+            context.read<HomeBloc>().add(ClearMerchantsPressed());
           },
         );
       },
