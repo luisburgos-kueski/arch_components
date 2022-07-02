@@ -1,7 +1,5 @@
 library core;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'base_scaffold.dart';
+export 'in_memory_store.dart';
+export 'managed_stream_builder.dart';
