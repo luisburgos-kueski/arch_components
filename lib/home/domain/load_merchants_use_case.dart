@@ -10,17 +10,37 @@ class LoadMerchantsUseCase {
   final FakeMerchantsRepository repository;
 
   Future<List<Merchant>> run() async {
-    await Future.delayed(const Duration(milliseconds: 1900));
-    await repository.loadMerchantsList();
-    final list = repository.currentMerchantList ?? [];
+    return Future.delayed(const Duration(milliseconds: 2900), () async {
+      await repository.loadMerchantsList();
+      final list = repository.currentMerchantList ?? [];
 
-    await KAppBehavior.registerDefault(
-      name: 'on_merchant_list_loaded',
-      parameters: {
-        'list_length': list.length,
-      },
-    );
+      await KAppBehavior.registerEvent(
+        OnMerchantListLoaded(
+          params: {
+            'list_length': list.length,
+          },
+        ),
+      );
 
-    return list;
+      return list;
+    });
   }
+}
+
+abstract class UseCaseKAppBehaviorEvent implements KDefaultAppBehaviorEvent {
+  @override
+  DateTime get timestamp => DateTime.now();
+
+  @override
+  Map<String, dynamic>? get params => null;
+}
+
+class OnMerchantListLoaded extends UseCaseKAppBehaviorEvent {
+  @override
+  final String name = 'on_merchant_list_loaded';
+
+  @override
+  final Map<String, dynamic>? params;
+
+  OnMerchantListLoaded({this.params});
 }

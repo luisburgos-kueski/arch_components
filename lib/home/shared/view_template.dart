@@ -1,8 +1,7 @@
-import 'package:arch_components/home/view/bloc_view.dart';
 import 'package:arch_components/home/view/components.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:kapp_behavior/notifier/kapp_behavior_notifier.dart';
+import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
 class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {
@@ -27,6 +26,12 @@ class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {
   final bool displayFailure;
   final bool isLoading;
 
+  Map<String, dynamic> get viewParams => {
+        'tag': tag,
+        'displayFailure': displayFailure,
+        'isLoading': isLoading,
+      };
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,7 +46,14 @@ class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {
               if (onSettingsPressed != null)
                 _ActionsIconButton(
                   iconData: Icons.settings,
-                  onTap: onSettingsPressed!,
+                  onTap: () {
+                    notify(
+                      OnSettingsButtonPressed(
+                        params: viewParams,
+                      ),
+                    );
+                    onSettingsPressed!();
+                  },
                 ),
             ],
           ),
@@ -67,14 +79,25 @@ class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {
                       child: Column(
                         children: [
                           LoadMerchantsTextButton(onLoad: () {
-                            notify(OnLoadMerchantsButtonPressed());
+                            notify(
+                              OnLoadMerchantsButtonPressed(
+                                params: viewParams,
+                              ),
+                            );
                             if (onLoadMerchantsPressed != null) {
                               onLoadMerchantsPressed!();
                             }
                           }),
-                          ClearMerchantsTextButton(
-                            onClear: onClearMerchantsPressed,
-                          ),
+                          ClearMerchantsTextButton(onClear: () {
+                            notify(
+                              OnClearMerchantsButtonPressed(
+                                params: viewParams,
+                              ),
+                            );
+                            if (onClearMerchantsPressed != null) {
+                              onClearMerchantsPressed!();
+                            }
+                          }),
                         ],
                       ),
                     )
@@ -109,4 +132,43 @@ class _ActionsIconButton extends StatelessWidget {
       ),
     );
   }
+}
+
+///TODO: Evaluate duplicated events on Bloc approach.
+abstract class UiKAppBehaviorEvent implements KDefaultAppBehaviorEvent {
+  @override
+  DateTime get timestamp => DateTime.now();
+
+  @override
+  Map<String, dynamic>? get params => null;
+}
+
+class OnSettingsButtonPressed extends UiKAppBehaviorEvent {
+  @override
+  final String name = 'settings_button_pressed';
+
+  @override
+  final Map<String, dynamic>? params;
+
+  OnSettingsButtonPressed({this.params});
+}
+
+class OnLoadMerchantsButtonPressed extends UiKAppBehaviorEvent {
+  @override
+  final String name = 'load_merchants_button_pressed';
+
+  @override
+  final Map<String, dynamic>? params;
+
+  OnLoadMerchantsButtonPressed({this.params});
+}
+
+class OnClearMerchantsButtonPressed extends UiKAppBehaviorEvent {
+  @override
+  final String name = 'clear_merchants_button_pressed';
+
+  @override
+  final Map<String, dynamic>? params;
+
+  OnClearMerchantsButtonPressed({this.params});
 }

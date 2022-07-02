@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kapp_behavior/kapp_behavior.dart';
 
 import '../shared/view_data_model.dart';
 import '../shared/view_template.dart';
@@ -42,17 +41,4 @@ class HomeBlocView extends StatelessWidget {
       },
     );
   }
-}
-
-class OnLoadMerchantsButtonPressed with KAppBehaviorEvent {
-  @override
-  final String name = 'load_merchants_button_pressed';
-
-  @override
-  final Map<String, dynamic>? params;
-
-  @override
-  final DateTime timestamp;
-
-  OnLoadMerchantsButtonPressed({this.params}) : timestamp = DateTime.now();
 }
