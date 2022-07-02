@@ -1,7 +1,7 @@
 name: kapp_behavior
 description: App Behavior test module
 version: 0.0.1
-homepage:
+publish_to: none
 
 environment:
   sdk: ">=2.15.1 <3.0.0"

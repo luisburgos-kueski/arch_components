@@ -8,6 +8,7 @@ import 'event/kapp_behavior_event.dart';
 import 'observer/kapp_behavior_observer.dart';
 
 export 'event/kapp_behavior_event.dart';
+export 'kapp_behavior_list_view.dart';
 export 'notifier/kapp_behavior_notifier.dart';
 export 'observer/kapp_behavior_observer.dart';
 export 'widget/kroute_aware_screen.dart';
