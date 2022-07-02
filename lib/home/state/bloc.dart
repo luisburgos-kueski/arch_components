@@ -7,7 +7,7 @@ import 'package:merchants_data/merchants_data.dart';
 
 import '../shared/view_data_model.dart';
 
-//TODO: Verify
+//TODO: Verify overrides. Could this be optional to override?
 abstract class HomeEvent implements KDefaultAppBehaviorEvent {
   @override
   DateTime get timestamp => DateTime.now();
@@ -21,9 +21,9 @@ class LoadMerchantsPressed extends HomeEvent {
   String get name => 'load_merchants_pressed';
 }
 
-class SettingsPressed extends HomeEvent {
+class NavigateToSettingsPressed extends HomeEvent {
   @override
-  String get name => 'settings_pressed';
+  String get name => 'navigate_to_settings';
 }
 
 class ClearMerchantsPressed extends HomeEvent {
@@ -31,8 +31,8 @@ class ClearMerchantsPressed extends HomeEvent {
   String get name => 'clear_merchants_pressed';
 }
 
-class NavigateToMerchantDetailEvent extends HomeEvent {
-  NavigateToMerchantDetailEvent(this.merchantData);
+class NavigateToMerchantDetailPressed extends HomeEvent {
+  NavigateToMerchantDetailPressed(this.merchantData);
 
   final MerchantViewData merchantData;
 
@@ -72,13 +72,13 @@ class HomeState {
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState()) {
     ///TODO: Update outdated naming convention
-    on<LoadMerchantsPressed>(_onLoadMerchantsEvent);
-    on<ClearMerchantsPressed>(_onClearMerchantsEvent);
-    on<NavigateToMerchantDetailEvent>(_onNavigateToMerchantDetailEvent);
-    on<SettingsPressed>(_onSettingPressed);
+    on<LoadMerchantsPressed>(_onLoadMerchants);
+    on<ClearMerchantsPressed>(_onClearMerchants);
+    on<NavigateToMerchantDetailPressed>(_onNavigateToMerchantDetail);
+    on<NavigateToSettingsPressed>(_onNavigateToSettings);
   }
 
-  Future<void> _onLoadMerchantsEvent(
+  Future<void> _onLoadMerchants(
     LoadMerchantsPressed event,
     Emitter<HomeState> emit,
   ) async {
@@ -95,7 +95,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     // bloc.add(Event())
   }
 
-  Future<void> _onClearMerchantsEvent(
+  Future<void> _onClearMerchants(
     ClearMerchantsPressed event,
     Emitter<HomeState> emit,
   ) async {
@@ -111,8 +111,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ));
   }
 
-  Future<void> _onNavigateToMerchantDetailEvent(
-    NavigateToMerchantDetailEvent event,
+  Future<void> _onNavigateToMerchantDetail(
+    NavigateToMerchantDetailPressed event,
     Emitter<HomeState> emit,
   ) async {
     final MerchantViewData data = event.merchantData;
@@ -125,8 +125,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ///TODO: Evaluate navigation command handler strategy
   }
 
-  Future<void> _onSettingPressed(
-    SettingsPressed event,
+  Future<void> _onNavigateToSettings(
+    NavigateToSettingsPressed event,
     Emitter<HomeState> emit,
   ) async {
     Get.toNamed(AppBehaviorScreen.routeName);

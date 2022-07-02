@@ -22,7 +22,7 @@ class HomeBlocView extends StatelessWidget {
             items: state.merchantNames,
             onGoToMerchantDetail: (merchantData) {
               context.read<HomeBloc>().add(
-                    NavigateToMerchantDetailEvent(merchantData),
+                    NavigateToMerchantDetailPressed(merchantData),
                   );
             },
           ),
@@ -30,7 +30,7 @@ class HomeBlocView extends StatelessWidget {
             child: Text('TODO: Handle error'),
           ),
           onSettingsPressed: () {
-            context.read<HomeBloc>().add(SettingsPressed());
+            context.read<HomeBloc>().add(NavigateToSettingsPressed());
           },
           onLoadMerchantsPressed: () {
             context.read<HomeBloc>().add(LoadMerchantsPressed());
