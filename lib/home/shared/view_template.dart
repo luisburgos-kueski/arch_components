@@ -1,4 +1,5 @@
 import 'package:arch_components/home/view/components.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
@@ -12,10 +13,12 @@ class HomeViewTemplate extends StatelessWidget {
     required this.merchantsList,
     this.onLoadMerchantsPressed,
     this.onClearMerchantsPressed,
+    this.onSettingsPressed,
   }) : super(key: key);
 
   final String tag;
   final Widget merchantsList;
+  final Function()? onSettingsPressed;
   final Function()? onLoadMerchantsPressed;
   final Function()? onClearMerchantsPressed;
   final Widget Function() failureViewBuilder;
@@ -27,7 +30,19 @@ class HomeViewTemplate extends StatelessWidget {
     return SafeArea(
       child: NavigationNotifier(
         key: const Key('home_screen'),
-        child: Scaffold(
+        child: BaseScaffold(
+          appBar: AppBar(
+            title: Text(
+              'Home Screen ($tag)',
+            ),
+            actions: [
+              if (onSettingsPressed != null)
+                _ActionsIconButton(
+                  iconData: Icons.settings,
+                  onTap: onSettingsPressed!,
+                ),
+            ],
+          ),
           body: Builder(
             builder: (context) {
               if (isLoading) {
@@ -44,12 +59,6 @@ class HomeViewTemplate extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      'Home Screen ($tag)',
-                      style: const TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
                     Expanded(child: merchantsList),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -70,6 +79,28 @@ class HomeViewTemplate extends StatelessWidget {
             },
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ActionsIconButton extends StatelessWidget {
+  const _ActionsIconButton({
+    Key? key,
+    required this.onTap,
+    required this.iconData,
+  }) : super(key: key);
+
+  final IconData iconData;
+  final Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 20.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Icon(iconData),
       ),
     );
   }

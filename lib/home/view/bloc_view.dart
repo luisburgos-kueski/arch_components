@@ -29,7 +29,11 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorEventNotifier {
           failureViewBuilder: () => const Center(
             child: Text('TODO: Handle error'),
           ),
+          onSettingsPressed: () {
+            context.read<HomeBloc>().add(SettingsPressed());
+          },
           onLoadMerchantsPressed: () {
+            //TODO: Challenge
             notify(OnLoadMerchantsButtonPressed());
             context.read<HomeBloc>().add(LoadMerchantsPressed());
           },

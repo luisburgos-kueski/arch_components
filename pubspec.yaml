@@ -40,6 +40,8 @@ dependencies:
     path: './packages/kdata_sources'
   kapp_behavior:
     path: './packages/kapp_behavior'
+  core:
+    path: './packages/core'
   kufemia:
     git:
       url: git@github.com:kueski-dev/kufemia.git

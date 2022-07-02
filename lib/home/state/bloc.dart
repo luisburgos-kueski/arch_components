@@ -22,6 +22,8 @@ class LoadMerchantsPressed extends HomeEvent implements KAppBehaviorEvent {
   final DateTime timestamp;
 }
 
+class SettingsPressed extends HomeEvent {}
+
 class ClearMerchantsPressed extends HomeEvent {}
 
 class NavigateToMerchantDetailEvent extends HomeEvent {
@@ -55,9 +57,11 @@ class HomeState {
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState()) {
+    ///TODO: Update outdated naming convention
     on<LoadMerchantsPressed>(_onLoadMerchantsEvent);
     on<ClearMerchantsPressed>(_onClearMerchantsEvent);
     on<NavigateToMerchantDetailEvent>(_onNavigateToMerchantDetailEvent);
+    on<SettingsPressed>(_onSettingPressed);
   }
 
   Future<void> _onLoadMerchantsEvent(
@@ -105,5 +109,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ///TODO: Validate if makes sense to have this non-emitter method
     ///TODO: Should we emit app behavior events here?
     ///TODO: Evaluate navigation command handler strategy
+  }
+
+  Future<void> _onSettingPressed(
+    SettingsPressed event,
+    Emitter<HomeState> emit,
+  ) async {
+    Get.toNamed(AppBehaviorScreen.routeName);
   }
 }
