@@ -1,5 +1,3 @@
-import 'dart:developer' as dev;
-
 import 'package:arch_components/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +15,8 @@ class KDefaultAppObserver implements KAppEventObserver {
 
   @override
   void onEvent(KAppBehaviorEvent event) {
-    KLogger.log(event.toString(), 'KAPPOBS');
+    KLogger.log(event.toString(), '-----');
+    //TODO: Send to data sources
   }
 }
 
@@ -25,6 +24,7 @@ class KDefaultAppObserver implements KAppEventObserver {
 class MyBlocObserver extends BlocObserver with KAppBehaviorEventNotifier {
   @override
   void onEvent(Bloc bloc, Object? event) {
+    KLogger.log(event.toString(), 'AB-OBSERVER');
     if (event is KAppBehaviorEvent) {
       notify(event);
     }
@@ -59,20 +59,20 @@ void main() async {
 class MyEventObserver extends KEventObserver {
   @override
   void onEvent(KEvent event) {
-    dev.log(event.toString());
+    KLogger.log(event.toString(), 'LB-OBSERVER');
   }
 }
 
 class MyRouteObserver extends KRouteObserver {
   @override
   void didPush(Route route, Route? previousRoute) {
-    dev.log("$runtimeType didPush: $route");
+    KLogger.log('$runtimeType didPush: $route', 'LB-OBSERVER');
     super.didPush(route, previousRoute);
   }
 
   @override
   void didPop(Route route, Route? previousRoute) {
-    dev.log("$runtimeType didPop: $route");
+    KLogger.log('$runtimeType didPop: $route', 'LB-OBSERVER');
     super.didPop(route, previousRoute);
   }
 }

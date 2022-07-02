@@ -15,11 +15,11 @@ class KDefaultAppBehaviorEvent with KAppBehaviorEvent {
   @override
   final String name;
   @override
-  final Map<String, dynamic> params;
+  final Map<String, dynamic>? params;
   @override
   final DateTime timestamp;
 
-  KDefaultAppBehaviorEvent.named(
+  KDefaultAppBehaviorEvent(
     this.name, {
     this.params = const {},
   }) : timestamp = DateTime.now();
@@ -29,7 +29,7 @@ class KScreenEvent with KAppBehaviorEvent {
   @override
   final String name;
   @override
-  final Map<String, dynamic> params;
+  final Map<String, dynamic>? params;
   @override
   final DateTime timestamp;
 

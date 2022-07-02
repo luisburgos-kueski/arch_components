@@ -17,10 +17,6 @@ export 'widget/kroute_aware_screen.dart';
 /// TODO: Evaluate define AppBehaviorEvent class
 /// TODO: Should the API call be made from here?
 class KAppBehavior {
-  KAppBehavior._();
-  static final KAppBehavior _instance = KAppBehavior._();
-  factory KAppBehavior() => _instance;
-
   static void init(
     KAppEventObserver eventObserver,
     KAppRouteObserver routeObserver,
@@ -32,30 +28,32 @@ class KAppBehavior {
   static KAppEventObserver? _observer;
   static KAppRouteObserver? _routeObserver;
 
+  //TODO: Challenge being public
   static KAppEventObserver get observer {
     //TODO: App proper exception message for use case.
     if (_observer == null) throw Exception();
     return _observer!;
   }
 
+  //TODO: Challenge being public
   static KAppRouteObserver get routeObserver {
     //TODO: App proper exception message for use case.
     if (_routeObserver == null) throw Exception();
     return _routeObserver!;
   }
 
-  final KAppBehaviorInMemoryStore eventsStore = KAppBehaviorInMemoryStore();
+  static KAppBehaviorInMemoryStore eventsStore = KAppBehaviorInMemoryStore();
 
-  Future<void> registerDefault({
+  static Future<void> registerDefault({
     required String name,
     Map<String, dynamic>? parameters,
   }) {
     return registerEvent(
-      KDefaultAppBehaviorEvent.named(name, params: parameters ?? {}),
+      KDefaultAppBehaviorEvent(name, params: parameters ?? {}),
     );
   }
 
-  Future<void> registerEvent(KAppBehaviorEvent event) async {
+  static Future<void> registerEvent(KAppBehaviorEvent event) async {
     const String kReservedPrefix = 'kapp_behavior_';
 
     if (event.name.startsWith(kReservedPrefix)) {
@@ -67,10 +65,10 @@ class KAppBehavior {
     }
 
     dev.log(
-      '[$kReservedPrefix${event.name}, ${DateTime.now()}, ${event.params}]',
+      '[${event.name}, ${DateTime.now()}, ${event.params}]',
+      name: 'APP_BEHAVIOR',
     );
-    eventsStore.add(event);
-    KAppBehavior.observer.onEvent(event);
+    KAppBehavior.eventsStore.add(event);
   }
 }
 

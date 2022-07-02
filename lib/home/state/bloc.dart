@@ -7,29 +7,43 @@ import 'package:merchants_data/merchants_data.dart';
 
 import '../shared/view_data_model.dart';
 
-abstract class HomeEvent {}
-
-class LoadMerchantsPressed extends HomeEvent implements KAppBehaviorEvent {
-  LoadMerchantsPressed() : timestamp = DateTime.now();
-
+//TODO: Verify
+abstract class HomeEvent implements KDefaultAppBehaviorEvent {
   @override
-  String get name => "load_merchants";
+  DateTime get timestamp => DateTime.now();
 
   @override
   Map<String, dynamic>? get params => null;
-
-  @override
-  final DateTime timestamp;
 }
 
-class SettingsPressed extends HomeEvent {}
+class LoadMerchantsPressed extends HomeEvent {
+  @override
+  String get name => 'load_merchants_pressed';
+}
 
-class ClearMerchantsPressed extends HomeEvent {}
+class SettingsPressed extends HomeEvent {
+  @override
+  String get name => 'settings_pressed';
+}
+
+class ClearMerchantsPressed extends HomeEvent {
+  @override
+  String get name => 'clear_merchants_pressed';
+}
 
 class NavigateToMerchantDetailEvent extends HomeEvent {
   NavigateToMerchantDetailEvent(this.merchantData);
 
   final MerchantViewData merchantData;
+
+  @override
+  String get name => 'navigate_to_merchant_detail';
+
+  @override
+  Map<String, dynamic>? get params => {
+        'merchant_name': merchantData.name,
+        'merchant_id': merchantData.id,
+      };
 }
 
 enum F { a, b }

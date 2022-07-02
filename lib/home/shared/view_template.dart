@@ -1,9 +1,11 @@
+import 'package:arch_components/home/view/bloc_view.dart';
 import 'package:arch_components/home/view/components.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:kapp_behavior/notifier/kapp_behavior_notifier.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
-class HomeViewTemplate extends StatelessWidget {
+class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {
   const HomeViewTemplate({
     Key? key,
     required this.tag,
@@ -64,9 +66,12 @@ class HomeViewTemplate extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          LoadMerchantsTextButton(
-                            onLoad: onLoadMerchantsPressed,
-                          ),
+                          LoadMerchantsTextButton(onLoad: () {
+                            notify(OnLoadMerchantsButtonPressed());
+                            if (onLoadMerchantsPressed != null) {
+                              onLoadMerchantsPressed!();
+                            }
+                          }),
                           ClearMerchantsTextButton(
                             onClear: onClearMerchantsPressed,
                           ),

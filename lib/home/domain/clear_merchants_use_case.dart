@@ -13,7 +13,7 @@ class ClearMerchantsUseCase {
     await Future.delayed(const Duration(milliseconds: 1900));
     await repository.wipeMerchantsList();
 
-    await KAppBehavior().registerDefault(
+    await KAppBehavior.registerDefault(
       name: 'on_merchant_list_cleared',
     );
   }

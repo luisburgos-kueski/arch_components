@@ -22,7 +22,7 @@ class KAppBehaviorListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ManagedStreamBuilder<List<KAppBehaviorEvent>>(
-      stream: KAppBehavior().eventsStore.listStateChanges(),
+      stream: KAppBehavior.eventsStore.listStateChanges(),
       onLoading: () => const Center(child: CircularProgressIndicator()),
       onData: (data) => AppBehaviorEventsListView(items: data ?? const []),
       onError: (error) => Center(child: Text(error)),

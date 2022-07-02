@@ -7,7 +7,7 @@ import '../shared/view_template.dart';
 import '../state/bloc.dart';
 import 'components.dart';
 
-class HomeBlocView extends StatelessWidget with KAppBehaviorEventNotifier {
+class HomeBlocView extends StatelessWidget {
   const HomeBlocView({Key? key}) : super(key: key);
 
   @override
@@ -33,8 +33,6 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorEventNotifier {
             context.read<HomeBloc>().add(SettingsPressed());
           },
           onLoadMerchantsPressed: () {
-            //TODO: Challenge
-            notify(OnLoadMerchantsButtonPressed());
             context.read<HomeBloc>().add(LoadMerchantsPressed());
           },
           onClearMerchantsPressed: () {
