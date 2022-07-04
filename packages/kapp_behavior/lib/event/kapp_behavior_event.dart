@@ -1,4 +1,5 @@
 /// TODO: Should this be non-abstract? So we can have named constructors?
+/// TODO: Challenge rename to IKAppBehaviorEvent
 abstract class KAppBehaviorEvent {
   String get name;
   Map<String, dynamic>? get params;

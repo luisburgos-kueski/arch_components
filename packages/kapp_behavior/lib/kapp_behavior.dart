@@ -16,6 +16,9 @@ export 'widget/kroute_aware_screen.dart';
 /// TODO: Evaluate use InMemoryStore
 /// TODO: Evaluate define AppBehaviorEvent class
 /// TODO: Should the API call be made from here?
+///
+/// KAppBehavior.observer.onEvent();
+/// KAppBehavior.registerEvent(...);
 class KAppBehavior {
   static void init(
     KAppEventObserver eventObserver,

@@ -1,5 +1,6 @@
 import 'package:arch_components/home/domain/clear_merchants_use_case.dart';
 import 'package:arch_components/home/domain/load_merchants_use_case.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
@@ -8,12 +9,19 @@ import 'package:merchants_data/merchants_data.dart';
 import '../shared/view_data_model.dart';
 
 //TODO: Verify overrides. Could this be optional to override?
-abstract class HomeEvent implements KDefaultAppBehaviorEvent {
+abstract class HomeEvent extends Equatable implements KDefaultAppBehaviorEvent {
+  HomeEvent()
+      : timestamp = DateTime.now(),
+        super();
+
   @override
-  DateTime get timestamp => DateTime.now();
+  final DateTime timestamp;
 
   @override
   Map<String, dynamic>? get params => null;
+
+  @override
+  List<Object?> get props => [];
 }
 
 class LoadMerchantsPressed extends HomeEvent {
@@ -44,6 +52,10 @@ class NavigateToMerchantDetailPressed extends HomeEvent {
         'merchant_name': merchantData.name,
         'merchant_id': merchantData.id,
       };
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [merchantData];
 }
 
 enum F { a, b }
