@@ -62,6 +62,8 @@ class ViewTemplateA2 implements IViewTemplate {
 
 ### UseCases
 
+> All UseCases MUST output Business Logic Events.
+
 Blueprint:
 ```dart
 abstract class IUseCase {
@@ -88,3 +90,42 @@ class UseCaseA2 implements IUseCase {
   
 }
 ```
+
+## Brainstorming
+
+- UiEvent -> View -> BlocEvent (UiEvent)
+- BlocEvent -> Bloc + UseCase -> BLEvent
+
+-------
+
+- UiEvent -> View -> Cubit
+- Cubit + UseCase -> BLEvent
+
+- UiEvent -> View -> GetController
+- GetController + UseCase -> BLEvent
+
+-------
+
+- User -> View -> UiEvent
+- UiEvent -> GetController -> Command
+- Command -> CommandHandler (UseCase) -> BLEvent
+
+- User -> View -> UiEvent
+- UiEvent -> Cubit + UseCase -> BLEvent
+
+-------
+
+- LogBehavior?
+  - Sources:
+    - Presentation Logic
+    - Navigation: Routes 
+- AppBehavior?
+  - Sources:
+    - Business Logic
+    - Navigation: Screen/Pages
+  
+----
+
+**Notes:**
+- BlocEvents are not necessary Ui Events.
+- BlocEvents are more likely to be Commands?
