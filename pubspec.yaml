@@ -50,6 +50,7 @@ dependencies:
     git:
       url: git@github.com:kueski-dev/kevent_tracker.git
       ref: v1.0.0
+  equatable: ^2.0.3
 
 dev_dependencies:
   flutter_test:
