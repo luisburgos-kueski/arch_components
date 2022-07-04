@@ -5,12 +5,15 @@ import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_repository.dart';
 
 import '../shared/view_data_model.dart';
+import '../shared/view_events.dart';
 
 class HomeController extends GetxController with KAppBehaviorEventNotifier {
   RxList<MerchantViewData> merchantData = RxList();
   Rx<HomeStatus> status = HomeStatus.initial.obs;
 
   Future<void> onLoadMerchantsEvent() async {
+    notify(LoadMerchantsPressed());
+
     status(HomeStatus.loading);
 
     final result = await LoadMerchantsUseCase(

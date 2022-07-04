@@ -2,6 +2,7 @@ import 'package:arch_components/home/domain/clear_merchants_use_case.dart';
 import 'package:arch_components/home/domain/load_merchants_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_data.dart';
 
 import '../shared/view_data_model.dart';
@@ -29,7 +30,8 @@ final merchantListStateChangesProvider =
       );
 });
 
-class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>> {
+class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>>
+    with KAppBehaviorEventNotifier {
   HomeScreenRiverpodController({
     required this.repository,
   }) : super(const AsyncData(null));

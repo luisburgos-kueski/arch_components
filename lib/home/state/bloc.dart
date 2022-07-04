@@ -1,62 +1,12 @@
 import 'package:arch_components/home/domain/clear_merchants_use_case.dart';
 import 'package:arch_components/home/domain/load_merchants_use_case.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_data.dart';
 
 import '../shared/view_data_model.dart';
-
-//TODO: Verify overrides. Could this be optional to override?
-abstract class HomeEvent extends Equatable implements KDefaultAppBehaviorEvent {
-  HomeEvent()
-      : timestamp = DateTime.now(),
-        super();
-
-  @override
-  final DateTime timestamp;
-
-  @override
-  Map<String, dynamic>? get params => null;
-
-  @override
-  List<Object?> get props => [];
-}
-
-class LoadMerchantsPressed extends HomeEvent {
-  @override
-  String get name => 'load_merchants_pressed';
-}
-
-class NavigateToSettingsPressed extends HomeEvent {
-  @override
-  String get name => 'navigate_to_settings';
-}
-
-class ClearMerchantsPressed extends HomeEvent {
-  @override
-  String get name => 'clear_merchants_pressed';
-}
-
-class NavigateToMerchantDetailPressed extends HomeEvent {
-  NavigateToMerchantDetailPressed(this.merchantData);
-
-  final MerchantViewData merchantData;
-
-  @override
-  String get name => 'navigate_to_merchant_detail';
-
-  @override
-  Map<String, dynamic>? get params => {
-        'merchant_name': merchantData.name,
-        'merchant_id': merchantData.id,
-      };
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [merchantData];
-}
+import '../shared/view_events.dart';
 
 enum F { a, b }
 
