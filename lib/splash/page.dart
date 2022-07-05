@@ -4,6 +4,7 @@ import 'package:kevent_tracker/kevent_tracker.dart';
 
 import '../home/page.dart';
 
+///TODO: Remove and change approach to stream navigation reaction.
 class SplashPage extends StatelessWidget {
   static const routeName = '/';
 
@@ -13,7 +14,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance?.addPostFrameCallback(
       (_) => Future.delayed(
-        const Duration(seconds: 3),
+        const Duration(seconds: 1),
         () => Get.offNamed(HomePage.routeName),
       ),
     );
