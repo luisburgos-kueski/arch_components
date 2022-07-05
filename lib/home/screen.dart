@@ -8,11 +8,11 @@ import 'view/bloc_view.dart';
 import 'view/controller_view.dart';
 import 'view/riverpod_view.dart';
 
-class HomePage extends KRouteAwareScreen {
+class HomeScreen extends KRouteAwareScreen {
   static const routeName = '/home';
   static const screenName = 'HomeScreen';
 
-  const HomePage({
+  const HomeScreen({
     Key? key,
   }) : super(
           key: key,
