@@ -13,8 +13,18 @@ class ClearMerchantsUseCase {
     await Future.delayed(const Duration(milliseconds: 1900));
     await repository.wipeMerchantsList();
 
-    await KAppBehavior.registerDefault(
-      name: 'on_merchant_list_cleared',
+    await KAppBehavior.registerEvent(
+      OnMerchantListCleared(),
     );
   }
+}
+
+class OnMerchantListCleared extends UseCaseKAppBehaviorEvent {
+  @override
+  final String name = 'on_merchant_list_cleared';
+
+  @override
+  final Map<String, dynamic>? params;
+
+  OnMerchantListCleared({this.params});
 }

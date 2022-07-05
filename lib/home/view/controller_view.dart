@@ -21,7 +21,7 @@ class HomeControllerView extends StatelessWidget {
         merchantsList: MerchantsList(
           items: controller.merchantData(),
           onGoToMerchantDetail: (merchantData) {
-            controller.onNavigateToMerchantDetailEvent(merchantData);
+            controller.onNavigateToMerchantDetail(merchantData);
           },
         ),
         failureViewBuilder: () => const Center(
@@ -32,6 +32,9 @@ class HomeControllerView extends StatelessWidget {
         },
         onClearMerchantsPressed: () {
           controller.onClearMerchantsEvent();
+        },
+        onSettingsPressed: () {
+          controller.onNavigateToSettings();
         },
       );
     });

@@ -4,7 +4,7 @@ import 'package:kapp_behavior/kapp_behavior.dart';
 
 import 'view_data_model.dart';
 
-abstract class HomeEvent extends Equatable implements KDefaultAppBehaviorEvent {
+abstract class HomeEvent extends Equatable implements BlocKAppBehaviorEvent {
   HomeEvent()
       : timestamp = DateTime.now(),
         super();
@@ -19,23 +19,23 @@ abstract class HomeEvent extends Equatable implements KDefaultAppBehaviorEvent {
   List<Object?> get props => [];
 }
 
-class LoadMerchantsPressed extends HomeEvent {
+class LoadHomeMerchants extends HomeEvent {
   @override
-  String get name => 'load_merchants_pressed';
+  String get name => 'load_home_merchants';
 }
 
-class NavigateToSettingsPressed extends HomeEvent {
+class NavigateToSettings extends HomeEvent {
   @override
   String get name => 'navigate_to_settings';
 }
 
-class ClearMerchantsPressed extends HomeEvent {
+class ClearHomeMerchants extends HomeEvent {
   @override
-  String get name => 'clear_merchants_pressed';
+  String get name => 'clear_home_merchants';
 }
 
-class NavigateToMerchantDetailPressed extends HomeEvent {
-  NavigateToMerchantDetailPressed(this.merchantData);
+class NavigateToMerchantDetail extends HomeEvent {
+  NavigateToMerchantDetail(this.merchantData);
 
   final MerchantViewData merchantData;
 

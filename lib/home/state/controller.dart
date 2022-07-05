@@ -12,7 +12,7 @@ class HomeController extends GetxController with KAppBehaviorEventNotifier {
   Rx<HomeStatus> status = HomeStatus.initial.obs;
 
   Future<void> onLoadMerchantsEvent() async {
-    notify(LoadMerchantsPressed());
+    notify(LoadHomeMerchants());
 
     status(HomeStatus.loading);
 
@@ -26,6 +26,8 @@ class HomeController extends GetxController with KAppBehaviorEventNotifier {
   }
 
   Future<void> onClearMerchantsEvent() async {
+    notify(ClearHomeMerchants());
+
     status(HomeStatus.loading);
 
     await ClearMerchantsUseCase(
@@ -36,9 +38,15 @@ class HomeController extends GetxController with KAppBehaviorEventNotifier {
     merchantData.clear();
   }
 
-  Future<void> onNavigateToMerchantDetailEvent(MerchantViewData data) async {
-    final String merchantId = data.id;
+  Future<void> onNavigateToMerchantDetail(MerchantViewData data) async {
+    notify(NavigateToMerchantDetail(data));
 
+    final String merchantId = data.id;
     Get.toNamed('/home/$merchantId');
+  }
+
+  Future<void> onNavigateToSettings() async {
+    notify(NavigateToSettings());
+    Get.toNamed(AppBehaviorScreen.routeName);
   }
 }

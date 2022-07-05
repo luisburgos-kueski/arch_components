@@ -7,6 +7,8 @@ import 'package:core/in_memory_store.dart';
 import 'event/kapp_behavior_event.dart';
 import 'observer/kapp_behavior_observer.dart';
 
+export 'package:kapp_behavior/event/custom_kapp_behavior_events.dart';
+
 export 'event/kapp_behavior_event.dart';
 export 'kapp_behavior_list_view.dart';
 export 'notifier/kapp_behavior_notifier.dart';

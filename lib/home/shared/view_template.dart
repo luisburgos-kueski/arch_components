@@ -134,15 +134,6 @@ class _ActionsIconButton extends StatelessWidget {
   }
 }
 
-///TODO: Evaluate duplicated events on Bloc approach.
-abstract class UiKAppBehaviorEvent implements KDefaultAppBehaviorEvent {
-  @override
-  DateTime get timestamp => DateTime.now();
-
-  @override
-  Map<String, dynamic>? get params => null;
-}
-
 class OnSettingsButtonPressed extends UiKAppBehaviorEvent {
   @override
   final String name = 'settings_button_pressed';

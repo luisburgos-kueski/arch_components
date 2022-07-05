@@ -31,17 +31,19 @@ class HomeState {
   }
 }
 
+///TODO:
+///Research if onEvent method could be override to intercept Navigation events.
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState()) {
     ///TODO: Update outdated naming convention
-    on<LoadMerchantsPressed>(_onLoadMerchants);
-    on<ClearMerchantsPressed>(_onClearMerchants);
-    on<NavigateToMerchantDetailPressed>(_onNavigateToMerchantDetail);
-    on<NavigateToSettingsPressed>(_onNavigateToSettings);
+    on<LoadHomeMerchants>(_onLoadHomeMerchants);
+    on<ClearHomeMerchants>(_onClearHomeMerchants);
+    on<NavigateToMerchantDetail>(_onNavigateToMerchantDetail);
+    on<NavigateToSettings>(_onNavigateToSettings);
   }
 
-  Future<void> _onLoadMerchants(
-    LoadMerchantsPressed event,
+  Future<void> _onLoadHomeMerchants(
+    LoadHomeMerchants event,
     Emitter<HomeState> emit,
   ) async {
     emit(state.copyWith(status: () => HomeStatus.loading));
@@ -57,8 +59,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     // bloc.add(Event())
   }
 
-  Future<void> _onClearMerchants(
-    ClearMerchantsPressed event,
+  Future<void> _onClearHomeMerchants(
+    ClearHomeMerchants event,
     Emitter<HomeState> emit,
   ) async {
     emit(state.copyWith(status: () => HomeStatus.loading));
@@ -74,21 +76,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _onNavigateToMerchantDetail(
-    NavigateToMerchantDetailPressed event,
+    NavigateToMerchantDetail event,
     Emitter<HomeState> emit,
   ) async {
     final MerchantViewData data = event.merchantData;
     final String merchantId = data.id;
 
-    Get.toNamed('/home/$merchantId');
-
     ///TODO: Validate if makes sense to have this non-emitter method
     ///TODO: Should we emit app behavior events here?
     ///TODO: Evaluate navigation command handler strategy
+    Get.toNamed('/home/$merchantId');
   }
 
   Future<void> _onNavigateToSettings(
-    NavigateToSettingsPressed event,
+    NavigateToSettings event,
     Emitter<HomeState> emit,
   ) async {
     Get.toNamed(AppBehaviorScreen.routeName);

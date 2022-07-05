@@ -27,14 +27,6 @@ class LoadMerchantsUseCase {
   }
 }
 
-abstract class UseCaseKAppBehaviorEvent implements KDefaultAppBehaviorEvent {
-  @override
-  DateTime get timestamp => DateTime.now();
-
-  @override
-  Map<String, dynamic>? get params => null;
-}
-
 class OnMerchantListLoaded extends UseCaseKAppBehaviorEvent {
   @override
   final String name = 'on_merchant_list_loaded';

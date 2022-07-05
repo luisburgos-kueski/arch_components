@@ -19,7 +19,9 @@ class HomeRiverpodView extends ConsumerWidget {
       tag: 'riverpod',
       merchantsList: _MerchantsListDataWatcher(
         onGoToMerchantDetail: (d) {
-          ref.read(homeScreenControllerProvider.notifier).navigateTo(d);
+          ref
+              .read(homeScreenControllerProvider.notifier)
+              .navigateToMerchantDetail(d);
         },
       ),
       failureViewBuilder: () => Container(),
@@ -28,6 +30,9 @@ class HomeRiverpodView extends ConsumerWidget {
       },
       onClearMerchantsPressed: () {
         ref.read(homeScreenControllerProvider.notifier).clearMerchants();
+      },
+      onSettingsPressed: () {
+        ref.read(homeScreenControllerProvider.notifier).navigateToSettings();
       },
     );
   }

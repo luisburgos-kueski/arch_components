@@ -1,12 +1,9 @@
 import 'package:arch_components/home/page.dart';
-import 'package:arch_components/home/shared/view_template.dart';
 import 'package:arch_components/merchant_detail/page.dart';
 import 'package:core/base_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
-
-import 'home/domain/load_merchants_use_case.dart';
 
 final List<GetPage> pages = [
   GetPage(
@@ -26,19 +23,33 @@ final List<GetPage> pages = [
         ),
       ),
       body: AppBehaviorScreen(
-        customColorDecorator: (event) {
-          if (event is UseCaseKAppBehaviorEvent) {
-            return Colors.yellow.shade300;
-          }
-          if (event is UiKAppBehaviorEvent) {
-            return Colors.blue.shade300;
-          }
-          if (event is KScreenEvent) {
-            return Colors.green.shade300;
-          }
-          return Colors.grey;
+        onBackPressed: () {
+          KAppBehavior.registerEvent(
+            CustomNavigateBackAppBehaviorEvent(
+              from: Get.currentRoute,
+            ),
+          );
         },
       ),
     ),
   ),
 ];
+
+class CustomNavigateBackAppBehaviorEvent implements KDefaultAppBehaviorEvent {
+  @override
+  String get name => 'custom_navigate_back';
+
+  @override
+  Map<String, dynamic>? get params => {
+        'from_route': from,
+      };
+
+  @override
+  final DateTime timestamp;
+
+  final String from;
+
+  CustomNavigateBackAppBehaviorEvent({
+    required this.from,
+  }) : timestamp = DateTime.now();
+}

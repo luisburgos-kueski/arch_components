@@ -2,6 +2,8 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 
+import 'event/custom_kapp_behavior_events.dart';
+
 ///TODO: Add clear events cache log action
 class AppBehaviorScreen extends StatelessWidget {
   static const String routeName = "/app-behavior";
@@ -9,16 +11,24 @@ class AppBehaviorScreen extends StatelessWidget {
   const AppBehaviorScreen({
     Key? key,
     this.customColorDecorator,
+    this.onBackPressed,
   }) : super(key: key);
 
   final Color Function(KAppBehaviorEvent)? customColorDecorator;
+  final Function()? onBackPressed;
 
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
       withSafeArea: true,
-      body: KAppBehaviorListView(
-        customColorDecorator: customColorDecorator,
+      body: WillPopScope(
+        onWillPop: () async {
+          if (onBackPressed != null) onBackPressed!();
+          return true;
+        },
+        child: KAppBehaviorListView(
+          customColorDecorator: customColorDecorator,
+        ),
       ),
     );
   }
@@ -56,9 +66,25 @@ class AppBehaviorEventsListView extends StatelessWidget {
   final List<KAppBehaviorEvent> items;
   final Color Function(KAppBehaviorEvent)? colorDecorator;
 
+  //TODO:
+  // Improve decoration pattern by receiving a custom decoration by event-type.
   Color _getDecorationColor(KAppBehaviorEvent event) {
-    if (colorDecorator == null) return Colors.grey;
-    return colorDecorator!(event);
+    if (colorDecorator != null) {
+      return colorDecorator!(event);
+    }
+    if (event is UiKAppBehaviorEvent) {
+      return Colors.blue.shade300;
+    }
+    if (event is BlocKAppBehaviorEvent) {
+      return Colors.red.shade300;
+    }
+    if (event is UseCaseKAppBehaviorEvent) {
+      return Colors.yellow.shade300;
+    }
+    if (event is KScreenEvent) {
+      return Colors.green.shade300;
+    }
+    return Colors.grey;
   }
 
   @override

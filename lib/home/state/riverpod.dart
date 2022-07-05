@@ -1,11 +1,12 @@
-import 'package:arch_components/home/domain/clear_merchants_use_case.dart';
-import 'package:arch_components/home/domain/load_merchants_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_data.dart';
 
+import '../domain/clear_merchants_use_case.dart';
+import '../domain/load_merchants_use_case.dart';
 import '../shared/view_data_model.dart';
+import '../shared/view_events.dart';
 
 final merchantsRepositoryProvider = Provider<FakeMerchantsRepository>((ref) {
   final merchants = FakeMerchantsRepository();
@@ -38,12 +39,9 @@ class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>>
 
   final FakeMerchantsRepository repository;
 
-  Future<void> navigateTo(MerchantViewData data) async {
-    final String merchantId = data.id;
-    Get.toNamed('/home/$merchantId');
-  }
-
   Future<void> loadMerchants() async {
+    notify(LoadHomeMerchants());
+
     state = const AsyncValue<void>.loading();
 
     /// FIXME:
@@ -58,12 +56,26 @@ class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>>
   }
 
   Future<void> clearMerchants() async {
+    notify(ClearHomeMerchants());
+
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(
       ClearMerchantsUseCase(
         repository: repository,
       ).run,
     );
+  }
+
+  Future<void> navigateToMerchantDetail(MerchantViewData data) async {
+    notify(NavigateToMerchantDetail(data));
+
+    final String merchantId = data.id;
+    Get.toNamed('/home/$merchantId');
+  }
+
+  Future<void> navigateToSettings() async {
+    notify(NavigateToSettings());
+    Get.toNamed(AppBehaviorScreen.routeName);
   }
 }
 
