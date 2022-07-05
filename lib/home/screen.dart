@@ -1,7 +1,5 @@
-import 'package:arch_components/home/state/bloc.dart';
 import 'package:arch_components/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 
 import 'view/bloc_view.dart';
@@ -28,12 +26,7 @@ class _HomeScreenState extends KRouteAwareState<KRouteAwareScreen> {
   @override
   Widget build(BuildContext context) {
     if (TempStaticFeatureToggles.useBloc) {
-      return Scaffold(
-        body: BlocProvider(
-          create: (_) => HomeBloc(),
-          child: const HomeBlocView(),
-        ),
-      );
+      return const Scaffold(body: HomeBlocView());
     }
 
     if (TempStaticFeatureToggles.useRiverpod) {

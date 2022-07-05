@@ -12,34 +12,37 @@ class HomeBlocView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        return HomeViewTemplate(
-          tag: 'bloc',
-          isLoading: state.status == HomeStatus.loading,
-          displayFailure: state.status == HomeStatus.failure,
-          merchantsList: MerchantsList(
-            items: state.merchantNames,
-            onGoToMerchantDetail: (merchantData) {
-              context.read<HomeBloc>().add(
-                    NavigateToMerchantDetail(merchantData),
-                  );
+    return BlocProvider(
+      create: (_) => HomeBloc(),
+      child: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return HomeViewTemplate(
+            tag: 'bloc',
+            isLoading: state.status == HomeStatus.loading,
+            displayFailure: state.status == HomeStatus.failure,
+            merchantsList: MerchantsList(
+              items: state.merchantNames,
+              onGoToMerchantDetail: (merchantData) {
+                context.read<HomeBloc>().add(
+                      NavigateToMerchantDetail(merchantData),
+                    );
+              },
+            ),
+            failureViewBuilder: () => const Center(
+              child: Text('TODO: Handle error'),
+            ),
+            onSettingsPressed: () {
+              context.read<HomeBloc>().add(NavigateToSettings());
             },
-          ),
-          failureViewBuilder: () => const Center(
-            child: Text('TODO: Handle error'),
-          ),
-          onSettingsPressed: () {
-            context.read<HomeBloc>().add(NavigateToSettings());
-          },
-          onLoadMerchantsPressed: () {
-            context.read<HomeBloc>().add(LoadHomeMerchants());
-          },
-          onClearMerchantsPressed: () {
-            context.read<HomeBloc>().add(ClearHomeMerchants());
-          },
-        );
-      },
+            onLoadMerchantsPressed: () {
+              context.read<HomeBloc>().add(LoadHomeMerchants());
+            },
+            onClearMerchantsPressed: () {
+              context.read<HomeBloc>().add(ClearHomeMerchants());
+            },
+          );
+        },
+      ),
     );
   }
 }
