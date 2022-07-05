@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import '../kapp_behavior.dart';
 
+//TODO: Use same approach of OnBackPressedAppBehaviorNotifier
+//TODO: Make notify support methods async operations??
 abstract class KAppBehaviorEventNotifier {
   void notifyUi(UiKAppBehaviorEvent event) {
     _notifyAppBehavior(event);
