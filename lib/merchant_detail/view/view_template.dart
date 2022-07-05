@@ -1,9 +1,13 @@
+import 'package:core/base_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
 import 'components.dart';
 
-class MerchantDetailViewTemplate extends StatelessWidget {
+class MerchantDetailViewTemplate extends StatelessWidget
+    with OnBackPressedAppBehaviorNotifier {
   const MerchantDetailViewTemplate({
     Key? key,
     required this.merchantName,
@@ -15,20 +19,35 @@ class MerchantDetailViewTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: NavigationNotifier(
-        key: const Key('merchant_detail_screen'),
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(merchantName),
-              BackToHomeTextButton(
-                onBackClicked: onBackButtonPressed,
-              )
-            ],
+    return BaseScaffold(
+      appBar: AppBar(
+          title: Text(
+        'MerchantDetails ($merchantName)',
+      )),
+      onBackPressed: () => notifyOnBackPressed(
+        fromRoute: Get.currentRoute,
+      ),
+      body: SafeArea(
+        child: NavigationNotifier(
+          key: const Key('merchant_detail_screen'),
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(merchantName),
+                BackToHomeTextButton(
+                  onBackClicked: () {
+                    notifyOnBackPressed(
+                      fromRoute: Get.currentRoute,
+                      source: BackSource.user,
+                    );
+                    onBackButtonPressed();
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),

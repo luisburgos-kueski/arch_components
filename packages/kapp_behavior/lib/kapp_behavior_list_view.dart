@@ -20,15 +20,15 @@ class AppBehaviorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      withSafeArea: true,
-      body: WillPopScope(
-        onWillPop: () async {
-          if (onBackPressed != null) onBackPressed!();
-          return true;
-        },
-        child: KAppBehaviorListView(
-          customColorDecorator: customColorDecorator,
+      onBackPressed: onBackPressed,
+      appBar: AppBar(
+        title: const Text(
+          AppBehaviorScreen.routeName,
         ),
+      ),
+      withSafeArea: true,
+      body: KAppBehaviorListView(
+        customColorDecorator: customColorDecorator,
       ),
     );
   }

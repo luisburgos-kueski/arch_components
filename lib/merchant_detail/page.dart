@@ -18,12 +18,10 @@ class MerchantDetailPage extends StatelessWidget {
     /// TODO: Evaluate direct call to Get here is ok.
     final merchantName = Get.parameters['id'] as String;
 
-    return Scaffold(
-      body: BlocProvider(
-        create: (_) => MerchantDetailBloc(),
-        child: MerchantDetailView(
-          merchantName: merchantName,
-        ),
+    return BlocProvider(
+      create: (_) => MerchantDetailBloc(),
+      child: MerchantDetailView(
+        merchantName: merchantName,
       ),
     );
   }

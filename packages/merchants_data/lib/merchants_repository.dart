@@ -10,7 +10,7 @@ class FakeMerchantsRepository {
   List<Merchant>? get currentMerchantList => _merchantListState.value;
 
   Future<void> loadMerchantsList() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 1));
     _merchantListState.value = [
       Merchant('xiaomi', 'Xiaomi', 'Electronics', true),
       Merchant('doto', 'Tío Doto', 'Electronics', false),
