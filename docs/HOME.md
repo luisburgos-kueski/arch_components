@@ -46,7 +46,17 @@ class ClearMerchantsUseCase with KAppBehaviorEventNotifier {
 Rules of Thumb:
 
 - `Page` is defined as the association of a `Screen` to a `Route`.
-- 
+- `Route` is the full path of the `Page`
+- For now, a `Screen` is the same as a `View`, but also a point of feature toggles injection to vary the UI.
+- `View` is the glue for a `ViewTiemplate` with its `State Holder`.
+  - The `View` is responsible to read attributes from the `StateHolder` to make the to `ViewTemplate` look smart.
+  - The `View` requests business logic execution to its `StateHolder`.  
+- `ViewTemplate` defines the `Screen` skeleton, it's a dump component exposing callbacks and customization attributes.  
+- `StateHolder` 
+  - A `StateHolder` is a state projection component which listens to Data Access Streams. 
+  - A `StateHolder` could filter or transform the data in terms of `ViewData` information.
+  - A `StateHolder` runs `UseCases` and updates local state if needed.  
+- `ViewData` is the most atomic Data scope for a view. In other words, partial views of a `Data Model`
 
 ### ViewTemplate
 
@@ -166,6 +176,8 @@ class BlocToAppBehaviorObserver extends BlocObserver
 }
 ```
 
+Then you can work with Bloc as normally with no more code:
+
 ```dart
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState()) {
@@ -206,9 +218,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 }
 ```
 
-### Screen
+### The Screen
 
-**IMPORTANT**: Extend from `KRouteAwareScreen`
+**NOTES**: 
+- Extend from `KRouteAwareScreen`.
+- We might want to add feature flags injection from this point of the widget tree.
 
 ```dart
 class HomeScreen extends KRouteAwareScreen {
@@ -231,12 +245,7 @@ class _HomeScreenState extends KRouteAwareState<KRouteAwareScreen> {
   @override
   Widget build(BuildContext context) {
     if (TempStaticFeatureToggles.useBloc) {
-      return Scaffold(
-        body: BlocProvider(
-          create: (_) => HomeBloc(),
-          child: const HomeBlocView(),
-        ),
-      );
+      return const Scaffold(body: HomeBlocView());
     }
 
     return const Scaffold(body: HomeControllerView());
