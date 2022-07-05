@@ -1,7 +1,7 @@
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_data.dart';
 
-class LoadMerchantsUseCase {
+class LoadMerchantsUseCase with KAppBehaviorEventNotifier {
   LoadMerchantsUseCase({
     /// TODO: Dependency Injection
     required this.repository,
@@ -14,7 +14,7 @@ class LoadMerchantsUseCase {
       await repository.loadMerchantsList();
       final list = repository.currentMerchantList ?? [];
 
-      await KAppBehavior.registerEvent(
+      notifyUseCase(
         OnMerchantListLoaded(
           params: {
             'list_length': list.length,

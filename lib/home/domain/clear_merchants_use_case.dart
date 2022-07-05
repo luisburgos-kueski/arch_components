@@ -1,7 +1,7 @@
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_data.dart';
 
-class ClearMerchantsUseCase {
+class ClearMerchantsUseCase with KAppBehaviorEventNotifier {
   ClearMerchantsUseCase({
     /// TODO: Dependency Injection
     required this.repository,
@@ -13,9 +13,7 @@ class ClearMerchantsUseCase {
     await Future.delayed(const Duration(milliseconds: 1900));
     await repository.wipeMerchantsList();
 
-    await KAppBehavior.registerEvent(
-      OnMerchantListCleared(),
-    );
+    notifyUseCase(OnMerchantListCleared());
   }
 }
 
