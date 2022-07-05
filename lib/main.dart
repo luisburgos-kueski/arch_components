@@ -26,7 +26,7 @@ class MyBlocObserver extends BlocObserver with KAppBehaviorEventNotifier {
   void onEvent(Bloc bloc, Object? event) {
     KLogger.log(event.toString(), 'AB-OBSERVER');
     if (event is KAppBehaviorEvent) {
-      notify(event);
+      notifyAppBehavior(event);
     }
     super.onEvent(bloc, event);
   }

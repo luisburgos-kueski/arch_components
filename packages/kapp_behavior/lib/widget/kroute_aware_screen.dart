@@ -81,11 +81,11 @@ abstract class KRouteAwareState<T extends KRouteAwareScreen> extends State<T>
   }
 
   void onEnterScreen() {
-    notify(KScreenEvent.opened(widget.route, widget.name));
+    notifyAppBehavior(KScreenEvent.opened(widget.route, widget.name));
   }
 
   void onLeaveScreen() {
-    notify(KScreenEvent.closed(widget.route, widget.name));
+    notifyAppBehavior(KScreenEvent.closed(widget.route, widget.name));
   }
 }
 

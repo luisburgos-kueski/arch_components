@@ -47,7 +47,7 @@ class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {
                 _ActionsIconButton(
                   iconData: Icons.settings,
                   onTap: () {
-                    notify(
+                    notifyAppBehavior(
                       OnSettingsButtonPressed(
                         params: viewParams,
                       ),
@@ -79,7 +79,7 @@ class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {
                       child: Column(
                         children: [
                           LoadMerchantsTextButton(onLoad: () {
-                            notify(
+                            notifyAppBehavior(
                               OnLoadMerchantsButtonPressed(
                                 params: viewParams,
                               ),
@@ -89,7 +89,7 @@ class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {
                             }
                           }),
                           ClearMerchantsTextButton(onClear: () {
-                            notify(
+                            notifyAppBehavior(
                               OnClearMerchantsButtonPressed(
                                 params: viewParams,
                               ),

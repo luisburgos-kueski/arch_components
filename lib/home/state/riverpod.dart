@@ -40,7 +40,7 @@ class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>>
   final FakeMerchantsRepository repository;
 
   Future<void> loadMerchants() async {
-    notify(LoadHomeMerchants());
+    notifyAppBehavior(LoadHomeMerchants());
 
     state = const AsyncValue<void>.loading();
 
@@ -56,7 +56,7 @@ class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>>
   }
 
   Future<void> clearMerchants() async {
-    notify(ClearHomeMerchants());
+    notifyAppBehavior(ClearHomeMerchants());
 
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(
@@ -67,14 +67,14 @@ class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>>
   }
 
   Future<void> navigateToMerchantDetail(MerchantViewData data) async {
-    notify(NavigateToMerchantDetail(data));
+    notifyAppBehavior(NavigateToMerchantDetail(data));
 
     final String merchantId = data.id;
     Get.toNamed('/home/$merchantId');
   }
 
   Future<void> navigateToSettings() async {
-    notify(NavigateToSettings());
+    notifyAppBehavior(NavigateToSettings());
     Get.toNamed(AppBehaviorScreen.routeName);
   }
 }
