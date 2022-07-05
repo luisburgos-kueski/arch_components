@@ -59,6 +59,7 @@ class KAppBehavior {
   }
 
   static Future<void> registerEvent(KAppBehaviorEvent event) async {
+    ///TODO: Evaluate remove reserved prefix. Legacy clone from Firebase events.
     const String kReservedPrefix = 'kapp_behavior_';
 
     if (event.name.startsWith(kReservedPrefix)) {

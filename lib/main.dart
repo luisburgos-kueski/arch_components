@@ -7,6 +7,7 @@ import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 import 'package:kufemia/kufemia.dart';
 
+import 'bloc_observer.dart';
 import 'splash/page.dart';
 import 'tools/klogger.dart';
 
@@ -17,18 +18,6 @@ class KDefaultAppObserver implements KAppEventObserver {
   void onEvent(KAppBehaviorEvent event) {
     KLogger.log(event.toString(), '-----');
     //TODO: Send to data sources
-  }
-}
-
-/// TODO: Validate if this should be part of the library
-class MyBlocObserver extends BlocObserver with KAppBehaviorEventNotifier {
-  @override
-  void onEvent(Bloc bloc, Object? event) {
-    KLogger.log(event.toString(), 'AB-OBSERVER');
-    if (event is KAppBehaviorEvent) {
-      notifyAppBehavior(event);
-    }
-    super.onEvent(bloc, event);
   }
 }
 
@@ -52,7 +41,7 @@ void main() async {
 
   BlocOverrides.runZoned(
     () => runApp(const MyApp()),
-    blocObserver: MyBlocObserver(),
+    blocObserver: BlocToAppBehaviorObserver(),
   );
 }
 
