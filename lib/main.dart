@@ -1,3 +1,4 @@
+import 'package:arch_components/deprecated/home/screen.dart';
 import 'package:arch_components/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,7 +86,9 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Event Tracker Example',
             themeMode: ThemeMode.dark,
-            home: const SplashPage(),
+            home: const SplashPage(
+              homeRouteRedirect: HomeScreen.routeName,
+            ),
             getPages: pages,
             navigatorObservers: [
               MyRouteObserver(),

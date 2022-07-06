@@ -1,7 +1,7 @@
-import 'package:arch_components/home/shared/view_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../home/shared/view_data_model.dart';
 import '../shared/view_template.dart';
 import '../state/riverpod.dart';
 import 'components.dart';

@@ -1,7 +1,7 @@
-import 'package:arch_components/home/state/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../home/state/controller.dart';
 import '../shared/view_data_model.dart';
 import '../shared/view_template.dart';
 import 'components.dart';

@@ -6,6 +6,7 @@ import 'view/bloc_view.dart';
 import 'view/controller_view.dart';
 import 'view/riverpod_view.dart';
 
+@Deprecated('Use packages/home components instead')
 class HomeScreen extends KRouteAwareScreen {
   static const routeName = '/home';
   static const screenName = 'HomeScreen';

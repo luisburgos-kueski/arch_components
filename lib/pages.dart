@@ -1,4 +1,4 @@
-import 'package:arch_components/home/screen.dart';
+import 'package:arch_components/deprecated/home/screen.dart';
 import 'package:arch_components/merchant_detail/page.dart';
 import 'package:get/get.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
