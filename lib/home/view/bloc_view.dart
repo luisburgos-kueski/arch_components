@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kapp_behavior/kapp_behavior.dart';
 
 import '../shared/view_data_model.dart';
 import '../shared/view_events.dart';
@@ -7,7 +8,8 @@ import '../shared/view_template.dart';
 import '../state/bloc.dart';
 import 'components.dart';
 
-class HomeBlocView extends StatelessWidget {
+//TODO: Rename to HomeViewBloc?
+class HomeBlocView extends StatelessWidget with KAppBehaviorEventNotifier {
   const HomeBlocView({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class HomeBlocView extends StatelessWidget {
             displayFailure: state.status == HomeStatus.failure,
             merchantsList: MerchantsList(
               items: state.merchantNames,
-              onGoToMerchantDetail: (merchantData) {
+              onMerchantItemClicked: (merchantData) {
                 context.read<HomeBloc>().add(
                       NavigateToMerchantDetail(merchantData),
                     );

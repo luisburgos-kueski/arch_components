@@ -20,14 +20,7 @@ final merchantListStateChangesProvider =
   return merchantsRepository
       .merchantListStateChanges()
       .asyncMap<List<MerchantViewData>>(
-        (merchantList) => Future.wait(
-          (merchantList ?? []).map<Future<MerchantViewData>>(
-            (merchant) async => MerchantViewData(
-              id: merchant.id,
-              name: merchant.name,
-            ),
-          ),
-        ),
+        (merchantList) => MerchantViewData.listFrom(merchantList ?? []),
       );
 });
 

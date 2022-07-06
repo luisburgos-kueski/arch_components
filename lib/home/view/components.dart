@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
 import '../../utils.dart';
 import '../shared/view_data_model.dart';
 
-class MerchantsList extends StatelessWidget {
+class MerchantsList extends StatelessWidget with KAppBehaviorEventNotifier {
   const MerchantsList({
     Key? key,
     required this.items,
-    required this.onGoToMerchantDetail,
+    required this.onMerchantItemClicked,
   }) : super(key: key);
 
   final List<MerchantViewData> items;
-  final Function(MerchantViewData) onGoToMerchantDetail;
+  final Function(MerchantViewData) onMerchantItemClicked;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class MerchantsList extends StatelessWidget {
                 publisher.publishUiEvent(
                   OnClicked(widgetId: widgetId),
                 );
-                onGoToMerchantDetail(item);
+                onMerchantItemClicked(item);
               },
             );
           },

@@ -20,7 +20,7 @@ class HomeControllerView extends StatelessWidget {
         displayFailure: controller.status() == HomeStatus.failure,
         merchantsList: MerchantsList(
           items: controller.merchantData(),
-          onGoToMerchantDetail: (merchantData) {
+          onMerchantItemClicked: (merchantData) {
             //TODO notify: Merchant Item Tapped
             controller.navigateToMerchantDetail(merchantData);
           },

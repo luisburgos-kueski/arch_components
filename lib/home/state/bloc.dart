@@ -8,8 +8,6 @@ import 'package:merchants_data/merchants_data.dart';
 import '../shared/view_data_model.dart';
 import '../shared/view_events.dart';
 
-enum F { a, b }
-
 class HomeState {
   const HomeState({
     this.merchantNames = const [],

@@ -52,15 +52,15 @@ class _MerchantsListDataWatcher extends ConsumerWidget {
     return state.maybeWhen(
       loading: () => MerchantsList(
         items: const [],
-        onGoToMerchantDetail: onGoToMerchantDetail,
+        onMerchantItemClicked: onGoToMerchantDetail,
       ),
       orElse: () => MerchantsList(
         items: const [],
-        onGoToMerchantDetail: onGoToMerchantDetail,
+        onMerchantItemClicked: onGoToMerchantDetail,
       ),
       data: (data) => MerchantsList(
         items: data,
-        onGoToMerchantDetail: onGoToMerchantDetail,
+        onMerchantItemClicked: onGoToMerchantDetail,
       ),
     );
   }
