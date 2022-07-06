@@ -1,7 +1,8 @@
+import 'package:home_feature/domain/domain_events.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_data.dart';
 
-class ClearMerchantsUseCase with KAppBehaviorEventNotifier {
+class ClearMerchantsUseCase with KAppBehaviorUseCaseNotifier {
   ClearMerchantsUseCase({
     /// TODO: Dependency Injection
     required this.repository,
@@ -15,14 +16,4 @@ class ClearMerchantsUseCase with KAppBehaviorEventNotifier {
 
     notifyUseCase(OnMerchantListCleared());
   }
-}
-
-class OnMerchantListCleared extends UseCaseKAppBehaviorEvent {
-  @override
-  final String name = 'on_merchant_list_cleared';
-
-  @override
-  final Map<String, dynamic>? params;
-
-  OnMerchantListCleared({this.params});
 }

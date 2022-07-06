@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 
 class BlocToAppBehaviorObserver extends BlocObserver
-    with KAppBehaviorEventNotifier {
+    with KAppBehaviorBlocNotifier {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);

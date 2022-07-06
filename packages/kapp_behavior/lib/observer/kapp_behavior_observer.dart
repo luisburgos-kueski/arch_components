@@ -9,7 +9,7 @@ abstract class KAppEventObserver {
 
 // TODO: Validate how use a contract for the route using MaterialPageRoute and GetPageRoute
 class KAppRouteObserver extends RouteObserver<PageRoute<dynamic>>
-    with KAppBehaviorEventNotifier {
+    with KAppBehaviorScreenNotifier {
   @override
   void didPush(Route route, Route? previousRoute) {
     // TODO: Implement notify

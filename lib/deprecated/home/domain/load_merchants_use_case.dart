@@ -1,7 +1,8 @@
+import 'package:home_feature/domain/domain_events.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_data.dart';
 
-class LoadMerchantsUseCase with KAppBehaviorEventNotifier {
+class LoadMerchantsUseCase with KAppBehaviorUseCaseNotifier {
   LoadMerchantsUseCase({
     /// TODO: Dependency Injection
     required this.repository,
@@ -16,23 +17,11 @@ class LoadMerchantsUseCase with KAppBehaviorEventNotifier {
 
       notifyUseCase(
         OnMerchantListLoaded(
-          params: {
-            'list_length': list.length,
-          },
+          listLength: list.length,
         ),
       );
 
       return list;
     });
   }
-}
-
-class OnMerchantListLoaded extends UseCaseKAppBehaviorEvent {
-  @override
-  final String name = 'on_merchant_list_loaded';
-
-  @override
-  final Map<String, dynamic>? params;
-
-  OnMerchantListLoaded({this.params});
 }

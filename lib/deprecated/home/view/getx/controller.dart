@@ -7,7 +7,7 @@ import '../../domain/load_merchants_use_case.dart';
 import '../../view/view_data_model.dart';
 import '../bloc/bloc_events.dart';
 
-class HomeController extends GetxController with KAppBehaviorEventNotifier {
+class HomeController extends GetxController with KAppBehaviorBlocNotifier {
   RxList<MerchantViewData> merchantData = RxList();
   Rx<HomeStatus> status = HomeStatus.initial.obs;
 

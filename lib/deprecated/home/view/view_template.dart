@@ -6,7 +6,7 @@ import 'package:kevent_tracker/kevent_tracker.dart';
 import 'components.dart';
 import 'ui_events.dart';
 
-class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {
+class HomeViewTemplate extends StatelessWidget with KAppBehaviorUiNotifier {
   const HomeViewTemplate({
     Key? key,
     required this.tag,

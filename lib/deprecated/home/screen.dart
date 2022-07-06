@@ -23,7 +23,7 @@ class HomeScreen extends KRouteAwareScreen {
   KRouteAwareState<KRouteAwareScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends KRouteAwareState<KRouteAwareScreen> {
+class _HomeScreenState extends KRouteAwareState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     if (TempStaticFeatureToggles.useBloc) {

@@ -1,6 +1,7 @@
 library kapp_behavior;
 
 import 'dart:developer' as dev;
+import 'dart:developer';
 
 import 'package:core/in_memory_store.dart';
 
@@ -75,6 +76,11 @@ class KAppBehavior {
       name: 'APP_BEHAVIOR',
     );
     KAppBehavior.eventsStore.add(event);
+  }
+
+  static void notify(KAppBehaviorEvent event) {
+    log('$event', name: 'APP_BEHAVIOR');
+    KAppBehavior.registerEvent(event);
   }
 }
 

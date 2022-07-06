@@ -25,7 +25,7 @@ final merchantListStateChangesProvider =
 });
 
 class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>>
-    with KAppBehaviorEventNotifier {
+    with KAppBehaviorBlocNotifier {
   HomeScreenRiverpodController({
     required this.repository,
   }) : super(const AsyncData(null));

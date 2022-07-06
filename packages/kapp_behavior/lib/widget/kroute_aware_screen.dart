@@ -27,7 +27,7 @@ abstract class KRouteAwareScreen extends StatefulWidget
 }
 
 abstract class KRouteAwareState<T extends KRouteAwareScreen> extends State<T>
-    with RouteAware, AfterLayoutMixin<T>, KAppBehaviorEventNotifier {
+    with RouteAware, AfterLayoutMixin<T>, KAppBehaviorScreenNotifier {
   bool enteredScreen = false;
 
   @override

@@ -1,34 +1,30 @@
-import 'dart:developer';
-
 import '../kapp_behavior.dart';
 
 //TODO: Use same approach of OnBackPressedAppBehaviorNotifier
 //TODO: Make notify support methods async operations??
 //TODO: Rename to KAppBehaviorNotifier
-abstract class KAppBehaviorEventNotifier {
+abstract class KAppBehaviorUiNotifier {
   void notifyUi(UiKAppBehaviorEvent event) {
-    _notifyAppBehavior(event);
+    KAppBehavior.notify(event);
   }
+}
 
+abstract class KAppBehaviorUseCaseNotifier {
   //TODO: UseCase result
   void notifyUseCase(UseCaseKAppBehaviorEvent event) {
-    _notifyAppBehavior(event);
+    KAppBehavior.notify(event);
   }
+}
 
+abstract class KAppBehaviorBlocNotifier {
   void notifyBusinessLogicRequest(BlocKAppBehaviorEvent event) {
-    _notifyAppBehavior(event);
+    KAppBehavior.notify(event);
   }
+}
 
+abstract class KAppBehaviorScreenNotifier {
   void notifyNavigation(KScreenEvent event) {
-    _notifyAppBehavior(event);
-  }
-
-  void _notifyAppBehavior(KAppBehaviorEvent event) {
-    log(
-      '$runtimeType - $event',
-      name: 'APP_BEHAVIOR',
-    );
-    KAppBehavior.registerEvent(event);
+    KAppBehavior.notify(event);
   }
 }
 

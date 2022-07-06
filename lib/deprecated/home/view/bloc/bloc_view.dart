@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kapp_behavior/kapp_behavior.dart';
 
 import '../../view/components.dart';
 import '../../view/view_data_model.dart';
@@ -9,7 +8,7 @@ import 'bloc.dart';
 import 'bloc_events.dart';
 
 //TODO: Rename to HomeViewBloc?
-class HomeBlocView extends StatelessWidget with KAppBehaviorEventNotifier {
+class HomeBlocView extends StatelessWidget {
   const HomeBlocView({Key? key}) : super(key: key);
 
   @override
