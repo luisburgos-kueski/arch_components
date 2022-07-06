@@ -31,19 +31,37 @@ class MerchantsList extends StatelessWidget with KAppBehaviorEventNotifier {
       itemCount: items.length,
       itemBuilder: (context, index) {
         final item = items[index];
+        return MerchantListTile(
+          item: item,
+          onMerchantItemClicked: onMerchantItemClicked,
+        );
+      },
+    );
+  }
+}
 
-        return UiEventNotifier(
-          key: Key('merchant_list_tile_${item.id}'),
-          builder: (widgetId, publisher) {
-            return ListTile(
-              title: Text(item.name),
-              onTap: () {
-                publisher.publishUiEvent(
-                  OnClicked(widgetId: widgetId),
-                );
-                onMerchantItemClicked(item);
-              },
+class MerchantListTile extends StatelessWidget {
+  const MerchantListTile({
+    Key? key,
+    required this.item,
+    required this.onMerchantItemClicked,
+  }) : super(key: key);
+
+  final MerchantViewData item;
+  final Function(MerchantViewData) onMerchantItemClicked;
+
+  @override
+  Widget build(BuildContext context) {
+    return UiEventNotifier(
+      key: Key('merchant_list_tile_${item.id}'),
+      builder: (widgetId, publisher) {
+        return ListTile(
+          title: Text(item.name),
+          onTap: () {
+            publisher.publishUiEvent(
+              OnClicked(widgetId: widgetId),
             );
+            onMerchantItemClicked(item);
           },
         );
       },
