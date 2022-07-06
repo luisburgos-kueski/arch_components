@@ -21,20 +21,21 @@ class HomeControllerView extends StatelessWidget {
         merchantsList: MerchantsList(
           items: controller.merchantData(),
           onGoToMerchantDetail: (merchantData) {
-            controller.onNavigateToMerchantDetail(merchantData);
+            //TODO notify: Merchant Item Tapped
+            controller.navigateToMerchantDetail(merchantData);
           },
         ),
         failureViewBuilder: () => const Center(
           child: Text('TODO: Handle error'),
         ),
         onLoadMerchantsPressed: () {
-          controller.onLoadMerchantsEvent();
+          controller.loadMerchants();
         },
         onClearMerchantsPressed: () {
-          controller.onClearMerchantsEvent();
+          controller.clearMerchants();
         },
         onSettingsPressed: () {
-          controller.onNavigateToSettings();
+          controller.navigateToSettings();
         },
       );
     });
