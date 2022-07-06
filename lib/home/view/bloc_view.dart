@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 
+import '../shared/bloc_events.dart';
 import '../shared/view_data_model.dart';
-import '../shared/view_events.dart';
 import '../shared/view_template.dart';
 import '../state/bloc.dart';
 import 'components.dart';

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_repository.dart';
 
+import '../shared/bloc_events.dart';
 import '../shared/view_data_model.dart';
-import '../shared/view_events.dart';
 
 class HomeController extends GetxController with KAppBehaviorEventNotifier {
   RxList<MerchantViewData> merchantData = RxList();

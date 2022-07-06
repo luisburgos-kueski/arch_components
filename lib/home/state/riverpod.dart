@@ -5,8 +5,8 @@ import 'package:merchants_data/merchants_data.dart';
 
 import '../domain/clear_merchants_use_case.dart';
 import '../domain/load_merchants_use_case.dart';
+import '../shared/bloc_events.dart';
 import '../shared/view_data_model.dart';
-import '../shared/view_events.dart';
 
 final merchantsRepositoryProvider = Provider<FakeMerchantsRepository>((ref) {
   final merchants = FakeMerchantsRepository();
