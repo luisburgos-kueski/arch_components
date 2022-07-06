@@ -4,13 +4,14 @@ import 'package:kapp_behavior/kapp_behavior.dart';
 
 import '../../redirections.dart';
 import '../../view/components.dart';
+import '../ui_events.dart';
 import '../view_data_model.dart';
 import '../view_template.dart';
 import 'bloc.dart';
 import 'bloc_events.dart';
 
 //TODO: Rename to HomeViewBloc?
-class HomeBlocView extends StatelessWidget with KAppBehaviorEventNotifier {
+class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
   const HomeBlocView(
     this.redirections, {
     Key? key,
@@ -31,6 +32,11 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorEventNotifier {
             merchantsList: MerchantsList(
               items: state.merchantNames,
               onMerchantItemClicked: (merchantData) {
+                notifyUi(
+                  OnMerchantItemPressed(params: {
+                    'merchant_name': merchantData.name,
+                  }),
+                );
                 context.read<HomeBloc>().add(
                       NavigateToMerchantDetail(merchantData),
                     );
@@ -40,12 +46,15 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorEventNotifier {
               child: Text('TODO: Handle error'),
             ),
             onSettingsPressed: () {
+              notifyUi(OnSettingsButtonPressed());
               context.read<HomeBloc>().add(NavigateToSettings());
             },
             onLoadMerchantsPressed: () {
+              notifyUi(OnLoadMerchantsButtonPressed());
               context.read<HomeBloc>().add(LoadHomeMerchants());
             },
             onClearMerchantsPressed: () {
+              notifyUi(OnClearMerchantsButtonPressed());
               context.read<HomeBloc>().add(ClearHomeMerchants());
             },
           );
