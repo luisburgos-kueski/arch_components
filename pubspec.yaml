@@ -35,14 +35,16 @@ dependencies:
   flutter_riverpod: 2.0.0-dev.0
   hooks_riverpod: 2.0.0-dev.0
   equatable: ^2.0.3
+  core:
+    path: './packages/core'
   merchants_data:
     path: './packages/merchants_data'
   kdata_sources:
     path: './packages/kdata_sources'
   kapp_behavior:
     path: './packages/kapp_behavior'
-  core:
-    path: './packages/core'
+  home_feature:
+    path: './packages/home_feature'
   kufemia:
     git:
       url: git@github.com:kueski-dev/kufemia.git

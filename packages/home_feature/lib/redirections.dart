@@ -10,7 +10,7 @@ class HomeRedirections implements IRedirections {
   final String settingsRoute;
 
   String buildMerchantDetailRoute(String merchantId) =>
-      '$merchantDetailRoute/$merchantId';
+      '$merchantDetailRoute$merchantId';
 
   String buildSettingsRoute() => settingsRoute;
 }
