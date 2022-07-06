@@ -17,3 +17,9 @@ Internal Packages:
 
 External Packages:
 - `kevent_tracker` to track UI events, Navigation events and Lifecycle events.
+
+## Next Updates
+
+- Make Home module load noy only merchants data but capabilities data (products, services) and
+to be aware of authentication by including a "fake credit capacity feature widget".
+- Add a second example without any addons on the code, just plain arch components.

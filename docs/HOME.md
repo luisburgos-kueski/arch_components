@@ -1,62 +1,74 @@
 # Home Feature Module
 
-## Data
-
-### Repository
-
-## Domain
-
-### UseCases
-
-- LoadMerchantsUseCase
-- ClearMerchantsUseCase
-
-**LoadMerchantsUseCase**
-```dart
-class LoadMerchantsUseCase with KAppBehaviorEventNotifier {
-  Future<List<Merchant>> run() async {
-    await repository.loadMerchantsList();
-    final list = repository.currentMerchantList ?? [];
-
-    notifyUseCase(
-      OnMerchantListLoaded(
-        params: {
-          'list_length': list.length,
-        },
-      ),
-    );
-    return list;
-  }
-}
-```
-
-**ClearMerchantsUseCase**
-```dart
-class ClearMerchantsUseCase with KAppBehaviorEventNotifier {
-  Future<void> run() async {
-    //...calls to repositories or other use cases.
-    
-    notifyUseCase(OnMerchantListCleared());
-  }
-}
-```
-
 ## Presentation
 
-Rules of Thumb:
+### The Page
 
-- `Page` is defined as the association of a `Screen` to a `Route`.
-- `Route` is the full path of the `Page`
-- For now, a `Screen` is the same as a `View`, but also a point of feature toggles injection to vary the UI.
-- `View` is the glue for a `ViewTiemplate` with its `State Holder`.
-  - The `View` is responsible to read attributes from the `StateHolder` to make the to `ViewTemplate` look smart.
-  - The `View` requests business logic execution to its `StateHolder`.  
-- `ViewTemplate` defines the `Screen` skeleton, it's a dump component exposing callbacks and customization attributes.  
-- `StateHolder` 
-  - A `StateHolder` is a state projection component which listens to Data Access Streams. 
-  - A `StateHolder` could filter or transform the data in terms of `ViewData` information.
-  - A `StateHolder` runs `UseCases` and updates local state if needed.  
-- `ViewData` is the most atomic Data scope for a view. In other words, partial views of a `Data Model`
+This could vary depending on the framework your are using to manage routing in your app.
+
+**GetX (example)**
+
+```dart
+final List<GetPage> pages = [
+  GetPage(
+    name: HomeScreen.routeName,
+    page: () => const HomeScreen(),
+  ),
+  //...more pages from other modules
+];
+```
+
+**Modular (example)**
+
+```dart
+class HomeModule extends Module {
+  @override
+  List<Bind> get binds => [];
+
+  @override
+  List<ModularRoute> get routes => [
+    ChildRoute(
+      HomeScreen.routeName, 
+      child: (context, args) => HomeScreen(),
+    ),
+  ];
+}
+```
+
+### The Screen
+
+**NOTES**: 
+- Extend from `KRouteAwareScreen`.
+- We might want to add feature flags injection from this point of the widget tree.
+
+```dart
+class HomeScreen extends KRouteAwareScreen {
+  static const routeName = '/home';
+  static const screenName = 'HomeScreen';
+
+  const HomeScreen({
+    Key? key,
+  }) : super(
+    key: key,
+    route: routeName,
+    name: screenName,
+  );
+
+  @override
+  KRouteAwareState<KRouteAwareScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends KRouteAwareState<KRouteAwareScreen> {
+  @override
+  Widget build(BuildContext context) {
+    if (TempStaticFeatureToggles.useBloc) {
+      return const Scaffold(body: HomeBlocView());
+    }
+
+    return const Scaffold(body: HomeControllerView());
+  }
+} 
+```
 
 ### ViewTemplate
 
@@ -70,7 +82,7 @@ class MyView extends StatelessWidget {
       tag: 'myView',
       isLoading: false,
       displayFailure: false,
-      merchantsList: Contaier(), /*or MerchantsList(attributes)*/
+      merchantsList: Container(), /*or MerchantsList(attributes)*/
       failureViewBuilder: () => {},
       onSettingsPressed: () => {},
       onLoadMerchantsPressed: () => {},
@@ -88,34 +100,37 @@ class HomeBlocView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        return HomeViewTemplate(
-          tag: 'bloc',
-          isLoading: state.status == HomeStatus.loading,
-          displayFailure: state.status == HomeStatus.failure,
-          merchantsList: MerchantsList(
-            items: state.merchantNames,
-            onGoToMerchantDetail: (merchantData) {
-              context.read<HomeBloc>().add(
-                    NavigateToMerchantDetail(merchantData),
-                  );
+    return BlocProvider(
+      create: (_) => HomeBloc(),
+      child: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return HomeViewTemplate(
+            tag: 'bloc',
+            isLoading: state.status == HomeStatus.loading,
+            displayFailure: state.status == HomeStatus.failure,
+            merchantsList: MerchantsList(
+              items: state.merchantNames,
+              onGoToMerchantDetail: (merchantData) {
+                context.read<HomeBloc>().add(
+                      NavigateToMerchantDetail(merchantData),
+                    );
+              },
+            ),
+            failureViewBuilder: () => const Center(
+              child: Text('TODO: Handle error'),
+            ),
+            onSettingsPressed: () {
+              context.read<HomeBloc>().add(NavigateToSettings());
             },
-          ),
-          failureViewBuilder: () => const Center(
-            child: Text('TODO: Handle error'),
-          ),
-          onSettingsPressed: () {
-            context.read<HomeBloc>().add(NavigateToSettings());
-          },
-          onLoadMerchantsPressed: () {
-            context.read<HomeBloc>().add(LoadHomeMerchants());
-          },
-          onClearMerchantsPressed: () {
-            context.read<HomeBloc>().add(ClearHomeMerchants());
-          },
-        );
-      },
+            onLoadMerchantsPressed: () {
+              context.read<HomeBloc>().add(LoadHomeMerchants());
+            },
+            onClearMerchantsPressed: () {
+              context.read<HomeBloc>().add(ClearHomeMerchants());
+            },
+          );
+        },
+      ),
     );
   }
 }
@@ -218,71 +233,44 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 }
 ```
 
-### The Screen
 
-**NOTES**: 
-- Extend from `KRouteAwareScreen`.
-- We might want to add feature flags injection from this point of the widget tree.
+## Data
 
+### Repository
+
+## Domain
+
+### UseCases
+
+- LoadMerchantsUseCase
+- ClearMerchantsUseCase
+
+**LoadMerchantsUseCase**
 ```dart
-class HomeScreen extends KRouteAwareScreen {
-  static const routeName = '/home';
-  static const screenName = 'HomeScreen';
+class LoadMerchantsUseCase with KAppBehaviorEventNotifier {
+  Future<List<Merchant>> run() async {
+    await repository.loadMerchantsList();
+    final list = repository.currentMerchantList ?? [];
 
-  const HomeScreen({
-    Key? key,
-  }) : super(
-    key: key,
-    route: routeName,
-    name: screenName,
-  );
-
-  @override
-  KRouteAwareState<KRouteAwareScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends KRouteAwareState<KRouteAwareScreen> {
-  @override
-  Widget build(BuildContext context) {
-    if (TempStaticFeatureToggles.useBloc) {
-      return const Scaffold(body: HomeBlocView());
-    }
-
-    return const Scaffold(body: HomeControllerView());
+    notifyUseCase(
+      OnMerchantListLoaded(
+        params: {
+          'list_length': list.length,
+        },
+      ),
+    );
+    return list;
   }
-} 
+}
 ```
 
-### The Page
-
-This could vary depending on the framework your are using to manage routing in your app.
-
-**GetX (example)**
-
+**ClearMerchantsUseCase**
 ```dart
-final List<GetPage> pages = [
-  GetPage(
-    name: HomeScreen.routeName,
-    page: () => const HomeScreen(),
-  ),
-  //...more pages from other modules
-];
-```
-
-
-**Modular (example)**
-
-```dart
-class HomeModule extends Module {
-  @override
-  List<Bind> get binds => [];
-
-  @override
-  List<ModularRoute> get routes => [
-    ChildRoute(
-      HomeScreen.routeName, 
-      child: (context, args) => HomeScreen(),
-    ),
-  ];
+class ClearMerchantsUseCase with KAppBehaviorEventNotifier {
+  Future<void> run() async {
+    //...calls to repositories or other use cases.
+    
+    notifyUseCase(OnMerchantListCleared());
+  }
 }
 ```

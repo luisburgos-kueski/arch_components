@@ -1,17 +1,40 @@
 # Architecture Components
 
+The following architecture components were built based on a three-tier layered architecture:
+
+- The **Presentation Layer** displays application data on the screen to our users.
+- The **Domain Layer** contains the all the business logic our the application.
+- The **Data Layer** exposes application data.
+
+## Principles
+
+- These UI-based classes should only contain logic that handles UI and operating system interactions. 
+  - By keeping these classes as lean as possible, you can avoid many problems related to the component lifecycle, and improve the testability of these classes.
+- You should drive your UI from data models, preferably persistent models.
+- If you base your app architecture on data model classes, you make your app more testable and robust.
+
 ## Overview
 
-Three-tier layered architecture:
-- Presentation
-    - ViewTemplate
-    - StateHolders
-- Domain
-    - UseCases
-- Data
-    - Repositories
+TODO: Add diagram
     
 ## Presentation Layer
+
+Rules of Thumb:
+
+- `Page` is defined as the association of a `Screen` to a `Route`.
+- `Route` is the full path of the `Page`
+- `Screen` is the collection of `View` components. Simple screens could contain only one view.
+  - Note: For now, a `Screen` is the same as a `View`, but also a point of feature toggles injection to vary the UI.
+- `View` is the glue for a `ViewTiemplate` with its `State Holder`.
+  - The `View` is responsible to read attributes from the `StateHolder` to make the to `ViewTemplate` look smart.
+  - The `View` requests business logic execution to its `StateHolder`.  
+- `ViewTemplate` defines the `Screen` skeleton, it's a dump component exposing callbacks and customization attributes.  
+- `StateHolder` 
+  - A `StateHolder` is a state projection component which listens to Data Access Streams. 
+  - A `StateHolder` could filter or transform the data in terms of `ViewData` information.
+  - A `StateHolder` runs `UseCases` and updates local state if needed.  
+- `ViewData` is the most atomic Data scope for a view. In other words, partial views of a `Data Model`
+
 
 ### ViewTemplates
 
@@ -105,19 +128,7 @@ class UseCaseA2 implements IUseCase {
 
 -------
 
-Arch Components -> Addons
 
-- LogBehavior
-  - Sources:
-    - Presentation Logic: Pure Widgets
-    - Lifecycle    
-    - Navigation: Routes
-- AppBehavior
-  - Sources:
-     - Widgets + Domain Context (TODO missing docs)
-     - Business Logic Requests (BlocEvents, Commands) from StateHolders
-     - Business Logic Results from UseCases (OnLoginSuccess, OnLoginFailed)
-     - Navigation: Screen/Pages from...
   
 ----
 
