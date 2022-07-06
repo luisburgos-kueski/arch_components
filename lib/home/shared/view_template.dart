@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
+import 'ui_events.dart';
+
 class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {
   const HomeViewTemplate({
     Key? key,
@@ -132,34 +134,4 @@ class _ActionsIconButton extends StatelessWidget {
       ),
     );
   }
-}
-
-class OnSettingsButtonPressed extends UiKAppBehaviorEvent {
-  @override
-  final String name = 'settings_button_pressed';
-
-  @override
-  final Map<String, dynamic>? params;
-
-  OnSettingsButtonPressed({this.params});
-}
-
-class OnLoadMerchantsButtonPressed extends UiKAppBehaviorEvent {
-  @override
-  final String name = 'load_merchants_button_pressed';
-
-  @override
-  final Map<String, dynamic>? params;
-
-  OnLoadMerchantsButtonPressed({this.params});
-}
-
-class OnClearMerchantsButtonPressed extends UiKAppBehaviorEvent {
-  @override
-  final String name = 'clear_merchants_button_pressed';
-
-  @override
-  final Map<String, dynamic>? params;
-
-  OnClearMerchantsButtonPressed({this.params});
 }
