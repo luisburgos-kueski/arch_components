@@ -9,6 +9,7 @@ abstract class KAppBehaviorEventNotifier {
     _notifyAppBehavior(event);
   }
 
+  //TODO: UseCase result
   void notifyUseCase(UseCaseKAppBehaviorEvent event) {
     _notifyAppBehavior(event);
   }
