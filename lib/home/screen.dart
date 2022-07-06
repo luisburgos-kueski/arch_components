@@ -1,4 +1,4 @@
-import 'package:arch_components/utils.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 
