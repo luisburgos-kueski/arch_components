@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 
-import 'view_data_model.dart';
+import '../../view/view_data_model.dart';
 
 abstract class HomeEvent extends Equatable implements BlocKAppBehaviorEvent {
   HomeEvent()

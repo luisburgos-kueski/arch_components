@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
-import '../view/components.dart';
+import 'components.dart';
 import 'ui_events.dart';
 
 class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {

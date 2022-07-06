@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../home/state/controller.dart';
-import '../shared/view_data_model.dart';
-import '../shared/view_template.dart';
-import 'components.dart';
+import '../../view/components.dart';
+import '../../view/view_data_model.dart';
+import '../../view/view_template.dart';
+import 'controller.dart';
 
 class HomeControllerView extends StatelessWidget {
   const HomeControllerView({Key? key}) : super(key: key);

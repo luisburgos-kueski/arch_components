@@ -2,9 +2,9 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 
-import 'view/bloc_view.dart';
-import 'view/controller_view.dart';
-import 'view/riverpod_view.dart';
+import 'view/bloc/bloc_view.dart';
+import 'view/getx/controller_view.dart';
+import 'view/riverpod/riverpod_view.dart';
 
 @Deprecated('Use packages/home components instead')
 class HomeScreen extends KRouteAwareScreen {
