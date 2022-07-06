@@ -126,3 +126,25 @@ class ClearMerchantsTextButton extends StatelessWidget {
     );
   }
 }
+
+class ActionsIconButton extends StatelessWidget {
+  const ActionsIconButton({
+    Key? key,
+    required this.onTap,
+    required this.iconData,
+  }) : super(key: key);
+
+  final IconData iconData;
+  final Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 20.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Icon(iconData),
+      ),
+    );
+  }
+}
