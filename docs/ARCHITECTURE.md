@@ -105,17 +105,26 @@ class UseCaseA2 implements IUseCase {
 
 -------
 
-- LogBehavior?
-- Sources:
-- Presentation Logic
-- Navigation: Routes
-- AppBehavior?
-- Sources:
-- Business Logic
-- Navigation: Screen/Pages
+Arch Components -> Addons
 
+- LogBehavior
+  - Sources:
+    - Presentation Logic: Pure Widgets
+    - Lifecycle    
+    - Navigation: Routes
+- AppBehavior
+  - Sources:
+     - Widgets + Domain Context (TODO missing docs)
+     - Business Logic Requests (BlocEvents, Commands) from StateHolders
+     - Business Logic Results from UseCases (OnLoginSuccess, OnLoginFailed)
+     - Navigation: Screen/Pages from...
+  
 ----
 
 **Notes:**
 - BlocEvents are not necessary Ui Events.
 - BlocEvents are more likely to be Commands?
+- If we do not adopt UseCases broadly? Should we trigger events from Bloc for now.
+- What happens with MerchantItemPressed where should live in?
+- How we could add a route contract?
+- Dialogs and SnackBars are not included on v1
