@@ -93,7 +93,8 @@ class LoadMerchantsTextButton extends StatelessWidget {
   }
 }
 
-class ClearMerchantsTextButton extends StatelessWidget {
+class ClearMerchantsTextButton extends StatelessWidget
+    with KDefaultEventNotifier {
   const ClearMerchantsTextButton({
     Key? key,
     this.onClear,
@@ -101,27 +102,22 @@ class ClearMerchantsTextButton extends StatelessWidget {
 
   final Function()? onClear;
 
+  final widgetId = 'clear_merchants_text_button';
+
   @override
   Widget build(BuildContext context) {
-    return UiEventNotifier(
-      key: const Key('clear_merchants_text_button'),
-      builder: (widgetId, publisher) => TextButton(
-        onPressed: () {
-          publisher.publishUiEvent(
-            OnClicked(widgetId: widgetId),
-          );
+    return TextButton(
+      onPressed: () {
+        notify(OnClicked(widgetId: widgetId));
 
-          ///TODO: Could this trigger an AppBehavior event?
-          KMessenger.showSnackBar(context, 'Long press to clear');
-        },
-        onLongPress: () {
-          publisher.publishUiEvent(
-            OnLongClicked(widgetId: widgetId),
-          );
-          if (onClear != null) onClear!();
-        },
-        child: const Text('Clear merchants data'),
-      ),
+        ///TODO: Could this trigger an AppBehavior event?
+        KMessenger.showSnackBar(context, 'Long press to clear');
+      },
+      onLongPress: () {
+        notify(OnLongClicked(widgetId: widgetId));
+        if (onClear != null) onClear!();
+      },
+      child: const Text('Clear merchants data'),
     );
   }
 }
@@ -155,5 +151,12 @@ class ActionsIconButton extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+//TODO: Move to library.
+mixin KDefaultEventNotifier {
+  void notify(KEvent event) {
+    KEventTracker.eventObserver.onEvent(event);
   }
 }
