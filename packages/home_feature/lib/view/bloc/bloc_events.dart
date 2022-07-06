@@ -1,17 +1,15 @@
 //TODO: Verify overrides. Could this be optional to override?
 import 'package:equatable/equatable.dart';
 
-import 'view_data_model.dart';
+import '../view_data_model.dart';
 
 abstract class HomeEvent extends Equatable {
   HomeEvent()
       : timestamp = DateTime.now(),
         super();
 
-  @override
+  String get name;
   final DateTime timestamp;
-
-  @override
   Map<String, dynamic>? get params => null;
 
   @override

@@ -9,6 +9,9 @@ import 'components.dart';
 class HomeRiverpodView extends ConsumerWidget {
   const HomeRiverpodView({Key? key}) : super(key: key);
 
+  HomeScreenRiverpodController _controller(WidgetRef ref) =>
+      ref.read(homeScreenControllerProvider.notifier);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<void> state = ref.watch(homeScreenControllerProvider);
@@ -19,20 +22,18 @@ class HomeRiverpodView extends ConsumerWidget {
       tag: 'riverpod',
       merchantsList: _MerchantsListDataWatcher(
         onGoToMerchantDetail: (d) {
-          ref
-              .read(homeScreenControllerProvider.notifier)
-              .navigateToMerchantDetail(d);
+          _controller(ref).navigateToMerchantDetail(d);
         },
       ),
       failureViewBuilder: () => Container(),
       onLoadMerchantsPressed: () {
-        ref.read(homeScreenControllerProvider.notifier).loadMerchants();
+        _controller(ref).loadMerchants();
       },
       onClearMerchantsPressed: () {
-        ref.read(homeScreenControllerProvider.notifier).clearMerchants();
+        _controller(ref).clearMerchants();
       },
       onSettingsPressed: () {
-        ref.read(homeScreenControllerProvider.notifier).navigateToSettings();
+        _controller(ref).navigateToSettings();
       },
     );
   }

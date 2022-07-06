@@ -1,10 +1,9 @@
 import 'package:core/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:kapp_behavior/kapp_behavior.dart';
 
-import '../shared/view_data_model.dart';
+import 'view_data_model.dart';
 
-class MerchantsList extends StatelessWidget with KAppBehaviorEventNotifier {
+class MerchantsList extends StatelessWidget {
   const MerchantsList({
     Key? key,
     required this.items,

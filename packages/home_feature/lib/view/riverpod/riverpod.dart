@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_data.dart';
 
-import '../domain/clear_merchants_use_case.dart';
-import '../domain/load_merchants_use_case.dart';
-import '../shared/view_data_model.dart';
+import '../../domain/clear_merchants_use_case.dart';
+import '../../domain/load_merchants_use_case.dart';
+import '../view_data_model.dart';
 
 final merchantsRepositoryProvider = Provider<FakeMerchantsRepository>((ref) {
   final merchants = FakeMerchantsRepository();

@@ -47,6 +47,7 @@ class HomeViewTemplate extends StatelessWidget with KAppBehaviorEventNotifier {
           actions: [
             if (onSettingsPressed != null)
               ActionsIconButton(
+                name: 'settings',
                 iconData: Icons.settings,
                 onTap: () {
                   notifyUi(

@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../view/components.dart';
+import 'components.dart';
 
 class HomeViewTemplate extends StatelessWidget {
   const HomeViewTemplate({

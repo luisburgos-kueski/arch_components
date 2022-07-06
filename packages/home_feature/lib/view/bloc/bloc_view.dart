@@ -2,20 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 
-import '../shared/bloc_events.dart';
-import '../shared/view_data_model.dart';
-import '../shared/view_template.dart';
-import '../state/bloc.dart';
-import 'components.dart';
+import '../../redirections.dart';
+import '../../view/components.dart';
+import '../view_data_model.dart';
+import '../view_template.dart';
+import 'bloc.dart';
+import 'bloc_events.dart';
 
 //TODO: Rename to HomeViewBloc?
 class HomeBlocView extends StatelessWidget with KAppBehaviorEventNotifier {
-  const HomeBlocView({Key? key}) : super(key: key);
+  const HomeBlocView(
+    this.redirections, {
+    Key? key,
+  }) : super(key: key);
+
+  final HomeRedirections redirections;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HomeBloc(),
+      create: (_) => HomeBloc(redirections),
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           return HomeViewTemplate(

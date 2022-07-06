@@ -1,11 +1,10 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
 import '../shared/view_data_model.dart';
 
-class MerchantsList extends StatelessWidget with KAppBehaviorEventNotifier {
+class MerchantsList extends StatelessWidget {
   const MerchantsList({
     Key? key,
     required this.items,
@@ -130,20 +129,30 @@ class ClearMerchantsTextButton extends StatelessWidget {
 class ActionsIconButton extends StatelessWidget {
   const ActionsIconButton({
     Key? key,
+    required this.name,
     required this.onTap,
     required this.iconData,
   }) : super(key: key);
 
+  final String name;
   final IconData iconData;
   final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 20.0),
-      child: GestureDetector(
-        onTap: onTap,
-        child: Icon(iconData),
+    return UiEventNotifier(
+      key: Key('${name}_actions_icon_button'),
+      builder: (widgetId, publisher) => Padding(
+        padding: const EdgeInsets.only(right: 20.0),
+        child: GestureDetector(
+          onTap: () {
+            publisher.publishUiEvent(
+              OnClicked(widgetId: widgetId),
+            );
+            onTap();
+          },
+          child: Icon(iconData),
+        ),
       ),
     );
   }

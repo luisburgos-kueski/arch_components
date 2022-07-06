@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:kapp_behavior/kapp_behavior_list_view.dart';
 import 'package:merchants_data/merchants_data.dart';
 
-import '../domain/clear_merchants_use_case.dart';
-import '../domain/load_merchants_use_case.dart';
-import '../shared/bloc_events.dart';
-import '../shared/view_data_model.dart';
+import '../../domain/clear_merchants_use_case.dart';
+import '../../domain/load_merchants_use_case.dart';
+import '../../redirections.dart';
+import '../view_data_model.dart';
+import 'bloc_events.dart';
 
 class HomeState {
   const HomeState({
@@ -32,13 +32,15 @@ class HomeState {
 ///TODO:
 ///Research if onEvent method could be override to intercept Navigation events.
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc() : super(const HomeState()) {
+  HomeBloc(this.redirections) : super(const HomeState()) {
     ///TODO: Update outdated naming convention
     on<LoadHomeMerchants>(_onLoadHomeMerchants);
     on<ClearHomeMerchants>(_onClearHomeMerchants);
     on<NavigateToMerchantDetail>(_onNavigateToMerchantDetail);
     on<NavigateToSettings>(_onNavigateToSettings);
   }
+
+  final HomeRedirections redirections;
 
   Future<void> _onLoadHomeMerchants(
     LoadHomeMerchants event,
@@ -83,13 +85,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ///TODO: Validate if makes sense to have this non-emitter method
     ///TODO: Should we emit app behavior events here?
     ///TODO: Evaluate navigation command handler strategy
-    Get.toNamed('/home/$merchantId');
+    Get.toNamed(redirections.buildMerchantDetailRoute(merchantId));
   }
 
   Future<void> _onNavigateToSettings(
     NavigateToSettings event,
     Emitter<HomeState> emit,
   ) async {
-    Get.toNamed(AppBehaviorScreen.routeName);
+    Get.toNamed(redirections.buildSettingsRoute());
   }
 }

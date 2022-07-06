@@ -4,11 +4,11 @@ import 'package:home_feature/domain/load_merchants_use_case.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_repository.dart';
 
-import '../domain/clear_merchants_use_case.dart';
-import '../domain/load_merchants_use_case.dart';
-import '../shared/view_data_model.dart';
+import '../../domain/clear_merchants_use_case.dart';
+import '../../domain/load_merchants_use_case.dart';
+import '../view_data_model.dart';
 
-class HomeController extends GetxController with KAppBehaviorEventNotifier {
+class HomeController extends GetxController {
   RxList<MerchantViewData> merchantData = RxList();
   Rx<HomeStatus> status = HomeStatus.initial.obs;
 
@@ -41,6 +41,7 @@ class HomeController extends GetxController with KAppBehaviorEventNotifier {
   }
 
   Future<void> navigateToSettings() async {
+    //TODO: Remove dependency with AppBehavior
     Get.toNamed(AppBehaviorScreen.routeName);
   }
 }

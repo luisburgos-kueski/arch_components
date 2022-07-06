@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../shared/view_data_model.dart';
-import '../shared/view_template.dart';
-import '../state/controller.dart';
-import 'components.dart';
+import '../../redirections.dart';
+import '../../view/components.dart';
+import '../view_data_model.dart';
+import '../view_template.dart';
+import 'controller.dart';
 
 class HomeControllerView extends StatelessWidget {
-  const HomeControllerView({Key? key}) : super(key: key);
+  const HomeControllerView(
+    this.redirections, {
+    Key? key,
+  }) : super(key: key);
+
+  final HomeRedirections redirections;
 
   @override
   Widget build(BuildContext context) {
