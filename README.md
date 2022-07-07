@@ -23,3 +23,4 @@ External Packages:
 - Make Home module load noy only merchants data but capabilities data (products, services) and
 to be aware of authentication by including a "fake credit capacity feature widget".
 - Add a second example without any addons on the code, just plain arch components.
+- Add SDUi library integration. [Must read docs here](https://kueski.atlassian.net/wiki/spaces/DOC/pages/2505670661/WIP+Putting+the+SDUI+mindset+into+practice+with+MiCuenta+feature)
