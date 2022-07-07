@@ -1,5 +1,6 @@
 import 'package:core/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:kevent_tracker/kevent_tracker.dart';
 
 import 'view_data_model.dart';
 
@@ -50,10 +51,20 @@ class MerchantListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(item.name),
-      onTap: () {
-        onMerchantItemClicked(item);
+    return UiEventNotifier(
+      key: const Key('merchant_list_tile'),
+      builder: (widgetId, publisher) {
+        return ListTile(
+          title: Text(item.name),
+          onTap: () {
+            publisher.publishUiEvent(
+              OnClicked(widgetId: widgetId, data: {
+                'item_name': item.name,
+              }),
+            );
+            onMerchantItemClicked(item);
+          },
+        );
       },
     );
   }
@@ -69,11 +80,20 @@ class LoadMerchantsTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        if (onLoad != null) onLoad!();
+    return UiEventNotifier(
+      key: const Key('load_merchants_text_button'),
+      builder: (widgetId, publisher) {
+        return TextButton(
+          onPressed: () {
+            publisher.publishUiEvent(
+              OnClicked(widgetId: widgetId),
+            );
+
+            if (onLoad != null) onLoad!();
+          },
+          child: const Text('Load merchants data'),
+        );
       },
-      child: const Text('Load merchants data'),
     );
   }
 }
@@ -88,15 +108,24 @@ class ClearMerchantsTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        ///TODO: Could this trigger an AppBehavior event?
-        KMessenger.showSnackBar(context, 'Long press to clear');
+    return UiEventNotifier(
+      key: const Key('clear_merchants_text_button'),
+      builder: (widgetId, publisher) {
+        return TextButton(
+          onPressed: () {
+            publisher.publishUiEvent(
+              OnClicked(widgetId: widgetId),
+            );
+
+            ///TODO: Could this trigger an AppBehavior event?
+            KMessenger.showSnackBar(context, 'Long press to clear');
+          },
+          onLongPress: () {
+            if (onClear != null) onClear!();
+          },
+          child: const Text('Clear merchants data'),
+        );
       },
-      onLongPress: () {
-        if (onClear != null) onClear!();
-      },
-      child: const Text('Clear merchants data'),
     );
   }
 }
@@ -104,21 +133,39 @@ class ClearMerchantsTextButton extends StatelessWidget {
 class ActionsIconButton extends StatelessWidget {
   const ActionsIconButton({
     Key? key,
+    required this.name,
     required this.onTap,
     required this.iconData,
   }) : super(key: key);
 
+  final String name;
   final IconData iconData;
   final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 20.0),
-      child: GestureDetector(
-        onTap: onTap,
-        child: Icon(iconData),
-      ),
+    return UiEventNotifier(
+      key: const Key('actions_icon_button'),
+      builder: (widgetId, publisher) {
+        publisher.publishUiEvent(
+          OnClicked(
+            widgetId: widgetId,
+            data: {
+              'name': name,
+            },
+          ),
+        );
+
+        return Padding(
+          padding: const EdgeInsets.only(right: 20.0),
+          child: GestureDetector(
+            onTap: () {
+              onTap();
+            },
+            child: Icon(iconData),
+          ),
+        );
+      },
     );
   }
 }

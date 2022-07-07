@@ -42,6 +42,7 @@ class HomeViewTemplate extends StatelessWidget {
         actions: [
           if (onSettingsPressed != null)
             ActionsIconButton(
+              name: 'settings',
               iconData: Icons.settings,
               onTap: () {
                 onSettingsPressed!();
@@ -70,16 +71,20 @@ class HomeViewTemplate extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      LoadMerchantsTextButton(onLoad: () {
-                        if (onLoadMerchantsPressed != null) {
-                          onLoadMerchantsPressed!();
-                        }
-                      }),
-                      ClearMerchantsTextButton(onClear: () {
-                        if (onClearMerchantsPressed != null) {
-                          onClearMerchantsPressed!();
-                        }
-                      }),
+                      LoadMerchantsTextButton(
+                        onLoad: () {
+                          if (onLoadMerchantsPressed != null) {
+                            onLoadMerchantsPressed!();
+                          }
+                        },
+                      ),
+                      ClearMerchantsTextButton(
+                        onClear: () {
+                          if (onClearMerchantsPressed != null) {
+                            onClearMerchantsPressed!();
+                          }
+                        },
+                      ),
                     ],
                   ),
                 )

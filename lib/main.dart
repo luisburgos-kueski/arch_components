@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
         darkPalette: KueskiPaletteData.kueski(),
       ),
       child: AppLifecycleNotifier(
-        key: const Key('app_v1'),
+        key: const Key('arch_components'),
         child: ProviderScope(
           child: GetMaterialApp(
             debugShowCheckedModeBanner: false,
