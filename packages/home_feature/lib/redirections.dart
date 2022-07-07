@@ -1,5 +1,7 @@
+///TODO: Evaluate remove
 abstract class IRedirections {}
 
+///TODO: Change string attrs for callbacks to remove Get navigation coupling.
 class HomeRedirections implements IRedirections {
   HomeRedirections({
     required this.merchantDetailRoute,

@@ -20,6 +20,7 @@ External Packages:
 
 ## Next Updates
 
+- Add `feature toggles` reading and propagation through the views (Remove core static file).
 - Make Home module load noy only merchants data but capabilities data (products, services) and
 to be aware of authentication by including a "fake credit capacity feature widget".
 - Add a second example without any addons on the code, just plain arch components.

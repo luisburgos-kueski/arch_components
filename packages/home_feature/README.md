@@ -1,10 +1,28 @@
 # Home Feature Module
 
+> 🚨 This module uses `KAppBehavior` and `KEventTracker`. 
+
+Here are a few components and it's relation with `KAppBehavior`
+- `HomeScreen` → `KAppBehavior.KScreenEvent`.
+- `HomeBlocView` → `KAppBehavior.UiKAppBehaviorEvent`.
+- `HomeBloc` → `KAppBehavior.BlocKAppBehaviorEvent`.
+- `LoadMerchantsUseCase` → `KAppBehavior.UseCaseKAppBehaviorEvent`.
+
+Here are a few components and it's relation with `KEventTracker`
+- `HomeScreen` → `KEventTracker.NavigationNotifier`
+- `HomeScreen` → `KEventTracker.NavigationNotifier`
+
+For more information go to [addons](../../docs/ADDONS.md).
+
+## Overview
+
+TODO: Add diagram
+
 ## Presentation
 
 ### The Page
 
-This could vary depending on the framework your are using to manage routing in your app.
+This could vary depending on the framework you are using to manage routing in your app. Here are some examples for `GetX` and `Flutter Modular`:
 
 **GetX (example)**
 
@@ -18,7 +36,7 @@ final List<GetPage> pages = [
 ];
 ```
 
-**Modular (example)**
+**Flutter Modular (example)**
 
 ```dart
 class HomeModule extends Module {
@@ -35,42 +53,89 @@ class HomeModule extends Module {
 }
 ```
 
-### The Screen
-
-**NOTES**: 
-- Extend from `KRouteAwareScreen`.
-- We might want to add feature flags injection from this point of the widget tree.
+### The Route & The Screen
 
 ```dart
+/// Extending from [KRouteAwareScreen] allows this `Screen` to notify about
+/// [KScreenEvent].
 class HomeScreen extends KRouteAwareScreen {
   static const routeName = '/home';
   static const screenName = 'HomeScreen';
 
   const HomeScreen({
     Key? key,
+    required this.redirections,
   }) : super(
-    key: key,
-    route: routeName,
-    name: screenName,
-  );
+          key: key,
+          route: routeName,
+          name: screenName,
+        );
+
+  final HomeRedirections redirections;
 
   @override
   KRouteAwareState<KRouteAwareScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends KRouteAwareState<KRouteAwareScreen> {
+/// By using [NavigationNotifier] widget wrapper this `Screen` can notify about
+/// [NavigationEvent]s.
+class _HomeScreenState extends KRouteAwareState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    return NavigationNotifier(
+      key: const Key('home_screen'),
+      child: HomeScreenLogBehaviorNotifier(
+        redirections: widget.redirections,
+      ),
+    );
+  }
+}
+
+class HomeScreenLogBehaviorNotifier extends StatelessWidget {
+  const HomeScreenLogBehaviorNotifier({
+    Key? key,
+    required this.redirections,
+  }) : super(key: key);
+
+  final HomeRedirections redirections;
+
+  @override
+  Widget build(BuildContext context) {
+    /// We could inject feature flags from this point of the
+    /// widget tree, through a `ScreenController` if needed.
+    ///
+    /// Example:
+    /// Use of feature toggles to perform view migrations.
     if (TempStaticFeatureToggles.useBloc) {
-      return const Scaffold(body: HomeBlocView());
+      return Scaffold(body: HomeBlocView(redirections));
     }
 
-    return const Scaffold(body: HomeControllerView());
+    return Scaffold(body: HomeControllerView(redirections));
   }
-} 
+}
 ```
 
-### ViewTemplate
+### The View & The View Template
+
+View Template...
+
+```dart
+class HomeViewTemplate extends StatelessWidget {
+  const HomeViewTemplate({
+    Key? key,
+    required this.tag,
+    this.isLoading = false,
+    this.displayFailure = false,
+    required this.failureViewBuilder,
+    required this.merchantsList,
+    this.onLoadMerchantsPressed,
+    this.onClearMerchantsPressed,
+    this.onSettingsPressed,
+  }) : super(key: key);
+}
+```
+
+Then we could use the View Template in our View component:
 
 ```dart
 class MyView extends StatelessWidget {
@@ -79,7 +144,7 @@ class MyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HomeViewTemplate(
-      tag: 'myView',
+      tag: 'myViewTag',
       isLoading: false,
       displayFailure: false,
       merchantsList: Container(), /*or MerchantsList(attributes)*/
@@ -95,13 +160,20 @@ class MyView extends StatelessWidget {
 **BlocView (example):**
 
 ```dart
-class HomeBlocView extends StatelessWidget {
-  const HomeBlocView({Key? key}) : super(key: key);
+/// By using [KAppBehaviorUiNotifier] class and calling the
+/// [KAppBehaviorUiNotifier.notifyUi] our `View` can log [UiKAppBehaviorEvent]s.
+class HomeViewBloc extends StatelessWidget with KAppBehaviorUiNotifier {
+  const HomeViewBloc(
+    this.redirections, {
+    Key? key,
+  }) : super(key: key);
+
+  final HomeRedirections redirections;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HomeBloc(),
+      create: (_) => HomeBloc(redirections),
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           return HomeViewTemplate(
@@ -110,7 +182,12 @@ class HomeBlocView extends StatelessWidget {
             displayFailure: state.status == HomeStatus.failure,
             merchantsList: MerchantsList(
               items: state.merchantNames,
-              onGoToMerchantDetail: (merchantData) {
+              onMerchantItemClicked: (merchantData) {
+                notifyUi(
+                  OnMerchantItemPressed(params: {
+                    'merchant_name': merchantData.name,
+                  }),
+                );
                 context.read<HomeBloc>().add(
                       NavigateToMerchantDetail(merchantData),
                     );
@@ -120,12 +197,15 @@ class HomeBlocView extends StatelessWidget {
               child: Text('TODO: Handle error'),
             ),
             onSettingsPressed: () {
+              notifyUi(OnSettingsButtonPressed());
               context.read<HomeBloc>().add(NavigateToSettings());
             },
             onLoadMerchantsPressed: () {
+              notifyUi(OnLoadMerchantsButtonPressed());
               context.read<HomeBloc>().add(LoadHomeMerchants());
             },
             onClearMerchantsPressed: () {
+              notifyUi(OnClearMerchantsButtonPressed());
               context.read<HomeBloc>().add(ClearHomeMerchants());
             },
           );
@@ -138,10 +218,15 @@ class HomeBlocView extends StatelessWidget {
 
 ### State Holders
 
+This could vary depending on the framework you are using to manage state in your app. Here are some examples for `GetX` and `Bloc`:
+
 **GetXController (example)**
 
 ```dart
-class HomeController extends GetxController with KAppBehaviorEventNotifier {
+/// By using the `KAppBehaviorBlocNotifier` class and calling the 
+/// `notifyBusinessLogicRequest` our state holder can log 
+/// `KAppBehavior.BlocKAppBehaviorEvent` events.`
+class HomeController extends GetxController with KAppBehaviorBlocNotifier {
   RxList<MerchantViewData> merchantData = RxList();
   Rx<HomeStatus> status = HomeStatus.initial.obs;
 
@@ -173,14 +258,26 @@ For using this approach, you will need to add the following observer to the Bloc
 
 ```dart
 main() {
- BlocOverrides.runZoned(
+  /// bloc v7.x
+  Bloc.observer = BlocToAppBehaviorObserver();
+
+  /// bloc v8.x
+  BlocOverrides.runZoned(
     () => runApp(const MyApp()),
     blocObserver: BlocToAppBehaviorObserver(),
   );
 }
 
+````
+
+The `BlocToAppBehaviorObserver` class:
+
+```dart
+/// By using the [KAppBehaviorBlocNotifier] class and calling the
+/// [KAppBehaviorBlocNotifier.notifyBusinessLogicRequest] our `bloc` are
+/// interpreted as [BlocKAppBehaviorEvent] when using the contract.
 class BlocToAppBehaviorObserver extends BlocObserver
-    with KAppBehaviorEventNotifier {
+    with KAppBehaviorBlocNotifier {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
@@ -233,7 +330,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 }
 ```
 
-
 ## Data
 
 ### Repository
@@ -242,35 +338,33 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
 ### UseCases
 
-- LoadMerchantsUseCase
-- ClearMerchantsUseCase
+The supported use cases for this module are:
+- LoadMerchantsUseCase.
+- ClearMerchantsUseCase.
 
-**LoadMerchantsUseCase**
+**LoadMerchantsUseCase (example)**
 ```dart
-class LoadMerchantsUseCase with KAppBehaviorEventNotifier {
+/// By using the [KAppBehaviorUseCaseNotifier] class and calling the
+/// [KAppBehaviorUseCaseNotifier.notifyUseCase] our `UseCase` can log
+/// [UseCaseKAppBehaviorEvent]s.
+class LoadMerchantsUseCase with KAppBehaviorUseCaseNotifier {
+  LoadMerchantsUseCase({
+    required this.repository,
+  });
+
+  final FakeMerchantsRepository repository;
+
   Future<List<Merchant>> run() async {
-    await repository.loadMerchantsList();
-    final list = repository.currentMerchantList ?? [];
+    return Future.delayed(const Duration(milliseconds: 2900), () async {
+      await repository.loadMerchantsList();
+      final list = repository.currentMerchantList ?? [];
 
-    notifyUseCase(
-      OnMerchantListLoaded(
-        params: {
-          'list_length': list.length,
-        },
-      ),
-    );
-    return list;
-  }
-}
-```
+      notifyUseCase(
+        OnMerchantListLoaded(listLength: list.length),
+      );
 
-**ClearMerchantsUseCase**
-```dart
-class ClearMerchantsUseCase with KAppBehaviorEventNotifier {
-  Future<void> run() async {
-    //...calls to repositories or other use cases.
-    
-    notifyUseCase(OnMerchantListCleared());
+      return list;
+    });
   }
 }
 ```
