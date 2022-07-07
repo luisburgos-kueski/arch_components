@@ -14,15 +14,18 @@ class LoadMerchantsUseCase with KAppBehaviorUseCaseNotifier {
   final FakeMerchantsRepository repository;
 
   Future<List<Merchant>> run() async {
-    return Future.delayed(const Duration(milliseconds: 2900), () async {
-      await repository.loadMerchantsList();
-      final list = repository.currentMerchantList ?? [];
+    return Future.delayed(
+      const Duration(milliseconds: 2900),
+      () async {
+        await repository.loadMerchantsList();
+        final list = repository.currentMerchantList ?? [];
 
-      notifyUseCase(
-        OnMerchantListLoaded(listLength: list.length),
-      );
+        notifyUseCase(
+          OnMerchantListLoaded(listLength: list.length),
+        );
 
-      return list;
-    });
+        return list;
+      },
+    );
   }
 }

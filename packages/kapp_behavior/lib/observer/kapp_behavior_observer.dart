@@ -8,6 +8,7 @@ abstract class KAppEventObserver {
 }
 
 // TODO: Validate how use a contract for the route using MaterialPageRoute and GetPageRoute
+// TODO: Rename to KAppScreenNavigationObserver
 class KAppRouteObserver extends RouteObserver<PageRoute<dynamic>>
     with KAppBehaviorScreenNotifier {
   @override

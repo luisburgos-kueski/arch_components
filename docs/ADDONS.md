@@ -32,10 +32,10 @@ With this library you could track 3 main event sources:
 [More on KAppBehavior](../packages/kapp_behavior/README.md)
 
 With this library you could track 4 main event sources:
-- **Ui**: User interactions over domain named components (merchant_item_clicked, user_profile_icon_clicked)
 - **Navigation**: Screen/Pages presented to the user (opened, closed).
+- **Ui**: User interactions over domain named components (merchant_item_clicked, user_profile_icon_clicked)
 - **Business Logic Requests**: Requests to business logic components to run any logic related. These are similar to the Command pattern.
-  - Note: `bloc` events are a similar concept to this events.
+  - Note: `bloc` events are a similar concept to these events.
 - **Business Logic Results**: Results from running business logic. Using UseCases is suggested (on_login_success, on_login_failed)
 
 
