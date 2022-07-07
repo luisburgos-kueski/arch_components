@@ -1,9 +1,9 @@
-import 'package:arch_components/deprecated/home/screen.dart';
 import 'package:arch_components/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:home_feature/screen.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 import 'package:kufemia/kufemia.dart';
