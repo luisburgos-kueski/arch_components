@@ -7,13 +7,13 @@ Flutter project to test arch components ideas
 Features:
 - `home` displays a list of merchants, allows load/clear the list and navigate to a merchant detail.
 - `merchant_detail` displays single merchant detailed information.
-- `splash` something to display on the first launch.
+- `splash` something to display on the first launch. (**IMPORTANT**: To be removed when Web is supported).
 
 Internal Packages:
 - `core` centralizes shared components across modules, like api clients or storage cache.
-- `kapp_data_sources` exposes `DataSources` data access layer.
 - `merchants_data` exposes `Merchant` data access layer.
 - `kapp_behavior` placeholder implementation faking app behavior.
+- `kapp_data_sources` exposes `DataSources` data access layer.
 
 External Packages:
 - `kevent_tracker` to track UI events, Navigation events and Lifecycle events.
