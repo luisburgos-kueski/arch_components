@@ -35,13 +35,13 @@ These are the main architecture components:
 - [View Data Models](#view-data-models)
 
 ### Domain Components
-- UseCases
-- Entities (TBD)
+- [Use Cases](#use-cases)
+- [Entities (TBD)](#entities-tbd)
 
 ### Data Components
-- Repositories
-- DataProviders (TBD)
-- Models (TBD)
+- [Repositories (TBD)](#repositories-tbd)
+- [Data Providers (TBD)](#data-providers-tbd)
+- [Models (TBD)](#models-tbd)
     
 ## Presentation Layer
 
@@ -105,6 +105,7 @@ A `ViewTemplate` defines the `Screen` skeleton, it's a dump component exposing c
 A `StateHolder` is responsible to process application logic. 
 
 > 🚨  This is the only `Presentation` component allowed to communicate with `Domain` components.
+> 🚨  State should be a projection of the data from a single source of truth. The Data Access Layer MUST be the source of truth.
 
 - A `StateHolder`...
 - Is a state projection component which listens to Data Access Streams. 
@@ -112,20 +113,28 @@ A `StateHolder` is responsible to process application logic.
 - Runs `UseCases` and updates local state if needed.  
 
 
-> State should be a projection of the data from a single source of truth.
-> The Data Access Layer MUST be the source of truth.
-
-
 ### View Data Models
 
 A `ViewDataModel` is the most atomic Data scope for a view. In other words, partial views of `Domain Entities`.
 
-> 
+> 🚨 For now, this component could be considered as optional.
 
 
 ## Domain Layer
 
+### Use Cases
 
+A `UseCase` encapsulates business logic execution.
+
+> 🚨  This is the only `Architecture` component allowed to communicate with `Data` components.
+
+A `UseCase`...
+- Could call other `UseCases` and use the call result to continue the use case flow.
+- Could call multiple `Repositiries` to get all the data it needs to operate.
+
+### Entities (TBD)
+
+TODO: Add docs
 
 ## Data Layer
 
@@ -133,37 +142,17 @@ A `ViewDataModel` is the most atomic Data scope for a view. In other words, part
 - TODO: Add docs for having different data providers, local, in-memory, remote, etc.
 - TODO: Document ideas on how to have queues, schedulers and batched requests (Data sources example)
 
+### Repositories (TBD)
 
-# Brainstorming
+TODO: Add docs
 
-- UiEvent -> View -> BlocEvent (UiEvent)
-- BlocEvent -> Bloc + UseCase -> BLEvent
+### Data Providers (TBD)
 
--------
+TODO: Add docs
 
-- UiEvent -> View -> Cubit
-- Cubit + UseCase -> BLEvent
+### Models (TBD)
 
-- UiEvent -> View -> GetController
-- GetController + UseCase -> BLEvent
-
--------
-
-- User -> View -> UiEvent
-- UiEvent -> GetController -> Command
-- Command -> CommandHandler (UseCase) -> BLEvent
-
-- User -> View -> UiEvent
-- UiEvent -> Cubit + UseCase -> BLEvent
-  
-
-**Notes:**
-- BlocEvents are not necessary Ui Events.
-- BlocEvents are more likely to be Commands?
-- If we do not adopt UseCases broadly? Should we trigger events from Bloc for now.
-- What happens with MerchantItemPressed where should live in?
-- How we could add a route contract?
-- Dialogs and SnackBars are not included on v1
+TODO: Add docs
 
 ## WIP: Architecture Principles
 
