@@ -10,7 +10,7 @@ Here are a few components and it's relation with `KAppBehavior`
 
 Here are a few components and it's relation with `KEventTracker`
 - `HomeScreen` → `KEventTracker.NavigationNotifier`
-- `HomeScreen` → `KEventTracker.NavigationNotifier`
+- `LoadMerchantsTextButton` → `KEventTracker.UiEventNotifier`
 
 For more information go to [addons](../../docs/ADDONS.md).
 
@@ -117,7 +117,7 @@ class HomeScreenLogBehaviorNotifier extends StatelessWidget {
 
 ### The View & The View Template
 
-View Template...
+Here is a `ViewTemplate` contract, we could easily describe an overview of what our view is expected to do:
 
 ```dart
 class HomeViewTemplate extends StatelessWidget {
@@ -135,7 +135,7 @@ class HomeViewTemplate extends StatelessWidget {
 }
 ```
 
-Then we could use the View Template in our View component:
+Then we could use the `ViewTemplate` in our `View` component:
 
 ```dart
 class MyView extends StatelessWidget {
@@ -152,6 +152,36 @@ class MyView extends StatelessWidget {
       onSettingsPressed: () => {},
       onLoadMerchantsPressed: () => {},
       onClearMerchantsPressed: () => {},
+    );
+  }
+}
+```
+
+Ourt `ViewTemplate` can use `Components` defined for that `View`. For example:
+
+```dart
+/// By using [UiEventNotifier] our `Component` can log [OnClicked] events.
+class LoadMerchantsTextButton extends StatelessWidget {
+  const LoadMerchantsTextButton({
+    Key? key,
+    this.onLoad,
+  }) : super(key: key);
+
+  final Function()? onLoad;
+
+  @override
+  Widget build(BuildContext context) {
+    return UiEventNotifier(
+      key: const Key('load_merchants_text_button'),
+      builder: (widgetId, publisher) {
+        return TextButton(
+          onPressed: () {
+            publisher.publishUiEvent(OnClicked(widgetId: widgetId));
+            if (onLoad != null) onLoad!();
+          },
+          child: const Text('Load merchants data'),
+        );
+      },
     );
   }
 }
