@@ -59,9 +59,12 @@ class MerchantListTile extends StatelessWidget {
           title: Text(item.name),
           onTap: () {
             publisher.publishUiEvent(
-              OnClicked(widgetId: widgetId, data: {
-                'item_name': item.name,
-              }),
+              OnClicked(
+                widgetId: widgetId,
+                data: {
+                  'item_name': item.name,
+                },
+              ),
             );
             onMerchantItemClicked(item);
           },

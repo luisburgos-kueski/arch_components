@@ -9,16 +9,18 @@ abstract class HomeUiEvent implements UiKAppBehaviorEvent {
 
 class OnMerchantItemPressed extends HomeUiEvent {
   @override
-  String get name => 'merchant_item_tile_${_merchantName}_pressed';
+  String get name => 'merchant_item_tile_${merchantName}_pressed';
 
   @override
-  final Map<String, dynamic>? params;
+  Map<String, dynamic>? get params => {
+        'merchant_name': merchantName,
+      };
 
   OnMerchantItemPressed({
-    required this.params,
+    required this.merchantName,
   }) : super();
 
-  String get _merchantName => params!['merchant_name'];
+  final String merchantName;
 }
 
 class OnSettingsButtonPressed extends HomeUiEvent {

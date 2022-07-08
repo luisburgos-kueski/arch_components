@@ -35,9 +35,9 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
               items: state.merchantNames,
               onMerchantItemClicked: (merchantData) {
                 notifyUi(
-                  OnMerchantItemPressed(params: {
-                    'merchant_name': merchantData.name,
-                  }),
+                  OnMerchantItemPressed(
+                    merchantName: merchantData.name,
+                  ),
                 );
                 context.read<HomeBloc>().add(
                       NavigateToMerchantDetail(merchantData),

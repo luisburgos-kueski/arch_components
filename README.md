@@ -20,6 +20,7 @@ External Packages:
 
 ## Next Updates
 
+- Add more events for feature use cases, currently most of the events stands for happy paths.
 - Add `feature toggles` reading and propagation through the views (Remove core static file).
 - Make Home module load noy only merchants data but capabilities data (products, services) and
 to be aware of authentication by including a "fake credit capacity feature widget".
