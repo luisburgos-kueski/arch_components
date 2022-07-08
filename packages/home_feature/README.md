@@ -404,27 +404,36 @@ Here are a few components and it's relation with `KEventTracker`
 ```yaml
 app_behavior:
   navigation:
-    base: "HomeUseCaseEvent"
-    classes:
+    - route_name: "/home"
+      screen_name: "HomeScreen"
   ui:
-    base: "HomeUiEvent"
-    classes:
-      - "OnMerchantItemPressed"
-      - "OnSettingsButtonPressed"
-      - "OnClearMerchantsButtonPressed"
-      - "OnLoadMerchantsButtonPressed"
+    - base: "HomeUiEvent"
+      classes:        
+        - name: "OnLoadMerchantsButtonPressed"
+        - name: "OnClearMerchantsButtonPressed"
+        - name: "OnMerchantItemPressed"
+          params:
+            - merchant_name
+        - name: "OnSettingsButtonPressed"
   bloc:
-    base: "HomeEvent"
-    classes:
-      - "LoadHomeMerchants"
-      - "NavigateToSettings"
-      - "NavigateToMerchantDetail(MerchantViewData)"
-      - "ClearHomeMerchants"
+    - base: "HomeEvent"
+      classes:
+        - name: "LoadHomeMerchants"
+        - name: "ClearHomeMerchants"
+        - name: "NavigateToMerchantDetail"
+          params:
+            - merchant_name
+            - merchant_id
+        - name: "NavigateToSettings"
   use_case:
-    base: "HomeUseCaseEvent"
-    classes:
-      - "OnMerchantListCleared"
-      - "OnMerchantListLoaded"
+    - base: "HomeUseCaseEvent"
+      cases:
+        - class_name: "LoadMerchantsUseCase"
+          events: 
+            - name: "OnMerchantListLoaded"
+              params:
+                - list_length
+            - name: "OnMerchantListCleared"        
 log_behavior:
   navigation:
     - name: "HomeScreen"
