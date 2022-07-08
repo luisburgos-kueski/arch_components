@@ -1,18 +1,6 @@
 # Home Feature Module
 
-> 🚨 This module uses `KAppBehavior` and `KEventTracker`. 
-
-Here are a few components and it's relation with `KAppBehavior`
-- `HomeScreen` → `KAppBehavior.KScreenEvent`.
-- `HomeBlocView` → `KAppBehavior.UiKAppBehaviorEvent`.
-- `HomeBloc` → `KAppBehavior.BlocKAppBehaviorEvent`.
-- `LoadMerchantsUseCase` → `KAppBehavior.UseCaseKAppBehaviorEvent`.
-
-Here are a few components and it's relation with `KEventTracker`
-- `HomeScreen` → `KEventTracker.NavigationNotifier`
-- `LoadMerchantsTextButton` → `KEventTracker.UiEventNotifier`
-
-For more information go to [addons](../../docs/ADDONS.md).
+> 🚨 This module uses `KAppBehavior` and `KEventTracker`.
 
 ## Overview
 
@@ -397,4 +385,65 @@ class LoadMerchantsUseCase with KAppBehaviorUseCaseNotifier {
     });
   }
 }
+```
+
+## Module Events
+
+> ✋🏻 Before continue first read more about supported [addons](../../docs/ADDONS.md).
+
+Here are a few components and it's relation with `KAppBehavior`
+- `HomeScreen` → `KAppBehavior.KScreenEvent`.
+- `HomeBlocView` → `KAppBehavior.UiKAppBehaviorEvent`.
+- `HomeBloc` → `KAppBehavior.BlocKAppBehaviorEvent`.
+- `LoadMerchantsUseCase` → `KAppBehavior.UseCaseKAppBehaviorEvent`.
+
+Here are a few components and it's relation with `KEventTracker`
+- `HomeScreen` → `KEventTracker.NavigationNotifier`
+- `LoadMerchantsTextButton` → `KEventTracker.UiEventNotifier`
+
+```yaml
+app_behavior:
+  navigation:
+    base: "HomeUseCaseEvent"
+    classes:
+  ui:
+    base: "HomeUiEvent"
+    classes:
+      - "OnMerchantItemPressed"
+      - "OnSettingsButtonPressed"
+      - "OnClearMerchantsButtonPressed"
+      - "OnLoadMerchantsButtonPressed"
+  bloc:
+    base: "HomeEvent"
+    classes:
+      - "LoadHomeMerchants"
+      - "NavigateToSettings"
+      - "NavigateToMerchantDetail(MerchantViewData)"
+      - "ClearHomeMerchants"
+  use_case:
+    base: "HomeUseCaseEvent"
+    classes:
+      - "OnMerchantListCleared"
+      - "OnMerchantListLoaded"
+log_behavior:
+  navigation:
+    - name: "HomeScreen"
+      id: "home_screen"
+  ui:
+    - name: "MerchantListTile"
+      type: "OnClicked"
+      id: "merchant_list_tile"
+      data:
+        - item_name
+    - name: "LoadMerchantsTextButton"
+      type: "OnClicked"
+      id: "load_merchants_text_button"
+    - name: "ClearMerchantsTextButton"
+      type: "OnClicked"
+      id: "clear_merchants_text_button"
+    - name: "ActionsIconButton"
+      type: "OnClicked"
+      id: "actions_icon_button"
+      data:
+        - name
 ```
