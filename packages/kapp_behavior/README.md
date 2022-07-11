@@ -1,6 +1,6 @@
 # KAppBehavior
 
-Understamd user behavior on your app. Observe ui, navigation and business logic events.
+Understand user behavior on your app. Observe ui, navigation and business logic events.
 
 ## Features
 
