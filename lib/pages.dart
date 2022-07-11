@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:home_feature/redirections.dart';
 import 'package:home_feature/screen.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
+import 'package:merchant_detail_feature/screen.dart';
 
 final List<GetPage> pages = [
   GetPage(
@@ -17,8 +18,8 @@ final List<GetPage> pages = [
     },
   ),
   GetPage(
-    name: MerchantDetailPage.routeName,
-    page: () => const MerchantDetailPage(),
+    name: MerchantDetailScreen.routeName,
+    page: () => const MerchantDetailScreen(),
   ),
   GetPage(
     name: AppBehaviorScreen.routeName,

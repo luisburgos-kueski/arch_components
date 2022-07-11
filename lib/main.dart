@@ -17,7 +17,7 @@ class KDefaultAppObserver implements KAppEventObserver {
 
   @override
   void onEvent(KAppBehaviorEvent event) {
-    KLogger.log(event.toString(), '-----');
+    KLogger.log(event.toString(), 'APP_BEHAVIOR');
     //TODO: Send to data sources
   }
 }

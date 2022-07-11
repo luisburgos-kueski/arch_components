@@ -45,6 +45,8 @@ dependencies:
     path: './packages/kapp_behavior'
   home_feature:
     path: './packages/home_feature'
+  merchant_detail_feature:
+    path: './packages/merchant_detail_feature'
   kufemia:
     git:
       url: git@github.com:kueski-dev/kufemia.git
