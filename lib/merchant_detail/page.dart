@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'state/bloc.dart';
 
 //TODO: Divide into classes, files and components
+@Deprecated('Use MerchantDetailScreen from merchant_detail_feature')
 class MerchantDetailPage extends StatelessWidget {
   static String routeName = '/home/:id';
 

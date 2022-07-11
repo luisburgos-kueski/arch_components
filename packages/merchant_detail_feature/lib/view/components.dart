@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
-@Deprecated('Use MerchantDetailScreen from merchant_detail_feature')
 class BackToHomeTextButton extends StatelessWidget {
   const BackToHomeTextButton({
     Key? key,

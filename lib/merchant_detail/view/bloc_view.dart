@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'view_template.dart';
 
+@Deprecated('Use MerchantDetailScreen from merchant_detail_feature')
 class MerchantDetailView extends StatelessWidget {
   const MerchantDetailView({
     Key? key,

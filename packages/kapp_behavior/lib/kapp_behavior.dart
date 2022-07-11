@@ -70,16 +70,12 @@ class KAppBehavior {
         'Prefix "$kReservedPrefix" is reserved and cannot be used.',
       );
     }
-
-    dev.log(
-      '[${event.name}, ${DateTime.now()}, ${event.params}]',
-      name: 'APP_BEHAVIOR',
-    );
+    observer.onEvent(event);
     KAppBehavior.eventsStore.add(event);
   }
 
   static void notify(KAppBehaviorEvent event) {
-    log('$event', name: 'APP_BEHAVIOR');
+    // log('$event', name: 'APP_BEHAVIOR');
     KAppBehavior.registerEvent(event);
   }
 }
