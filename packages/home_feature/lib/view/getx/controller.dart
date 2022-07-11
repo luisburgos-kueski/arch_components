@@ -13,10 +13,11 @@ import '../view_data_model.dart';
 /// TODO:
 /// Research if onEvent method could be override to intercept Navigation events.
 ///
-/// By using [KAppBehaviorBlocNotifier] class and calling the
-/// [KAppBehaviorBlocNotifier.notifyBusinessLogicRequest] our `bloc` can log
+/// By using [KAppBehaviorBusinessLogicNotifier] class and calling the
+/// [KAppBehaviorBusinessLogicNotifier.notifyBusinessLogicRequest] our `bloc` can log
 /// [KAppBehaviorBusinessLogicEvent]s.
-class HomeController extends GetxController with KAppBehaviorBlocNotifier {
+class HomeController extends GetxController
+    with KAppBehaviorBusinessLogicNotifier {
   HomeController(this.redirections);
 
   final HomeRedirections redirections;

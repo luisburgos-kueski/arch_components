@@ -29,7 +29,7 @@ final List<GetPage> pages = [
 
 //TODO: Evaluate move to own folder.
 class _AppBehaviorScreenWrapper extends StatelessWidget
-    with OnBackPressedAppBehaviorNotifier {
+    with KAppBehaviorOnBackPressedNotifier {
   const _AppBehaviorScreenWrapper({Key? key}) : super(key: key);
 
   @override

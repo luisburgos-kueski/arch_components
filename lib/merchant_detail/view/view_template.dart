@@ -8,7 +8,7 @@ import 'components.dart';
 
 @Deprecated('Use MerchantDetailScreen from merchant_detail_feature')
 class MerchantDetailViewTemplate extends StatelessWidget
-    with OnBackPressedAppBehaviorNotifier {
+    with KAppBehaviorOnBackPressedNotifier {
   const MerchantDetailViewTemplate({
     Key? key,
     required this.merchantName,

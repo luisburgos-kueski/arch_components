@@ -10,7 +10,7 @@ import 'bloc.dart';
 import 'bloc_events.dart';
 
 class MerchantDetailBlocView extends StatelessWidget
-    with OnBackPressedAppBehaviorNotifier, KAppBehaviorUiNotifier {
+    with KAppBehaviorOnBackPressedNotifier, KAppBehaviorUiNotifier {
   const MerchantDetailBlocView({
     Key? key,
     required this.merchantName,

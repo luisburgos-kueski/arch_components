@@ -1,8 +1,6 @@
 import '../kapp_behavior.dart';
 
-//TODO: Use same approach of OnBackPressedAppBehaviorNotifier
-//TODO: Make notify support methods async operations??
-//TODO: Rename to KAppBehaviorNotifier
+//TODO: Make notify support methods async operations?
 abstract class KAppBehaviorUiNotifier {
   void notifyUi(KAppBehaviorUiEvent event) {
     KAppBehavior.notify(event);
@@ -16,7 +14,7 @@ abstract class KAppBehaviorUseCaseNotifier {
   }
 }
 
-abstract class KAppBehaviorBlocNotifier {
+abstract class KAppBehaviorBusinessLogicNotifier {
   void notifyBusinessLogicRequest(KAppBehaviorBusinessLogicEvent event) {
     KAppBehavior.notify(event);
   }
@@ -28,13 +26,13 @@ abstract class KAppBehaviorScreenNotifier {
   }
 }
 
-abstract class OnBackPressedAppBehaviorNotifier {
+abstract class KAppBehaviorOnBackPressedNotifier {
   void notifyOnBackPressed({
     required String fromRoute,
     BackSource source = BackSource.system,
   }) {
     KAppBehavior.registerEvent(
-      CustomNavigateBackAppBehaviorEvent(
+      KAppBehaviorOnBackPressedEvent(
         from: fromRoute,
         source: source,
       ),
@@ -42,14 +40,15 @@ abstract class OnBackPressedAppBehaviorNotifier {
   }
 }
 
+//TODO: Challenge back source items naming
 enum BackSource {
   user,
   system,
 }
 
-class CustomNavigateBackAppBehaviorEvent implements KAppBehaviorUiEvent {
+class KAppBehaviorOnBackPressedEvent implements KAppBehaviorUiEvent {
   @override
-  String get name => 'custom_navigate_back';
+  String get name => 'on_back_pressed';
 
   @override
   Map<String, dynamic>? get params => {
@@ -63,7 +62,7 @@ class CustomNavigateBackAppBehaviorEvent implements KAppBehaviorUiEvent {
   final String from;
   final BackSource source;
 
-  CustomNavigateBackAppBehaviorEvent({
+  KAppBehaviorOnBackPressedEvent({
     required this.from,
     required this.source,
   }) : timestamp = DateTime.now();
