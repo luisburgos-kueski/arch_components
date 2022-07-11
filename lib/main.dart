@@ -12,7 +12,7 @@ import 'bloc_observer.dart';
 import 'splash/page.dart';
 import 'tools/klogger.dart';
 
-class KDefaultAppObserver implements KAppEventObserver {
+class KDefaultAppObserver implements KAppBehaviorEventObserver {
   const KDefaultAppObserver();
 
   @override
@@ -23,7 +23,7 @@ class KDefaultAppObserver implements KAppEventObserver {
 }
 
 // TODO: Register observer in app
-final kAppRouteObserver = KAppRouteObserver();
+final kAppRouteObserver = KAppBehaviorRouteObserver();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

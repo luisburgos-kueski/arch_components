@@ -8,7 +8,6 @@ abstract class KAppBehaviorUiNotifier {
 }
 
 abstract class KAppBehaviorUseCaseNotifier {
-  //TODO: UseCase result
   void notifyUseCase(KAppBehaviorUseCaseEvent event) {
     KAppBehavior.notify(event);
   }

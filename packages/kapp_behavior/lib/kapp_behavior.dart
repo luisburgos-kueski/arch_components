@@ -21,25 +21,25 @@ export 'widget/kroute_aware_screen.dart';
 /// KAppBehavior.registerEvent(...);
 class KAppBehavior {
   static void init(
-    KAppEventObserver eventObserver,
-    KAppRouteObserver routeObserver,
+    KAppBehaviorEventObserver eventObserver,
+    KAppBehaviorRouteObserver routeObserver,
   ) {
     _observer = eventObserver;
     _routeObserver = routeObserver;
   }
 
-  static KAppEventObserver? _observer;
-  static KAppRouteObserver? _routeObserver;
+  static KAppBehaviorEventObserver? _observer;
+  static KAppBehaviorRouteObserver? _routeObserver;
 
   //TODO: Challenge being public
-  static KAppEventObserver get observer {
+  static KAppBehaviorEventObserver get observer {
     //TODO: App proper exception message for use case.
     if (_observer == null) throw Exception();
     return _observer!;
   }
 
   //TODO: Challenge being public
-  static KAppRouteObserver get routeObserver {
+  static KAppBehaviorRouteObserver get routeObserver {
     //TODO: App proper exception message for use case.
     if (_routeObserver == null) throw Exception();
     return _routeObserver!;
