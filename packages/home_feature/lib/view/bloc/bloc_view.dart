@@ -10,7 +10,9 @@ import '../view_template.dart';
 import 'bloc.dart';
 import 'bloc_events.dart';
 
-//TODO: Rename to HomeViewBloc?
+/// TODO: Rename to HomeViewBloc?
+/// By using [KAppBehaviorUiNotifier] class and calling the
+/// [KAppBehaviorUiNotifier.notifyUi] our `View` can log [UiKAppBehaviorEvent]s.
 class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
   const HomeBlocView(
     this.redirections, {
@@ -33,9 +35,9 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
               items: state.merchantNames,
               onMerchantItemClicked: (merchantData) {
                 notifyUi(
-                  OnMerchantItemPressed(params: {
-                    'merchant_name': merchantData.name,
-                  }),
+                  OnMerchantItemPressed(
+                    merchantName: merchantData.name,
+                  ),
                 );
                 context.read<HomeBloc>().add(
                       NavigateToMerchantDetail(merchantData),

@@ -37,7 +37,7 @@ void main() async {
 
   KAppBehavior.init(
     const KDefaultAppObserver(),
-    kAppRouteObserver,
+    kAppRouteObserver, //TODO: Avoid default instantiation
   );
 
   BlocOverrides.runZoned(

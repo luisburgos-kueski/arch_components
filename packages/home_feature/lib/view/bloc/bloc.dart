@@ -29,8 +29,6 @@ class HomeState {
   }
 }
 
-///TODO:
-///Research if onEvent method could be override to intercept Navigation events.
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this.redirections) : super(const HomeState()) {
     ///TODO: Update outdated naming convention

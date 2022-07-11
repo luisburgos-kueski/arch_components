@@ -1,8 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:kapp_behavior/kapp_behavior.dart';
 
-import 'event/custom_kapp_behavior_events.dart';
+import '../kapp_behavior.dart';
 
 ///TODO: Add clear events cache log action
 class AppBehaviorScreen extends StatelessWidget {

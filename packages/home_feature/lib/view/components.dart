@@ -39,6 +39,7 @@ class MerchantsList extends StatelessWidget {
   }
 }
 
+/// By using [UiEventNotifier] our `Component` can log [OnClicked] events.
 class MerchantListTile extends StatelessWidget {
   const MerchantListTile({
     Key? key,
@@ -58,9 +59,12 @@ class MerchantListTile extends StatelessWidget {
           title: Text(item.name),
           onTap: () {
             publisher.publishUiEvent(
-              OnClicked(widgetId: widgetId, data: {
-                'item_name': item.name,
-              }),
+              OnClicked(
+                widgetId: widgetId,
+                data: {
+                  'item_name': item.name,
+                },
+              ),
             );
             onMerchantItemClicked(item);
           },
@@ -70,6 +74,7 @@ class MerchantListTile extends StatelessWidget {
   }
 }
 
+/// By using [UiEventNotifier] our `Component` can log [OnClicked] events.
 class LoadMerchantsTextButton extends StatelessWidget {
   const LoadMerchantsTextButton({
     Key? key,
@@ -85,10 +90,7 @@ class LoadMerchantsTextButton extends StatelessWidget {
       builder: (widgetId, publisher) {
         return TextButton(
           onPressed: () {
-            publisher.publishUiEvent(
-              OnClicked(widgetId: widgetId),
-            );
-
+            publisher.publishUiEvent(OnClicked(widgetId: widgetId));
             if (onLoad != null) onLoad!();
           },
           child: const Text('Load merchants data'),
@@ -98,6 +100,7 @@ class LoadMerchantsTextButton extends StatelessWidget {
   }
 }
 
+/// By using [UiEventNotifier] our `Component` can log [OnClicked] events.
 class ClearMerchantsTextButton extends StatelessWidget {
   const ClearMerchantsTextButton({
     Key? key,
@@ -113,9 +116,7 @@ class ClearMerchantsTextButton extends StatelessWidget {
       builder: (widgetId, publisher) {
         return TextButton(
           onPressed: () {
-            publisher.publishUiEvent(
-              OnClicked(widgetId: widgetId),
-            );
+            publisher.publishUiEvent(OnClicked(widgetId: widgetId));
 
             ///TODO: Could this trigger an AppBehavior event?
             KMessenger.showSnackBar(context, 'Long press to clear');
@@ -130,6 +131,7 @@ class ClearMerchantsTextButton extends StatelessWidget {
   }
 }
 
+/// By using [UiEventNotifier] our `Component` can log [OnClicked] events.
 class ActionsIconButton extends StatelessWidget {
   const ActionsIconButton({
     Key? key,

@@ -17,7 +17,7 @@ class HomeControllerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
+    final controller = Get.put(HomeController(redirections));
 
     return Obx(() {
       return HomeViewTemplate(
