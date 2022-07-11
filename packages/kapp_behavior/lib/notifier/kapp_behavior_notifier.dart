@@ -28,7 +28,7 @@ abstract class KAppBehaviorScreenNotifier {
   }
 }
 
-class OnBackPressedAppBehaviorNotifier {
+abstract class OnBackPressedAppBehaviorNotifier {
   void notifyOnBackPressed({
     required String fromRoute,
     BackSource source = BackSource.system,
@@ -47,7 +47,7 @@ enum BackSource {
   system,
 }
 
-class CustomNavigateBackAppBehaviorEvent implements KDefaultAppBehaviorEvent {
+class CustomNavigateBackAppBehaviorEvent implements UiKAppBehaviorEvent {
   @override
   String get name => 'custom_navigate_back';
 

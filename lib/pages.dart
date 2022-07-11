@@ -1,4 +1,4 @@
-import 'package:arch_components/merchant_detail/page.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_feature/redirections.dart';
 import 'package:home_feature/screen.dart';
@@ -23,12 +23,23 @@ final List<GetPage> pages = [
   ),
   GetPage(
     name: AppBehaviorScreen.routeName,
-    page: () => AppBehaviorScreen(
+    page: () => const _AppBehaviorScreenWrapper(),
+  ),
+];
+
+//TODO: Evaluate move to own folder.
+class _AppBehaviorScreenWrapper extends StatelessWidget
+    with OnBackPressedAppBehaviorNotifier {
+  const _AppBehaviorScreenWrapper({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBehaviorScreen(
       onBackPressed: () {
-        OnBackPressedAppBehaviorNotifier().notifyOnBackPressed(
+        notifyOnBackPressed(
           fromRoute: Get.currentRoute,
         );
       },
-    ),
-  ),
-];
+    );
+  }
+}
