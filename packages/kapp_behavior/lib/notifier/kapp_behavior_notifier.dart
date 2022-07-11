@@ -23,7 +23,7 @@ abstract class KAppBehaviorBlocNotifier {
 }
 
 abstract class KAppBehaviorScreenNotifier {
-  void notifyNavigation(KScreenEvent event) {
+  void notifyNavigation(KAppBehaviorScreenEvent event) {
     KAppBehavior.notify(event);
   }
 }

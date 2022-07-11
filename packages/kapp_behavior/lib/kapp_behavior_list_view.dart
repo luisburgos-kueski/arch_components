@@ -80,7 +80,7 @@ class AppBehaviorEventsListView extends StatelessWidget {
     if (event is KAppBehaviorUseCaseEvent) {
       return Colors.yellow.shade300;
     }
-    if (event is KScreenEvent) {
+    if (event is KAppBehaviorScreenEvent) {
       return Colors.green.shade300;
     }
     return Colors.grey;

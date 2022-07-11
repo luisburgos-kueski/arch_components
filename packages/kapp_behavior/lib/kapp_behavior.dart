@@ -1,8 +1,5 @@
 library kapp_behavior;
 
-import 'dart:developer' as dev;
-import 'dart:developer';
-
 import 'package:core/in_memory_store.dart';
 
 import 'event/kapp_behavior_event.dart';
@@ -55,7 +52,7 @@ class KAppBehavior {
     Map<String, dynamic>? parameters,
   }) {
     return registerEvent(
-      KDefaultAppBehaviorEvent(name, params: parameters ?? {}),
+      KAppBehaviorDefaultEvent(name, params: parameters ?? {}),
     );
   }
 

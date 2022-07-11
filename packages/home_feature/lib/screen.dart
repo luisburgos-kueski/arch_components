@@ -9,7 +9,7 @@ import 'view/getx/controller_view.dart';
 import 'view/riverpod/riverpod_view.dart';
 
 /// Extending from [KRouteAwareScreen] allows this `Screen` to notify about
-/// [KScreenEvent].
+/// [KAppBehaviorScreenEvent].
 class HomeScreen extends KRouteAwareScreen {
   static const routeName = '/home';
   static const screenName = 'HomeScreen';

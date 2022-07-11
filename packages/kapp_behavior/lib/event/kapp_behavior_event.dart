@@ -1,5 +1,5 @@
-/// TODO: Should this be non-abstract? So we can have named constructors?
-/// TODO: Challenge rename to IKAppBehaviorEvent
+/// TODO:
+/// Challenge rename to IKAppBehaviorEvent. Cause there is no interface in dart.
 abstract class KAppBehaviorEvent {
   String get name;
   Map<String, dynamic>? get params;
@@ -7,12 +7,11 @@ abstract class KAppBehaviorEvent {
 
   @override
   String toString() {
-    ///TODO: Should we add timestamp here?
-    return "[$name, $params]";
+    return "[$name, $params, $timestamp]";
   }
 }
 
-class KDefaultAppBehaviorEvent with KAppBehaviorEvent {
+class KAppBehaviorDefaultEvent with KAppBehaviorEvent {
   @override
   final String name;
   @override
@@ -20,13 +19,13 @@ class KDefaultAppBehaviorEvent with KAppBehaviorEvent {
   @override
   final DateTime timestamp;
 
-  KDefaultAppBehaviorEvent(
+  KAppBehaviorDefaultEvent(
     this.name, {
     this.params = const {},
   }) : timestamp = DateTime.now();
 }
 
-class KScreenEvent with KAppBehaviorEvent {
+class KAppBehaviorScreenEvent with KAppBehaviorEvent {
   @override
   final String name;
   @override
@@ -34,14 +33,14 @@ class KScreenEvent with KAppBehaviorEvent {
   @override
   final DateTime timestamp;
 
-  KScreenEvent.opened(
+  KAppBehaviorScreenEvent.opened(
     String route,
     String screen,
   )   : name = 'screen_opened',
         timestamp = DateTime.now(),
         params = {'route': route, 'screen': screen};
 
-  KScreenEvent.closed(
+  KAppBehaviorScreenEvent.closed(
     String route,
     String screen,
   )   : name = 'screen_closed',
