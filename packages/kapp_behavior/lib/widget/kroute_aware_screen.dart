@@ -5,11 +5,18 @@ import 'package:flutter/material.dart';
 
 import '../kapp_behavior.dart';
 
+/// TODO: Rename to KAppBehaviorScreenIdentifiable
+abstract class KTrackedScreen {
+  String get route;
+  String get name;
+}
+
 /// TODO: Validate with tabs
 /// Widget - Tabs **
 /// KTrackedScreen
 /// bottom nav controller / notifier
 /// notify()
+/// TODO: Rename to KAppBehaviorRouteAwareScreen
 abstract class KRouteAwareScreen extends StatefulWidget
     implements KTrackedScreen {
   const KRouteAwareScreen({
@@ -87,11 +94,4 @@ abstract class KRouteAwareState<T extends KRouteAwareScreen> extends State<T>
   void onLeaveScreen() {
     notifyNavigation(KAppBehaviorScreenEvent.closed(widget.route, widget.name));
   }
-}
-
-/// Contract
-abstract class KTrackedScreen {
-  String get route;
-
-  String get name;
 }

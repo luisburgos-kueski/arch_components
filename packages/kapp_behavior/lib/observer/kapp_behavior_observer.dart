@@ -7,13 +7,16 @@ abstract class KAppBehaviorEventObserver {
   void onEvent(KAppBehaviorEvent event);
 }
 
-// TODO: Validate how use a contract for the route using MaterialPageRoute and GetPageRoute
-// TODO: Rename to KAppScreenNavigationObserver
+// TODO:
+// Validate how to use a contract for the route when dealing with
+// MaterialPageRoute, GetPageRoute or any other library custom component.
 class KAppBehaviorRouteObserver extends RouteObserver<PageRoute<dynamic>>
     with KAppBehaviorScreenNotifier {
   @override
   void didPush(Route route, Route? previousRoute) {
     // TODO: Implement notify
+    // TODO: Verify integration with KScreenRouteObserver class.
+
     super.didPush(route, previousRoute);
   }
 }
