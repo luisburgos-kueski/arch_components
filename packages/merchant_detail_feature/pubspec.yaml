@@ -26,6 +26,10 @@ dependencies:
     git:
       url: git@github.com:kueski-dev/kevent_tracker.git
       ref: v1.0.0
+  kueski_consumer_uitools:
+    git:
+      url: git@github.com:kueski-dev/kueski-consumer-uitools.git
+      ref: c113b8d8dbb98a9dfee6e706031c8c80f621466b
 
 dev_dependencies:
   flutter_test:
