@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../kapp_behavior.dart';
 
-/// TODO: Rename to KAppBehaviorScreenIdentifiable
-abstract class KTrackedScreen {
+abstract class KAppBehaviorScreenIdentifiable {
   String get route;
   String get name;
 }
@@ -16,10 +15,9 @@ abstract class KTrackedScreen {
 /// KTrackedScreen
 /// bottom nav controller / notifier
 /// notify()
-/// TODO: Rename to KAppBehaviorRouteAwareScreen
-abstract class KRouteAwareScreen extends StatefulWidget
-    implements KTrackedScreen {
-  const KRouteAwareScreen({
+abstract class KAppBehaviorRouteAwareScreen extends StatefulWidget
+    implements KAppBehaviorScreenIdentifiable {
+  const KAppBehaviorRouteAwareScreen({
     Key? key,
     required this.route,
     required this.name,
@@ -30,10 +28,11 @@ abstract class KRouteAwareScreen extends StatefulWidget
   final String name;
 
   @override
-  KRouteAwareState<KRouteAwareScreen> createState();
+  KRouteAwareState<KAppBehaviorRouteAwareScreen> createState();
 }
 
-abstract class KRouteAwareState<T extends KRouteAwareScreen> extends State<T>
+abstract class KRouteAwareState<T extends KAppBehaviorRouteAwareScreen>
+    extends State<T>
     with RouteAware, AfterLayoutMixin<T>, KAppBehaviorScreenNotifier {
   bool enteredScreen = false;
 

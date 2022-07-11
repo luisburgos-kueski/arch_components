@@ -8,9 +8,9 @@ import 'view/bloc/bloc_view.dart';
 import 'view/getx/controller_view.dart';
 import 'view/riverpod/riverpod_view.dart';
 
-/// Extending from [KRouteAwareScreen] allows this `Screen` to notify about
+/// Extending from [KAppBehaviorRouteAwareScreen] allows this `Screen` to notify about
 /// [KAppBehaviorScreenEvent].
-class HomeScreen extends KRouteAwareScreen {
+class HomeScreen extends KAppBehaviorRouteAwareScreen {
   static const routeName = '/home';
   static const screenName = 'HomeScreen';
 
@@ -26,7 +26,8 @@ class HomeScreen extends KRouteAwareScreen {
   final HomeRedirections redirections;
 
   @override
-  KRouteAwareState<KRouteAwareScreen> createState() => _HomeScreenState();
+  KRouteAwareState<KAppBehaviorRouteAwareScreen> createState() =>
+      _HomeScreenState();
 }
 
 /// By using [NavigationNotifier] widget wrapper this `Screen` can notify about
