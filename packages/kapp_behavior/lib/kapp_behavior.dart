@@ -20,12 +20,12 @@ export 'widget/kroute_aware_screen.dart';
 /// KAppBehavior.observer.onEvent();
 /// KAppBehavior.registerEvent(...);
 class KAppBehavior {
-  static void init(
-    KAppBehaviorEventObserver eventObserver,
-    KAppBehaviorRouteToScreenObserver routeObserver,
-  ) {
+  static void init({
+    required KAppBehaviorEventObserver eventObserver,
+    KAppBehaviorRouteToScreenObserver? routeObserver,
+  }) {
     _observer = eventObserver;
-    _routeObserver = routeObserver;
+    _routeObserver = routeObserver ?? KAppBehaviorRouteToScreenObserver();
   }
 
   static KAppBehaviorEventObserver? _observer;
