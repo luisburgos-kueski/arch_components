@@ -1,6 +1,6 @@
 import 'package:kapp_behavior/kapp_behavior.dart';
 
-abstract class HomeUseCaseEvent implements UseCaseKAppBehaviorEvent {
+abstract class HomeUseCaseEvent implements KAppBehaviorUseCaseEvent {
   HomeUseCaseEvent()
       : timestamp = DateTime.now(),
         super();

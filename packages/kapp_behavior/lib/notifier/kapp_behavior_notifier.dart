@@ -4,20 +4,20 @@ import '../kapp_behavior.dart';
 //TODO: Make notify support methods async operations??
 //TODO: Rename to KAppBehaviorNotifier
 abstract class KAppBehaviorUiNotifier {
-  void notifyUi(UiKAppBehaviorEvent event) {
+  void notifyUi(KAppBehaviorUiEvent event) {
     KAppBehavior.notify(event);
   }
 }
 
 abstract class KAppBehaviorUseCaseNotifier {
   //TODO: UseCase result
-  void notifyUseCase(UseCaseKAppBehaviorEvent event) {
+  void notifyUseCase(KAppBehaviorUseCaseEvent event) {
     KAppBehavior.notify(event);
   }
 }
 
 abstract class KAppBehaviorBlocNotifier {
-  void notifyBusinessLogicRequest(BlocKAppBehaviorEvent event) {
+  void notifyBusinessLogicRequest(KAppBehaviorBusinessLogicEvent event) {
     KAppBehavior.notify(event);
   }
 }
@@ -47,7 +47,7 @@ enum BackSource {
   system,
 }
 
-class CustomNavigateBackAppBehaviorEvent implements UiKAppBehaviorEvent {
+class CustomNavigateBackAppBehaviorEvent implements KAppBehaviorUiEvent {
   @override
   String get name => 'custom_navigate_back';
 

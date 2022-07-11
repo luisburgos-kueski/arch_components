@@ -71,13 +71,13 @@ class AppBehaviorEventsListView extends StatelessWidget {
     if (colorDecorator != null) {
       return colorDecorator!(event);
     }
-    if (event is UiKAppBehaviorEvent) {
+    if (event is KAppBehaviorUiEvent) {
       return Colors.blue.shade300;
     }
-    if (event is BlocKAppBehaviorEvent) {
+    if (event is KAppBehaviorBusinessLogicEvent) {
       return Colors.red.shade300;
     }
-    if (event is UseCaseKAppBehaviorEvent) {
+    if (event is KAppBehaviorUseCaseEvent) {
       return Colors.yellow.shade300;
     }
     if (event is KScreenEvent) {

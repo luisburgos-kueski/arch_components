@@ -1,6 +1,6 @@
 import 'package:kapp_behavior/event/custom_kapp_behavior_events.dart';
 
-abstract class HomeUiEvent implements UiKAppBehaviorEvent {
+abstract class HomeUiEvent implements KAppBehaviorUiEvent {
   @override
   final DateTime timestamp;
 

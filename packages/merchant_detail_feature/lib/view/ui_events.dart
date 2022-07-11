@@ -1,6 +1,6 @@
 import 'package:kapp_behavior/event/custom_kapp_behavior_events.dart';
 
-class OnBackToHomeTextButtonPressed implements UiKAppBehaviorEvent {
+class OnBackToHomeTextButtonPressed implements KAppBehaviorUiEvent {
   OnBackToHomeTextButtonPressed({
     this.params,
   }) : timestamp = DateTime.now();

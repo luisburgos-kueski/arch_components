@@ -12,7 +12,7 @@ import 'bloc_events.dart';
 
 /// TODO: Rename to HomeViewBloc?
 /// By using [KAppBehaviorUiNotifier] class and calling the
-/// [KAppBehaviorUiNotifier.notifyUi] our `View` can log [UiKAppBehaviorEvent]s.
+/// [KAppBehaviorUiNotifier.notifyUi] our `View` can log [KAppBehaviorUiEvent]s.
 class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
   const HomeBlocView(
     this.redirections, {

@@ -15,7 +15,7 @@ import '../view_data_model.dart';
 ///
 /// By using [KAppBehaviorBlocNotifier] class and calling the
 /// [KAppBehaviorBlocNotifier.notifyBusinessLogicRequest] our `bloc` can log
-/// [BlocKAppBehaviorEvent]s.
+/// [KAppBehaviorBusinessLogicEvent]s.
 class HomeController extends GetxController with KAppBehaviorBlocNotifier {
   HomeController(this.redirections);
 

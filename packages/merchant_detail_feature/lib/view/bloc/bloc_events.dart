@@ -1,7 +1,6 @@
-
 import 'package:kapp_behavior/event/custom_kapp_behavior_events.dart';
 
-abstract class MerchantDetailEvent implements BlocKAppBehaviorEvent {
+abstract class MerchantDetailEvent implements KAppBehaviorBusinessLogicEvent {
   MerchantDetailEvent() : timestamp = DateTime.now();
 
   @override

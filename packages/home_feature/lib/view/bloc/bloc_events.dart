@@ -4,7 +4,8 @@ import 'package:kapp_behavior/kapp_behavior.dart';
 
 import '../view_data_model.dart';
 
-abstract class HomeEvent extends Equatable implements BlocKAppBehaviorEvent {
+abstract class HomeEvent extends Equatable
+    implements KAppBehaviorBusinessLogicEvent {
   HomeEvent()
       : timestamp = DateTime.now(),
         super();

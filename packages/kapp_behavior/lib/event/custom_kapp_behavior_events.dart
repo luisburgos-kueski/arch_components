@@ -1,8 +1,10 @@
 import 'kapp_behavior_event.dart';
 
-///TODO: Evaluate duplicated events on Bloc approach.
-abstract class UiKAppBehaviorEvent implements KAppBehaviorEvent {}
+// TODO:
+// Evaluate remove `KAppBehavior` prefix. In case of collision use named imports.
 
-abstract class BlocKAppBehaviorEvent with KAppBehaviorEvent {}
+abstract class KAppBehaviorUiEvent implements KAppBehaviorEvent {}
 
-abstract class UseCaseKAppBehaviorEvent implements KAppBehaviorEvent {}
+abstract class KAppBehaviorBusinessLogicEvent with KAppBehaviorEvent {}
+
+abstract class KAppBehaviorUseCaseEvent implements KAppBehaviorEvent {}
