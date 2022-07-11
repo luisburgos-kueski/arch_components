@@ -23,7 +23,7 @@ class KDefaultAppObserver implements KAppBehaviorEventObserver {
 }
 
 // TODO: Register observer in app
-final kAppRouteObserver = KAppBehaviorRouteObserver();
+final kAppRouteObserver = KAppBehaviorRouteToScreenObserver();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
