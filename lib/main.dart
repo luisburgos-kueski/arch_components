@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
         child: ProviderScope(
           child: GetMaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Event Tracker Example',
+            title: 'Flutter Architecture Components',
             themeMode: ThemeMode.dark,
             home: const SplashPage(
               homeRouteRedirect: HomeScreen.routeName,
