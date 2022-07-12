@@ -5,6 +5,6 @@ import 'kapp_behavior_event.dart';
 
 abstract class KAppBehaviorUiEvent implements KAppBehaviorEvent {}
 
-abstract class KAppBehaviorBusinessLogicEvent with KAppBehaviorEvent {}
+abstract class KAppBehaviorBusinessLogicEvent implements KAppBehaviorEvent {}
 
 abstract class KAppBehaviorUseCaseEvent implements KAppBehaviorEvent {}
