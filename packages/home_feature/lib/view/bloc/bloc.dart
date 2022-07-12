@@ -35,6 +35,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<ClearHomeMerchants>(_onClearHomeMerchants);
     on<NavigateToMerchantDetail>(_onNavigateToMerchantDetail);
     on<NavigateToSettings>(_onNavigateToSettings);
+    on<DisplayClearActionInstructions>(_onDisplayClearActionInstructions);
   }
 
   final HomeRedirections redirections;
@@ -90,5 +91,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) async {
     redirections.goToSettings();
+  }
+
+  Future<void> _onDisplayClearActionInstructions(
+    DisplayClearActionInstructions event,
+    Emitter<HomeState> emit,
+  ) async {
+    event.displayView();
   }
 }

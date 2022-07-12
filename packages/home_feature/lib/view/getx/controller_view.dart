@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,6 +43,11 @@ class HomeControllerView extends StatelessWidget {
         },
         onSettingsPressed: () {
           controller.navigateToSettings();
+        },
+        onClearMerchantsTrunked: () {
+          controller.displayClearActionInstructions(() {
+            KMessenger.showSnackBar(context, 'Long press to clear');
+          },);
         },
       );
     });

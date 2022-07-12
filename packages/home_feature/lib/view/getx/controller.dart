@@ -56,11 +56,15 @@ class HomeController extends GetxController
     notifyBusinessLogicRequest(NavigateToMerchantDetail(data));
 
     final String merchantId = data.id;
-    Get.toNamed(redirections.goToMerchantDetail(merchantId));
+    redirections.goToMerchantDetail(merchantId);
   }
 
   Future<void> navigateToSettings() async {
     notifyBusinessLogicRequest(NavigateToSettings());
-    Get.toNamed(redirections.goToSettings());
+    redirections.goToSettings();
+  }
+
+  Future<void> displayClearActionInstructions(Function() displayView) async {
+    notifyBusinessLogicRequest(DisplayClearActionInstructions(displayView));
   }
 }

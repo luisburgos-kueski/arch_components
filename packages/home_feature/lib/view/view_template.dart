@@ -11,17 +11,20 @@ class HomeViewTemplate extends StatelessWidget {
     this.displayFailure = false,
     required this.failureViewBuilder,
     required this.merchantsList,
-    this.onLoadMerchantsPressed,
-    this.onClearMerchantsPressed,
-    this.onSettingsPressed,
+    required this.onLoadMerchantsPressed,
+    required this.onClearMerchantsPressed,
+    required this.onSettingsPressed,
+    required this.onClearMerchantsTrunked,
   }) : super(key: key);
 
   final String tag;
   final Widget merchantsList;
-  final Function()? onSettingsPressed;
-  final Function()? onLoadMerchantsPressed;
-  final Function()? onClearMerchantsPressed;
+  final Function() onSettingsPressed;
+  final Function() onLoadMerchantsPressed;
+  final Function() onClearMerchantsPressed;
+  final Function() onClearMerchantsTrunked;
   final Widget Function() failureViewBuilder;
+
   final bool displayFailure;
   final bool isLoading;
 
@@ -44,9 +47,7 @@ class HomeViewTemplate extends StatelessWidget {
             ActionsIconButton(
               name: 'settings',
               iconData: Icons.settings,
-              onTap: () {
-                onSettingsPressed!();
-              },
+              onTap: onSettingsPressed,
             ),
         ],
       ),
@@ -72,18 +73,11 @@ class HomeViewTemplate extends StatelessWidget {
                   child: Column(
                     children: [
                       LoadMerchantsTextButton(
-                        onLoad: () {
-                          if (onLoadMerchantsPressed != null) {
-                            onLoadMerchantsPressed!();
-                          }
-                        },
+                        onLoad: onLoadMerchantsPressed,
                       ),
                       ClearMerchantsTextButton(
-                        onClear: () {
-                          if (onClearMerchantsPressed != null) {
-                            onClearMerchantsPressed!();
-                          }
-                        },
+                        onShortClick: onClearMerchantsTrunked,
+                        onClear: onClearMerchantsPressed,
                       ),
                     ],
                   ),

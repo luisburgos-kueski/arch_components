@@ -1,4 +1,3 @@
-import 'package:core/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
@@ -105,9 +104,11 @@ class ClearMerchantsTextButton extends StatelessWidget {
   const ClearMerchantsTextButton({
     Key? key,
     this.onClear,
+    this.onShortClick,
   }) : super(key: key);
 
   final Function()? onClear;
+  final Function()? onShortClick;
 
   @override
   Widget build(BuildContext context) {
@@ -117,11 +118,10 @@ class ClearMerchantsTextButton extends StatelessWidget {
         return TextButton(
           onPressed: () {
             publisher.publishUiEvent(OnClicked(widgetId: widgetId));
-
-            ///TODO: Could this trigger an AppBehavior event?
-            KMessenger.showSnackBar(context, 'Long press to clear');
+            if (onShortClick != null) onShortClick!();
           },
           onLongPress: () {
+            publisher.publishUiEvent(OnLongClicked(widgetId: widgetId));
             if (onClear != null) onClear!();
           },
           child: const Text('Clear merchants data'),

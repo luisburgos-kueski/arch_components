@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,6 +21,9 @@ class HomeRiverpodView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    /// TODO:
+    /// This might break Riverpod principles and violates build method rules.
+    _controller(ref).redirections = redirections;
     final AsyncValue<void> state = ref.watch(homeScreenControllerProvider);
     if (state.isLoading) {
       return const Center(child: CircularProgressIndicator());
@@ -40,6 +44,13 @@ class HomeRiverpodView extends ConsumerWidget {
       },
       onSettingsPressed: () {
         _controller(ref).navigateToSettings();
+      },
+      onClearMerchantsTrunked: () {
+        _controller(ref).displayClearActionInstructions(
+          () {
+            KMessenger.showSnackBar(context, 'Long press to clear');
+          },
+        );
       },
     );
   }

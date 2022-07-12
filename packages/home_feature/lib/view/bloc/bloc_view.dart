@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
@@ -58,6 +59,14 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
             onClearMerchantsPressed: () {
               notifyUi(OnClearMerchantsButtonPressed());
               context.read<HomeBloc>().add(ClearHomeMerchants());
+            },
+            onClearMerchantsTrunked: () {
+              notifyUi(OnClearMerchantsButtonPressed());
+              context.read<HomeBloc>().add(DisplayClearActionInstructions(
+                () {
+                  KMessenger.showSnackBar(context, 'Long press to clear');
+                },
+              ));
             },
           );
         },

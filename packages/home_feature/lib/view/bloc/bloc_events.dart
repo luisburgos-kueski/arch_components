@@ -38,6 +38,15 @@ class ClearHomeMerchants extends HomeEvent {
   String get name => 'clear_home_merchants';
 }
 
+class DisplayClearActionInstructions extends HomeEvent {
+  @override
+  String get name => 'display_clear_action_instructions';
+
+  DisplayClearActionInstructions(this.displayView);
+
+  final Function() displayView;
+}
+
 class NavigateToMerchantDetail extends HomeEvent {
   NavigateToMerchantDetail(this.merchantData);
 
