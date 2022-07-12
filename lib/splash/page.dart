@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 
 ///TODO: Remove and change approach to stream navigation reaction.
@@ -8,17 +7,17 @@ class SplashPage extends StatelessWidget {
 
   const SplashPage({
     Key? key,
-    required this.homeRouteRedirect,
+    required this.onRedirectTo,
   }) : super(key: key);
 
-  final String homeRouteRedirect;
+  final Function() onRedirectTo;
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance?.addPostFrameCallback(
       (_) => Future.delayed(
         const Duration(seconds: 1),
-        () => Get.offNamed(homeRouteRedirect),
+        () => onRedirectTo(),
       ),
     );
     return const NavigationNotifier(

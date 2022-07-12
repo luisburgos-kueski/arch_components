@@ -54,8 +54,10 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Flutter Architecture Components',
             themeMode: ThemeMode.dark,
-            home: const SplashPage(
-              homeRouteRedirect: HomeScreen.routeName,
+            home: SplashPage(
+              onRedirectTo: () {
+                Get.offNamed(HomeScreen.routeName);
+              },
             ),
             getPages: pages,
             navigatorObservers: [
