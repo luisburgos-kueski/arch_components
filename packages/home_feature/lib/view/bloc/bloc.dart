@@ -83,13 +83,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ///TODO: Validate if makes sense to have this non-emitter method
     ///TODO: Should we emit app behavior events here?
     ///TODO: Evaluate navigation command handler strategy
-    Get.toNamed(redirections.buildMerchantDetailRoute(merchantId));
+    Get.toNamed(redirections.goToMerchantDetail(merchantId));
   }
 
   Future<void> _onNavigateToSettings(
     NavigateToSettings event,
     Emitter<HomeState> emit,
   ) async {
-    Get.toNamed(redirections.buildSettingsRoute());
+    Get.toNamed(redirections.goToSettings());
   }
 }

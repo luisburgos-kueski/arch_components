@@ -5,7 +5,7 @@ import 'package:kapp_behavior/kapp_behavior.dart';
 
 class AppBehaviorScreenWrapper extends StatelessWidget
     with KAppBehaviorOnBackPressedNotifier {
-  static const String routeName = AppBehaviorScreen.routeName;
+  static String get routeName => AppBehaviorScreen.routeName;
 
   const AppBehaviorScreenWrapper({Key? key}) : super(key: key);
 
