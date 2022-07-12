@@ -8,26 +8,19 @@ import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 import 'package:kufemia/kufemia.dart';
 
-import 'bloc_to_app_behavior_observer.dart';
+import 'helpers/app_behavior_observers.dart';
+import 'helpers/bloc_to_app_behavior_notifier.dart';
+import 'helpers/log_behavior_observers.dart';
 import 'splash/page.dart';
-import 'tools/klogger.dart';
 
-class KDefaultAppObserver implements KAppBehaviorEventObserver {
-  const KDefaultAppObserver();
-
-  @override
-  void onEvent(KAppBehaviorEvent event) {
-    KLogger.log(event.toString(), 'APP_BEHAVIOR');
-    //TODO: Send to data sources
-  }
-}
+final kMyRouteObserver = MyRouteObserver();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   KEventTracker.init(
     observerFacade: ObserverFacade(
-      routeObserver: MyRouteObserver(),
+      routeObserver: kMyRouteObserver,
       eventObserver: MyEventObserver(),
     ),
   );
@@ -38,29 +31,8 @@ void main() async {
 
   BlocOverrides.runZoned(
     () => runApp(const MyApp()),
-    blocObserver: BlocToAppBehaviorObserver(),
+    blocObserver: BlocToAppBehaviorEventNotifier(),
   );
-}
-
-class MyEventObserver extends KEventObserver {
-  @override
-  void onEvent(KEvent event) {
-    KLogger.log(event.toString(), 'LB-OBSERVER');
-  }
-}
-
-class MyRouteObserver extends KRouteObserver {
-  @override
-  void didPush(Route route, Route? previousRoute) {
-    KLogger.log('$runtimeType didPush: $route', 'LB-OBSERVER');
-    super.didPush(route, previousRoute);
-  }
-
-  @override
-  void didPop(Route route, Route? previousRoute) {
-    KLogger.log('$runtimeType didPop: $route', 'LB-OBSERVER');
-    super.didPop(route, previousRoute);
-  }
 }
 
 class MyApp extends StatelessWidget {
@@ -87,7 +59,7 @@ class MyApp extends StatelessWidget {
             ),
             getPages: pages,
             navigatorObservers: [
-              MyRouteObserver(),
+              kMyRouteObserver,
             ],
           ),
         ),
