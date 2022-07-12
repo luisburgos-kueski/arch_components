@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:merchants_data/merchants_data.dart';
 
 import '../../domain/clear_merchants_use_case.dart';
@@ -83,13 +82,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ///TODO: Validate if makes sense to have this non-emitter method
     ///TODO: Should we emit app behavior events here?
     ///TODO: Evaluate navigation command handler strategy
-    Get.toNamed(redirections.goToMerchantDetail(merchantId));
+    redirections.goToMerchantDetail(merchantId);
   }
 
   Future<void> _onNavigateToSettings(
     NavigateToSettings event,
     Emitter<HomeState> emit,
   ) async {
-    Get.toNamed(redirections.goToSettings());
+    redirections.goToSettings();
   }
 }
