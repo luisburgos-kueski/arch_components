@@ -8,7 +8,7 @@ import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:kevent_tracker/kevent_tracker.dart';
 import 'package:kufemia/kufemia.dart';
 
-import 'bloc_observer.dart';
+import 'bloc_to_app_behavior_observer.dart';
 import 'splash/page.dart';
 import 'tools/klogger.dart';
 
