@@ -13,13 +13,15 @@ class HomeViewTemplate extends StatelessWidget {
     required this.merchantsList,
     required this.onLoadMerchantsPressed,
     required this.onClearMerchantsPressed,
-    required this.onSettingsPressed,
+    this.onSettingsPressed,
+    this.onSecondSettingsPressed,
     required this.onClearMerchantsTrunked,
   }) : super(key: key);
 
   final String tag;
   final Widget merchantsList;
-  final Function() onSettingsPressed;
+  final Function()? onSettingsPressed;
+  final Function()? onSecondSettingsPressed;
   final Function() onLoadMerchantsPressed;
   final Function() onClearMerchantsPressed;
   final Function() onClearMerchantsTrunked;
@@ -47,7 +49,13 @@ class HomeViewTemplate extends StatelessWidget {
             ActionsIconButton(
               name: 'settings',
               iconData: Icons.settings,
-              onTap: onSettingsPressed,
+              onTap: onSettingsPressed!,
+            ),
+          if (onSecondSettingsPressed != null)
+            ActionsIconButton(
+              name: 'log_behavior',
+              iconData: Icons.pending_actions,
+              onTap: onSecondSettingsPressed!,
             ),
         ],
       ),

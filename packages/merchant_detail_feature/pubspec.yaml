@@ -22,10 +22,8 @@ dependencies:
     path: '../../packages/merchants_data'
   kapp_behavior:
     path: '../../packages/kapp_behavior'
-  kevent_tracker:
-    git:
-      url: git@github.com:kueski-dev/kevent_tracker.git
-      ref: v1.0.0
+  klog_behavior:
+    path: '../../packages/klog_behavior'
 
 dev_dependencies:
   flutter_test:

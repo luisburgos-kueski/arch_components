@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:home_feature/screen.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
-import 'package:kevent_tracker/kevent_tracker.dart';
+import 'package:klog_behavior/klog_behavior.dart';
 import 'package:kufemia/kufemia.dart';
 
 import 'helpers/app_behavior_observers.dart';
@@ -18,7 +18,7 @@ final kMyRouteObserver = MyRouteObserver();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  KEventTracker.init(
+  KLogBehavior.init(
     observerFacade: ObserverFacade(
       routeObserver: kMyRouteObserver,
       eventObserver: MyEventObserver(),

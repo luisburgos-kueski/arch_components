@@ -39,22 +39,18 @@ dependencies:
     path: './packages/core'
   merchants_data:
     path: './packages/merchants_data'
-  kdata_sources:
-    path: './packages/kdata_sources'
-  kapp_behavior:
-    path: './packages/kapp_behavior'
   home_feature:
     path: './packages/home_feature'
   merchant_detail_feature:
     path: './packages/merchant_detail_feature'
+  klog_behavior:
+    path: './packages/klog_behavior'
+  kapp_behavior:
+    path: './packages/kapp_behavior'
   kufemia:
     git:
       url: git@github.com:kueski-dev/kufemia.git
       ref: v0.15
-  kevent_tracker:
-    git:
-      url: git@github.com:kueski-dev/kevent_tracker.git
-      ref: v1.0.0
 
 dev_dependencies:
   flutter_test:

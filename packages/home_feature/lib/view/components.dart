@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kevent_tracker/kevent_tracker.dart';
+import 'package:klog_behavior/klog_behavior.dart';
 
 import 'view_data_model.dart';
 
@@ -149,19 +149,18 @@ class ActionsIconButton extends StatelessWidget {
     return UiEventNotifier(
       key: const Key('actions_icon_button'),
       builder: (widgetId, publisher) {
-        publisher.publishUiEvent(
-          OnClicked(
-            widgetId: widgetId,
-            data: {
-              'name': name,
-            },
-          ),
-        );
-
         return Padding(
           padding: const EdgeInsets.only(right: 20.0),
           child: GestureDetector(
             onTap: () {
+              publisher.publishUiEvent(
+                OnClicked(
+                  widgetId: widgetId,
+                  data: {
+                    'name': name,
+                  },
+                ),
+              );
               onTap();
             },
             child: Icon(iconData),

@@ -66,6 +66,7 @@ class _MerchantsListDataWatcher extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    //TODO: Review MerchantsList design is compatible with maybeWhen design.
     final state = ref.watch(merchantListStateChangesProvider);
     return state.maybeWhen(
       loading: () => MerchantsList(

@@ -52,6 +52,10 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
               notifyUi(OnSettingsButtonPressed());
               context.read<HomeBloc>().add(NavigateToSettings());
             },
+            onSecondSettingsPressed: () {
+              notifyUi(OnSecondSettingsButtonPressed());
+              context.read<HomeBloc>().add(NavigateToSecondSettings());
+            },
             onLoadMerchantsPressed: () {
               notifyUi(OnLoadMerchantsButtonPressed());
               context.read<HomeBloc>().add(LoadHomeMerchants());
@@ -61,6 +65,7 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
               context.read<HomeBloc>().add(ClearHomeMerchants());
             },
             onClearMerchantsTrunked: () {
+              ///TODO: Should we send some param to indicate this is not long.
               notifyUi(OnClearMerchantsButtonPressed());
               context.read<HomeBloc>().add(DisplayClearActionInstructions(
                 () {

@@ -33,6 +33,11 @@ class NavigateToSettings extends HomeEvent {
   String get name => 'navigate_to_settings';
 }
 
+class NavigateToSecondSettings extends HomeEvent {
+  @override
+  String get name => 'navigate_to_second_settings';
+}
+
 class ClearHomeMerchants extends HomeEvent {
   @override
   String get name => 'clear_home_merchants';

@@ -33,6 +33,16 @@ class OnSettingsButtonPressed extends HomeUiEvent {
   OnSettingsButtonPressed({this.params}) : super();
 }
 
+class OnSecondSettingsButtonPressed extends HomeUiEvent {
+  @override
+  final String name = 'second_settings_button_pressed';
+
+  @override
+  final Map<String, dynamic>? params;
+
+  OnSecondSettingsButtonPressed({this.params}) : super();
+}
+
 class OnLoadMerchantsButtonPressed extends HomeUiEvent {
   @override
   final String name = 'load_merchants_button_pressed';

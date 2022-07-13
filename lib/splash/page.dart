@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kevent_tracker/kevent_tracker.dart';
+import 'package:klog_behavior/klog_behavior.dart';
 
 ///TODO: Remove and change approach to stream navigation reaction.
 class SplashPage extends StatelessWidget {
