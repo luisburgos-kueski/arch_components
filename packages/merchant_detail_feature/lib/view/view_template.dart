@@ -1,6 +1,6 @@
 import 'package:core/base_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'package:kevent_tracker/kevent_tracker.dart';
+import 'package:klog_behavior/klog_behavior.dart';
 
 import 'components.dart';
 
