@@ -47,10 +47,6 @@ dependencies:
     path: './packages/klog_behavior'
   kapp_behavior:
     path: './packages/kapp_behavior'
-  kufemia:
-    git:
-      url: git@github.com:kueski-dev/kufemia.git
-      ref: v0.15
 
 dev_dependencies:
   flutter_test:

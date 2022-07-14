@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:home_feature/screen.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:klog_behavior/klog_behavior.dart';
-import 'package:kufemia/kufemia.dart';
 
 import 'helpers/app_behavior_observers.dart';
 import 'helpers/bloc_to_app_behavior_notifier.dart';
@@ -40,30 +39,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return KueskiApp(
-      data: KueskiData(
-        palette: KueskiPaletteData.kueski(),
-        spacing: KueskiSpacingData.fallback(),
-        button: KueskiButtonThemeData.fallback(),
-        darkPalette: KueskiPaletteData.kueski(),
-      ),
-      child: AppLifecycleNotifier(
-        key: const Key('arch_components'),
-        child: ProviderScope(
-          child: GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Architecture Components',
-            themeMode: ThemeMode.dark,
-            home: SplashPage(
-              onRedirectTo: () {
-                Get.offNamed(HomeScreen.routeName);
-              },
-            ),
-            getPages: pages,
-            navigatorObservers: [
-              kMyRouteObserver,
-            ],
+    return AppLifecycleNotifier(
+      key: const Key('arch_components'),
+      child: ProviderScope(
+        child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Architecture Components',
+          themeMode: ThemeMode.dark,
+          home: SplashPage(
+            onRedirectTo: () {
+              Get.offNamed(HomeScreen.routeName);
+            },
           ),
+          getPages: pages,
+          navigatorObservers: [
+            kMyRouteObserver,
+          ],
         ),
       ),
     );
