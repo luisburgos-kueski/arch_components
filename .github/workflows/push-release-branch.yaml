@@ -1,0 +1,29 @@
+name: Release Branch
+
+on:
+  push:
+    branches:
+      - 'release/**'
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Install and set Flutter version
+        uses: subosito/flutter-action@v2.4.0
+        with:
+          flutter-version: '2.10.2'
+          channel: 'stable'
+
+      - name: Print Flutter version
+        run: flutter --version
+
+      - name: Restore packages
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test --coverage
