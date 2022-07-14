@@ -8,8 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:arch_components/main.dart';
-
 abstract class TrackedScreen {
   String get routeName;
 

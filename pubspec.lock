@@ -226,15 +226,6 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  kevent_tracker:
-    dependency: transitive
-    description:
-      path: "."
-      ref: "v1.0.0"
-      resolved-ref: "7efc896ccb2eadf9990fffc2785644ac710f9b0d"
-      url: "git@github.com:kueski-dev/kevent_tracker.git"
-    source: git
-    version: "1.0.0"
   klog_behavior:
     dependency: "direct main"
     description:
