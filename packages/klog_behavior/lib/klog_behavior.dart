@@ -24,6 +24,7 @@ export 'event/type/widget_event_type.dart';
 export 'event/ui/ui_event.dart';
 export 'event/ui/ui_event_publisher.dart';
 export 'event/widget_event.dart';
+export 'kapp_behavior_ui.dart';
 export 'manager/default_event_manager.dart';
 
 /// Manager

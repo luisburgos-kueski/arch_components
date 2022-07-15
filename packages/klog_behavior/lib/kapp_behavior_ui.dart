@@ -11,19 +11,31 @@ class LogBehaviorScreen extends StatelessWidget {
     Key? key,
     this.customColorDecorator,
     this.onBackPressed,
+    this.backButtonWidget,
   }) : super(key: key);
 
   final Color Function(KEvent)? customColorDecorator;
   final Function()? onBackPressed;
+  final Widget? backButtonWidget;
 
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
       onBackPressed: onBackPressed,
       appBar: AppBar(
+        leading: backButtonWidget,
         title: const Text(
           LogBehaviorScreen.routeName,
         ),
+        actions: [
+          ///This widget is not using notifiers intentionally for now.
+          IconButton(
+            icon: const Icon(Icons.delete_forever_sharp),
+            onPressed: () {
+              KLogBehavior.eventsStore.wipeList();
+            },
+          ),
+        ],
       ),
       withSafeArea: true,
       body: KLogBehaviorListView(
