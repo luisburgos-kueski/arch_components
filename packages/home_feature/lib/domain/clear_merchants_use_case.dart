@@ -1,8 +1,10 @@
+import 'package:core/core.dart';
 import 'package:home_feature/domain/domain_events.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:merchants_data/merchants_data.dart';
 
-class ClearMerchantsUseCase with KAppBehaviorUseCaseNotifier {
+class ClearMerchantsUseCase extends IUseCaseNoInput
+    with KAppBehaviorUseCaseNotifier {
   ClearMerchantsUseCase({
     /// TODO: Dependency Injection
     required this.repository,
@@ -10,6 +12,7 @@ class ClearMerchantsUseCase with KAppBehaviorUseCaseNotifier {
 
   final FakeMerchantsRepository repository;
 
+  @override
   Future<void> run() async {
     await Future.delayed(const Duration(milliseconds: 1900));
     await repository.wipeMerchantsList();
