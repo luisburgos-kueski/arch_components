@@ -1,4 +1,13 @@
-# [](https://github.com/luisburgos-kueski/arch_components/compare/v0.3.0+2...v) (2022-07-15)
+# [](https://github.com/luisburgos-kueski/arch_components/compare/v0.3.1+3...v) (2022-07-15)
+
+
+
+## [0.3.1+3](https://github.com/luisburgos-kueski/arch_components/compare/v0.3.0+2...v0.3.1+3) (2022-07-15)
+
+
+### Bug Fixes
+
+* **CONSUMER-2:** add destination paths to navigation events ([f117b6e](https://github.com/luisburgos-kueski/arch_components/commit/f117b6e3e2cded48158d189f1c279d56de19d8a3))
 
 
 
