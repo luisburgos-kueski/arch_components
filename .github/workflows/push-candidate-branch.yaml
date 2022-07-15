@@ -1,10 +1,10 @@
-# Analyzes, test and build PRODUCTION ready artifacts.
-name: Release Branch
+# Analyzes, test and build PROFILING/REGRESSION ready artifacts. 
+name: Release Candidate Branch
 
 on:
   push:
     branches:
-      - 'release/**'
+      - 'candidate/**'
 
 jobs:
   tests:
