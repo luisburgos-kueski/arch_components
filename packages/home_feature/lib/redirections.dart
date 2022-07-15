@@ -7,7 +7,12 @@ class HomeRedirections implements IRedirections {
     required this.goToMerchantDetail,
     required this.goToSettings,
     required this.goToSecondSettings,
+    required this.appBehaviorPath,
+    required this.logBehaviorPath,
   });
+
+  final String appBehaviorPath;
+  final String logBehaviorPath;
 
   final Function(String merchantId) goToMerchantDetail;
   final Function() goToSettings;

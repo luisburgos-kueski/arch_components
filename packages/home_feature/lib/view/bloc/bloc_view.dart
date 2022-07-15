@@ -50,11 +50,15 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
             ),
             onSettingsPressed: () {
               notifyUi(OnAppBehaviorButtonPressed());
-              context.read<HomeBloc>().add(NavigateToAppBehavior());
+              context.read<HomeBloc>().add(NavigateToAppBehavior(
+                    redirections.appBehaviorPath,
+                  ));
             },
             onSecondSettingsPressed: () {
               notifyUi(OnLogBehaviorButtonPressed());
-              context.read<HomeBloc>().add(NavigateToLogBehavior());
+              context.read<HomeBloc>().add(NavigateToLogBehavior(
+                    redirections.logBehaviorPath,
+                  ));
             },
             onLoadMerchantsPressed: () {
               notifyUi(OnLoadMerchantsButtonPressed());

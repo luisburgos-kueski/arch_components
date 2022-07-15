@@ -29,13 +29,31 @@ class LoadHomeMerchants extends HomeEvent {
 }
 
 class NavigateToAppBehavior extends HomeEvent {
+  NavigateToAppBehavior(this.destinationPath);
+
+  final String destinationPath;
+
   @override
   String get name => 'navigate_to_app_behavior';
+
+  @override
+  Map<String, dynamic>? get params => {
+        'destination_path': destinationPath,
+      };
 }
 
 class NavigateToLogBehavior extends HomeEvent {
+  NavigateToLogBehavior(this.destinationPath);
+
+  final String destinationPath;
+
   @override
   String get name => 'navigate_to_log_behavior';
+
+  @override
+  Map<String, dynamic>? get params => {
+        'destination_path': destinationPath,
+      };
 }
 
 class ClearHomeMerchants extends HomeEvent {

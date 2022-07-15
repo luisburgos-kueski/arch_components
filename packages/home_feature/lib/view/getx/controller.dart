@@ -60,7 +60,9 @@ class HomeController extends GetxController
   }
 
   Future<void> navigateToSettings() async {
-    notifyBusinessLogicRequest(NavigateToAppBehavior());
+    notifyBusinessLogicRequest(NavigateToAppBehavior(
+      redirections.appBehaviorPath,
+    ));
     redirections.goToSettings();
   }
 
