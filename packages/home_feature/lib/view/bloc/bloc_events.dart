@@ -28,14 +28,14 @@ class LoadHomeMerchants extends HomeEvent {
   String get name => 'load_home_merchants';
 }
 
-class NavigateToSettings extends HomeEvent {
+class NavigateToAppBehavior extends HomeEvent {
   @override
-  String get name => 'navigate_to_settings';
+  String get name => 'navigate_to_app_behavior';
 }
 
-class NavigateToSecondSettings extends HomeEvent {
+class NavigateToLogBehavior extends HomeEvent {
   @override
-  String get name => 'navigate_to_second_settings';
+  String get name => 'navigate_to_log_behavior';
 }
 
 class ClearHomeMerchants extends HomeEvent {

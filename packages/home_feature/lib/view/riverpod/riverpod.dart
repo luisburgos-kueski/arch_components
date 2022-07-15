@@ -64,7 +64,7 @@ class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>>
   }
 
   Future<void> navigateToSettings() async {
-    notifyBusinessLogicRequest(NavigateToSettings());
+    notifyBusinessLogicRequest(NavigateToAppBehavior());
     redirections.goToSettings();
   }
 

@@ -23,24 +23,24 @@ class OnMerchantItemPressed extends HomeUiEvent {
   final String merchantName;
 }
 
-class OnSettingsButtonPressed extends HomeUiEvent {
+class OnAppBehaviorButtonPressed extends HomeUiEvent {
   @override
-  final String name = 'settings_button_pressed';
+  final String name = 'app_behavior_button_pressed';
 
   @override
   final Map<String, dynamic>? params;
 
-  OnSettingsButtonPressed({this.params}) : super();
+  OnAppBehaviorButtonPressed({this.params}) : super();
 }
 
-class OnSecondSettingsButtonPressed extends HomeUiEvent {
+class OnLogBehaviorButtonPressed extends HomeUiEvent {
   @override
-  final String name = 'second_settings_button_pressed';
+  final String name = 'log_behavior_button_pressed';
 
   @override
   final Map<String, dynamic>? params;
 
-  OnSecondSettingsButtonPressed({this.params}) : super();
+  OnLogBehaviorButtonPressed({this.params}) : super();
 }
 
 class OnLoadMerchantsButtonPressed extends HomeUiEvent {

@@ -47,14 +47,14 @@ class HomeViewTemplate extends StatelessWidget {
         actions: [
           if (onSettingsPressed != null)
             ActionsIconButton(
-              name: 'settings',
-              iconData: Icons.settings,
+              name: 'app_behavior',
+              iconData: Icons.local_see_outlined,
               onTap: onSettingsPressed!,
             ),
           if (onSecondSettingsPressed != null)
             ActionsIconButton(
               name: 'log_behavior',
-              iconData: Icons.pending_actions,
+              iconData: Icons.biotech_outlined,
               onTap: onSecondSettingsPressed!,
             ),
         ],
