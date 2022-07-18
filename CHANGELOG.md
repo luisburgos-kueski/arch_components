@@ -1,8 +1,8 @@
-# [](https://github.com/luisburgos-kueski/arch_components/compare/v0.3.1+3...v) (2022-07-15)
+# [](https://github.com/luisburgos-kueski/arch_components/compare/v0.2.0+1...v) (2022-07-18)
 
 
 
-## [0.3.1+3](https://github.com/luisburgos-kueski/arch_components/compare/v0.3.0+2...v0.3.1+3) (2022-07-15)
+# [0.2.0+1](https://github.com/luisburgos-kueski/arch_components/compare/v0.1.0+0...v0.2.0+1) (2022-07-18)
 
 
 ### Bug Fixes
@@ -10,25 +10,13 @@
 * **CONSUMER-2:** add destination paths to navigation events ([f117b6e](https://github.com/luisburgos-kueski/arch_components/commit/f117b6e3e2cded48158d189f1c279d56de19d8a3))
 
 
-
-# [0.3.0+2](https://github.com/luisburgos-kueski/arch_components/compare/v0.2.0+1...v0.3.0+2) (2022-07-15)
-
-
 ### Features
 
 * **CONSUMER-12:** add use case interface to clear merchants ([1b4717a](https://github.com/luisburgos-kueski/arch_components/commit/1b4717a4e3bf66b12deeb08054fc7ab69ecc5346))
+* **CONSUMER-12:** add use case interface to home feature ([a89a635](https://github.com/luisburgos-kueski/arch_components/commit/a89a635c9a7264af4f8f89b16a14ba5bff0cfb4f))
 * **CONSUMER-2:** add custom back button app behavior ([5ff6d7f](https://github.com/luisburgos-kueski/arch_components/commit/5ff6d7f6fe32145e807c1a7b9e392c4a744671a8))
 * **CONSUMER-2:** add custom back button log behavior ([ab4c3e9](https://github.com/luisburgos-kueski/arch_components/commit/ab4c3e968707bb6388764f1392fbb0b44c3a36d3))
 * **CONSUMER-2:** track back button on wrappers ([25d568e](https://github.com/luisburgos-kueski/arch_components/commit/25d568e206c6f201fd3ac889cbbcc315d2103885))
-
-
-
-# [0.2.0+1](https://github.com/luisburgos-kueski/arch_components/compare/v0.1.0+0...v0.2.0+1) (2022-07-15)
-
-
-### Features
-
-* **CONSUMER-12:** add use case interface to home feature ([a89a635](https://github.com/luisburgos-kueski/arch_components/commit/a89a635c9a7264af4f8f89b16a14ba5bff0cfb4f))
 
 
 
