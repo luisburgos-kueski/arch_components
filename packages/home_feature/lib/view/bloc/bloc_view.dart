@@ -41,7 +41,10 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
                   ),
                 );
                 context.read<HomeBloc>().add(
-                      NavigateToMerchantDetail(merchantData),
+                      NavigateToMerchantDetail(
+                        merchantData,
+                        redirections.merchantDetailPath,
+                      ),
                     );
               },
             ),

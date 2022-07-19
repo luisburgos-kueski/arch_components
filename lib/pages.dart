@@ -14,6 +14,7 @@ final List<GetPage> pages = [
         redirections: HomeRedirections(
           appBehaviorPath: AppBehaviorScreenWrapper.routeName,
           logBehaviorPath: LogBehaviorScreenWrapper.routeName,
+            merchantDetailPath: MerchantDetailScreen.routeName,
           goToMerchantDetail: (merchantId) {
             Get.toNamed(
               MerchantDetailScreen.routeName.replaceAll(

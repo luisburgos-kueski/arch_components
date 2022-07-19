@@ -28,34 +28,6 @@ class LoadHomeMerchants extends HomeEvent {
   String get name => 'load_home_merchants';
 }
 
-class NavigateToAppBehavior extends HomeEvent {
-  NavigateToAppBehavior(this.destinationPath);
-
-  final String destinationPath;
-
-  @override
-  String get name => 'navigate_to_app_behavior';
-
-  @override
-  Map<String, dynamic>? get params => {
-        'destination_path': destinationPath,
-      };
-}
-
-class NavigateToLogBehavior extends HomeEvent {
-  NavigateToLogBehavior(this.destinationPath);
-
-  final String destinationPath;
-
-  @override
-  String get name => 'navigate_to_log_behavior';
-
-  @override
-  Map<String, dynamic>? get params => {
-        'destination_path': destinationPath,
-      };
-}
-
 class ClearHomeMerchants extends HomeEvent {
   @override
   String get name => 'clear_home_merchants';
@@ -70,13 +42,45 @@ class DisplayClearActionInstructions extends HomeEvent {
   final Function() displayView;
 }
 
-class NavigateToMerchantDetail extends HomeEvent {
-  NavigateToMerchantDetail(this.merchantData);
+class NavigateToAppBehavior extends HomeEvent with KAppBehaviorNavigationEvent {
+  NavigateToAppBehavior(this.path) : super();
 
-  final MerchantViewData merchantData;
+  final String path;
 
   @override
-  String get name => 'navigate_to_merchant_detail';
+  String get destinationPath => path;
+
+  @override
+  String get associatedDomain => 'app_behavior';
+}
+
+class NavigateToLogBehavior extends HomeEvent with KAppBehaviorNavigationEvent {
+  NavigateToLogBehavior(this.path) : super();
+
+  final String path;
+
+  @override
+  String get destinationPath => path;
+
+  @override
+  String get associatedDomain => 'log_behavior';
+}
+
+class NavigateToMerchantDetail extends HomeEvent
+    with KAppBehaviorNavigationEvent {
+  NavigateToMerchantDetail(
+    this.merchantData,
+    this.path,
+  ) : super();
+
+  final MerchantViewData merchantData;
+  final String path;
+
+  @override
+  String get destinationPath => path;
+
+  @override
+  String get associatedDomain => 'merchant_detail';
 
   @override
   Map<String, dynamic>? get params => {
@@ -84,6 +88,7 @@ class NavigateToMerchantDetail extends HomeEvent {
         'merchant_id': merchantData.id,
       };
 
+  /** TODO: Cannot extend from Equatable and NavigateToEvent
   @override
-  List<Object?> get props => [merchantData];
+  List<Object?> get props => [merchantData];**/
 }
