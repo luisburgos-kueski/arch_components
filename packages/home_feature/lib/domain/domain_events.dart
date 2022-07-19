@@ -31,14 +31,14 @@ class LoadingMerchantsList extends HomeUseCaseEvent {
 
 class OnMerchantListCleared extends HomeUseCaseEvent {
   @override
-  final String name = 'on_merchant_list_cleared';
+  final String name = 'merchant_list_cleared';
 
   OnMerchantListCleared() : super();
 }
 
 class OnMerchantListLoaded extends HomeUseCaseEvent {
   @override
-  final String name = 'on_merchant_list_loaded';
+  final String name = 'merchant_list_loaded';
 
   @override
   Map<String, dynamic>? get params => {
