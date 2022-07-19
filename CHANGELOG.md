@@ -1,4 +1,13 @@
-# [](https://github.com/luisburgos-kueski/arch_components/compare/v0.2.0+1...v) (2022-07-18)
+# [](https://github.com/luisburgos-kueski/arch_components/compare/v0.3.0+2...v) (2022-07-19)
+
+
+
+# [0.3.0+2](https://github.com/luisburgos-kueski/arch_components/compare/v0.2.0+1...v0.3.0+2) (2022-07-19)
+
+
+### Bug Fixes
+
+* **CONSUMER-2:** remove wrong prefix on event name ([b387ee1](https://github.com/luisburgos-kueski/arch_components/commit/b387ee13e58814402dbe37db02c3fe3a016f7f1c))
 
 
 
