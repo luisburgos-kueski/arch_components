@@ -7,58 +7,46 @@ abstract class HomeUiEvent implements KAppBehaviorUiEvent {
   HomeUiEvent() : timestamp = DateTime.now();
 }
 
-class OnMerchantItemPressed extends HomeUiEvent {
+class MerchantTilePressed extends HomeUiEvent {
+  MerchantTilePressed({
+    required this.merchantName,
+  }) : super();
+
   @override
-  String get name => 'merchant_item_tile_${merchantName}_pressed';
+  String get name => 'merchant_tile_pressed';
 
   @override
   Map<String, dynamic>? get params => {
         'merchant_name': merchantName,
       };
 
-  OnMerchantItemPressed({
-    required this.merchantName,
-  }) : super();
-
   final String merchantName;
 }
 
-class OnAppBehaviorButtonPressed extends HomeUiEvent {
-  @override
-  final String name = 'app_behavior_button_pressed';
+class AppBehaviorButtonPressed extends KAppBehaviorButtonPressed {
+  AppBehaviorButtonPressed() : super();
 
   @override
-  final Map<String, dynamic>? params;
-
-  OnAppBehaviorButtonPressed({this.params}) : super();
+  final String buttonName = 'app_behavior_button_pressed';
 }
 
-class OnLogBehaviorButtonPressed extends HomeUiEvent {
-  @override
-  final String name = 'log_behavior_button_pressed';
+class LogBehaviorButtonPressed extends KAppBehaviorButtonPressed {
+  LogBehaviorButtonPressed() : super();
 
   @override
-  final Map<String, dynamic>? params;
-
-  OnLogBehaviorButtonPressed({this.params}) : super();
+  final String buttonName = 'log_behavior_button_pressed';
 }
 
-class OnLoadMerchantsButtonPressed extends HomeUiEvent {
-  @override
-  final String name = 'load_merchants_button_pressed';
+class LoadMerchantsButtonPressed extends KAppBehaviorButtonPressed {
+  LoadMerchantsButtonPressed() : super();
 
   @override
-  final Map<String, dynamic>? params;
-
-  OnLoadMerchantsButtonPressed({this.params}) : super();
+  final String buttonName = 'load_merchants_button_pressed';
 }
 
-class OnClearMerchantsButtonPressed extends HomeUiEvent {
-  @override
-  final String name = 'clear_merchants_button_pressed';
+class ClearMerchantsButtonPressed extends KAppBehaviorButtonPressed {
+  ClearMerchantsButtonPressed() : super();
 
   @override
-  final Map<String, dynamic>? params;
-
-  OnClearMerchantsButtonPressed({this.params}) : super();
+  final String buttonName = 'clear_merchants_button_pressed';
 }

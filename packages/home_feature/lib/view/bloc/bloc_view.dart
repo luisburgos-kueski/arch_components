@@ -36,7 +36,7 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
               items: state.merchantNames,
               onMerchantItemClicked: (merchantData) {
                 notifyUi(
-                  OnMerchantItemPressed(
+                  MerchantTilePressed(
                     merchantName: merchantData.name,
                   ),
                 );
@@ -49,28 +49,28 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
               child: Text('TODO: Handle error'),
             ),
             onSettingsPressed: () {
-              notifyUi(OnAppBehaviorButtonPressed());
+              notifyUi(AppBehaviorButtonPressed());
               context.read<HomeBloc>().add(NavigateToAppBehavior(
                     redirections.appBehaviorPath,
                   ));
             },
             onSecondSettingsPressed: () {
-              notifyUi(OnLogBehaviorButtonPressed());
+              notifyUi(LogBehaviorButtonPressed());
               context.read<HomeBloc>().add(NavigateToLogBehavior(
                     redirections.logBehaviorPath,
                   ));
             },
             onLoadMerchantsPressed: () {
-              notifyUi(OnLoadMerchantsButtonPressed());
+              notifyUi(LoadMerchantsButtonPressed());
               context.read<HomeBloc>().add(LoadHomeMerchants());
             },
             onClearMerchantsPressed: () {
-              notifyUi(OnClearMerchantsButtonPressed());
+              notifyUi(ClearMerchantsButtonPressed());
               context.read<HomeBloc>().add(ClearHomeMerchants());
             },
             onClearMerchantsTrunked: () {
               ///TODO: Should we send some param to indicate this is not long.
-              notifyUi(OnClearMerchantsButtonPressed());
+              notifyUi(ClearMerchantsButtonPressed());
               context.read<HomeBloc>().add(DisplayClearActionInstructions(
                 () {
                   KMessenger.showSnackBar(context, 'Long press to clear');
