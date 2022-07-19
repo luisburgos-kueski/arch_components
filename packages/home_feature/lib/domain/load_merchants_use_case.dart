@@ -17,6 +17,7 @@ class LoadMerchantsUseCase extends IUseCaseNoInput<List<Merchant>>
 
   @override
   Future<List<Merchant>> run() async {
+    notifyUseCase(LoadingMerchantsList());
     return Future.delayed(
       const Duration(milliseconds: 2900),
       () async {

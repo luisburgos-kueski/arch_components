@@ -15,6 +15,20 @@ abstract class HomeUseCaseEvent implements KAppBehaviorUseCaseEvent {
   Map<String, dynamic>? get params => null;
 }
 
+class ClearingMerchantsList extends HomeUseCaseEvent {
+  @override
+  final String name = 'clearing_merchants_list';
+
+  ClearingMerchantsList() : super();
+}
+
+class LoadingMerchantsList extends HomeUseCaseEvent {
+  @override
+  final String name = 'loading_merchants_list';
+
+  LoadingMerchantsList() : super();
+}
+
 class OnMerchantListCleared extends HomeUseCaseEvent {
   @override
   final String name = 'on_merchant_list_cleared';

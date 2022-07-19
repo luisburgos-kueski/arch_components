@@ -14,6 +14,7 @@ class ClearMerchantsUseCase extends IUseCaseNoInput
 
   @override
   Future<void> run() async {
+    notifyUseCase(ClearingMerchantsList());
     await Future.delayed(const Duration(milliseconds: 1900));
     await repository.wipeMerchantsList();
     notifyUseCase(OnMerchantListCleared());
