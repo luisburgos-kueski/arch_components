@@ -10,3 +10,5 @@ const homeLogBehaviorActionsIconButtonName = 'log_behavior'; //Prefix
 const homeLoadMerchantsTextButton = 'load_merchants_text_button';
 const homeClearMerchantsTextButton = 'clear_merchants_text_button';
 const homeMerchantListTile = 'merchant_list_tile';
+
+const homeDomain = 'home';

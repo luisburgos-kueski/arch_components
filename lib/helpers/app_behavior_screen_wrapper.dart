@@ -7,7 +7,7 @@ import 'package:klog_behavior/klog_behavior.dart';
 import 'kapp_behavior_list_view.dart';
 
 class AppBehaviorScreenWrapper extends StatelessWidget
-    with KAppBehaviorOnBackPressedNotifier {
+    with KAppBehaviorBackPressedNotifier {
   static String get routeName => AppBehaviorScreen.routeName;
 
   const AppBehaviorScreenWrapper({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class AppBehaviorScreenWrapper extends StatelessWidget
         ),
       ),
       onBackPressed: () {
-        notifyOnBackPressed(
+        notifyBackPressed(
           fromRoute: Get.currentRoute,
         );
       },

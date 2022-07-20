@@ -4,7 +4,7 @@ import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:klog_behavior/klog_behavior.dart';
 
 class LogBehaviorScreenWrapper extends StatelessWidget
-    with KAppBehaviorOnBackPressedNotifier {
+    with KAppBehaviorBackPressedNotifier {
   static String get routeName => LogBehaviorScreen.routeName;
 
   const LogBehaviorScreenWrapper({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class LogBehaviorScreenWrapper extends StatelessWidget
         ),
       ),
       onBackPressed: () {
-        notifyOnBackPressed(
+        notifyBackPressed(
           fromRoute: Get.currentRoute,
         );
       },
