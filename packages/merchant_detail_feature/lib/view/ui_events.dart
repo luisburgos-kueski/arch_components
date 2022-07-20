@@ -1,16 +1,16 @@
 import 'package:kapp_behavior/kapp_behavior.dart';
 
-class OnBackToHomeTextButtonPressed implements KAppBehaviorUiEvent {
-  OnBackToHomeTextButtonPressed({
-    this.params,
-  }) : timestamp = DateTime.now();
+import '../constants.dart';
 
-  @override
-  String get name => 'on_back_to_home_button_pressed';
-
-  @override
-  Map<String, dynamic>? params;
-
-  @override
-  DateTime timestamp;
+class BackToHomeTextButtonPressed extends KAppBehaviorBackPressedEvent {
+  BackToHomeTextButtonPressed({
+    required String fromRoute,
+    required BackSource source,
+  }) : super(
+          from: fromRoute,
+          source: source,
+          extraParams: {
+            'associated_domain': merchantDetailDomain,
+          },
+        );
 }

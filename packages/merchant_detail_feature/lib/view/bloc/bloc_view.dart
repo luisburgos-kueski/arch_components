@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
-import 'package:merchant_detail_feature/view/ui_events.dart';
 
+import '../ui_events.dart';
 import '../view_template.dart';
 import 'bloc.dart';
 import 'bloc_events.dart';
 
 class MerchantDetailBlocView extends StatelessWidget
-    with KAppBehaviorOnBackPressedNotifier, KAppBehaviorUiNotifier {
+    with KAppBehaviorBackPressedNotifier, KAppBehaviorUiNotifier {
   const MerchantDetailBlocView({
     Key? key,
     required this.merchantName,
@@ -27,15 +27,16 @@ class MerchantDetailBlocView extends StatelessWidget
           body: MerchantDetailViewTemplate(
             merchantName: merchantName,
             onBackToHomeTextButtonClicked: () {
-              notifyUi(OnBackToHomeTextButtonPressed());
-              notifyOnBackPressed(
-                fromRoute: Get.currentRoute,
-                source: BackSource.user,
+              notifyUi(
+                BackToHomeTextButtonPressed(
+                  fromRoute: Get.currentRoute,
+                  source: BackSource.user,
+                ),
               );
               context.read<MerchantDetailBloc>().add(CloseMerchantDetail());
             },
             onBackPressed: () {
-              notifyOnBackPressed(
+              notifyBackPressed(
                 fromRoute: Get.currentRoute,
               );
             },
