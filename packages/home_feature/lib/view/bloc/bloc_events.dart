@@ -1,26 +1,13 @@
 //TODO: Verify overrides. Could this be optional to override?
-import 'package:equatable/equatable.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 
 import '../view_data_model.dart';
 
-abstract class HomeEvent extends Equatable
+abstract class HomeEvent
+    with KTimeMixin
     implements KAppBehaviorBusinessLogicEvent {
-  HomeEvent()
-      : timestamp = DateTime.now(),
-        super();
-
-  @override
-  String get name;
-
-  @override
-  final DateTime timestamp;
-
   @override
   Map<String, dynamic>? get params => null;
-
-  @override
-  List<Object?> get props => [];
 }
 
 class LoadHomeMerchants extends HomeEvent {
@@ -42,7 +29,8 @@ class DisplayClearActionInstructions extends HomeEvent {
   final Function() displayView;
 }
 
-class NavigateToAppBehavior extends HomeEvent with KAppBehaviorNavigationEvent {
+class NavigateToAppBehavior extends KAppBehaviorNavigationEvent
+    implements HomeEvent {
   NavigateToAppBehavior(this.path) : super();
 
   final String path;
@@ -54,7 +42,8 @@ class NavigateToAppBehavior extends HomeEvent with KAppBehaviorNavigationEvent {
   String get associatedDomain => 'app_behavior';
 }
 
-class NavigateToLogBehavior extends HomeEvent with KAppBehaviorNavigationEvent {
+class NavigateToLogBehavior extends KAppBehaviorNavigationEvent
+    implements HomeEvent {
   NavigateToLogBehavior(this.path) : super();
 
   final String path;
@@ -66,8 +55,8 @@ class NavigateToLogBehavior extends HomeEvent with KAppBehaviorNavigationEvent {
   String get associatedDomain => 'log_behavior';
 }
 
-class NavigateToMerchantDetail extends HomeEvent
-    with KAppBehaviorNavigationEvent {
+class NavigateToMerchantDetail extends KAppBehaviorNavigationEvent
+    implements HomeEvent {
   NavigateToMerchantDetail(
     this.merchantData,
     this.path,

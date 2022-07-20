@@ -1,4 +1,4 @@
-import 'package:kapp_behavior/event/custom_kapp_behavior_events.dart';
+import 'package:kapp_behavior/kapp_behavior.dart';
 
 abstract class MerchantDetailEvent implements KAppBehaviorBusinessLogicEvent {
   MerchantDetailEvent() : timestamp = DateTime.now();

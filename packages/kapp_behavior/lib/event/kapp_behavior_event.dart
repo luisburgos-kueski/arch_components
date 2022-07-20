@@ -25,7 +25,7 @@ class KAppBehaviorDefaultEvent with KAppBehaviorEvent {
   }) : timestamp = DateTime.now();
 }
 
-class KAppBehaviorScreenEvent with KAppBehaviorEvent {
+class KAppBehaviorScreenEvent implements KAppBehaviorEvent {
   @override
   final String name;
   @override

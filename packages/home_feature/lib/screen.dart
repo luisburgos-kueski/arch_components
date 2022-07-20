@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:klog_behavior/klog_behavior.dart';
 
+import 'constants.dart';
 import 'redirections.dart';
 import 'view/bloc/bloc_view.dart';
 import 'view/getx/controller_view.dart';
@@ -11,8 +12,8 @@ import 'view/riverpod/riverpod_view.dart';
 /// Extending from [KAppBehaviorRouteAwareScreen] allows this `Screen` to notify about
 /// [KAppBehaviorScreenEvent].
 class HomeScreen extends KAppBehaviorRouteAwareScreen {
-  static const routeName = '/home';
-  static const screenName = 'HomeScreen';
+  static const routeName = homeRouteName;
+  static const screenName = homeScreenName;
 
   const HomeScreen({
     Key? key,
@@ -26,18 +27,17 @@ class HomeScreen extends KAppBehaviorRouteAwareScreen {
   final HomeRedirections redirections;
 
   @override
-  KRouteAwareState<KAppBehaviorRouteAwareScreen> createState() =>
+  KAppBehaviorRouteAwareState<KAppBehaviorRouteAwareScreen> createState() =>
       _HomeScreenState();
 }
 
 /// By using [NavigationNotifier] widget wrapper this `Screen` can notify about
 /// [NavigationEvent]s.
-class _HomeScreenState extends KRouteAwareState<HomeScreen> {
+class _HomeScreenState extends KAppBehaviorRouteAwareState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    //TODO: Verify snake case nomenclature.
     return NavigationNotifier(
-      key: const Key('home_screen'),
+      key: const Key(homeScreenKey),
       child: LogBehaviorTrackedHomeScreen(
         redirections: widget.redirections,
       ),

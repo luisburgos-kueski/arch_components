@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:klog_behavior/klog_behavior.dart';
 
+import '../constants.dart';
 import 'view_data_model.dart';
 
 class MerchantsList extends StatelessWidget {
@@ -52,7 +53,7 @@ class MerchantListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UiEventNotifier(
-      key: const Key('merchant_list_tile'),
+      key: const Key(homeMerchantListTile),
       builder: (widgetId, publisher) {
         return ListTile(
           title: Text(item.name),
@@ -85,7 +86,7 @@ class LoadMerchantsTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UiEventNotifier(
-      key: const Key('load_merchants_text_button'),
+      key: const Key(homeLoadMerchantsTextButton),
       builder: (widgetId, publisher) {
         return TextButton(
           onPressed: () {
@@ -113,7 +114,7 @@ class ClearMerchantsTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UiEventNotifier(
-      key: const Key('clear_merchants_text_button'),
+      key: const Key(homeClearMerchantsTextButton),
       builder: (widgetId, publisher) {
         return TextButton(
           onPressed: () {
@@ -147,7 +148,7 @@ class ActionsIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UiEventNotifier(
-      key: const Key('actions_icon_button'),
+      key: const Key(homeActionsIconButtonName),
       builder: (widgetId, publisher) {
         return Padding(
           padding: const EdgeInsets.only(right: 20.0),

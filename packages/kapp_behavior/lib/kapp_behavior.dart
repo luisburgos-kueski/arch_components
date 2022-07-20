@@ -19,6 +19,7 @@ export 'widget/kroute_aware_screen.dart';
 ///
 /// KAppBehavior.observer.onEvent();
 /// KAppBehavior.registerEvent(...);
+@Deprecated('Use remote package instead')
 class KAppBehavior {
   static void init({
     required KAppBehaviorEventObserver eventObserver,

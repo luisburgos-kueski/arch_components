@@ -46,7 +46,7 @@ dependencies:
   klog_behavior:
     path: './packages/klog_behavior'
   kapp_behavior:
-    path: './packages/kapp_behavior'
+    path: '../../packages/kapp-behavior'
 
 dev_dependencies:
   flutter_test:

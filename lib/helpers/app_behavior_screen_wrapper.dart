@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
 import 'package:klog_behavior/klog_behavior.dart';
 
+import 'kapp_behavior_list_view.dart';
+
 class AppBehaviorScreenWrapper extends StatelessWidget
     with KAppBehaviorOnBackPressedNotifier {
   static String get routeName => AppBehaviorScreen.routeName;

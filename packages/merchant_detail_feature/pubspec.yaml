@@ -21,7 +21,7 @@ dependencies:
   merchants_data:
     path: '../../packages/merchants_data'
   kapp_behavior:
-    path: '../../packages/kapp_behavior'
+    path: '../../../../packages/kapp-behavior'
   klog_behavior:
     path: '../../packages/klog_behavior'
 

@@ -1,4 +1,4 @@
-import 'package:kapp_behavior/event/custom_kapp_behavior_events.dart';
+import 'package:kapp_behavior/kapp_behavior.dart';
 
 class OnBackToHomeTextButtonPressed implements KAppBehaviorUiEvent {
   OnBackToHomeTextButtonPressed({

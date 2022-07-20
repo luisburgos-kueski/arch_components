@@ -21,7 +21,10 @@ dependencies:
   merchants_data:
     path: '../../packages/merchants_data'
   kapp_behavior:
-    path: '../../packages/kapp_behavior'
+    path: '../../../../packages/kapp-behavior'
+    # git:
+      # url: git@github.com:kueski-dev/kapp-behavior.git
+      # ref: fcc328278589befe03ef864cbbe432ed4362eb55
   klog_behavior:
     path: '../../packages/klog_behavior'
 

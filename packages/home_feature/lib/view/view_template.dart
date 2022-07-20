@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
 import 'components.dart';
 
 class HomeViewTemplate extends StatelessWidget {
@@ -47,13 +48,13 @@ class HomeViewTemplate extends StatelessWidget {
         actions: [
           if (onSettingsPressed != null)
             ActionsIconButton(
-              name: 'app_behavior',
+              name: homeAppBehaviorActionsIconButtonName,
               iconData: Icons.local_see_outlined,
               onTap: onSettingsPressed!,
             ),
           if (onSecondSettingsPressed != null)
             ActionsIconButton(
-              name: 'log_behavior',
+              name: homeLogBehaviorActionsIconButtonName,
               iconData: Icons.biotech_outlined,
               onTap: onSecondSettingsPressed!,
             ),
