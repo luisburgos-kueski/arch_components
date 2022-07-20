@@ -1,15 +1,12 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:kapp_behavior/kapp_behavior.dart';
-import 'package:rxdart/rxdart.dart';
-
-class AppBehaviorDataRepository {
-  static KAppBehaviorInMemoryStore eventsStore = KAppBehaviorInMemoryStore();
-}
 
 ///TODO: Add clear events cache log action
 class AppBehaviorScreen extends StatelessWidget {
   static const String routeName = "/app-behavior";
+
+  static KAppBehaviorInMemoryStore eventsStore = KAppBehaviorInMemoryStore();
 
   const AppBehaviorScreen({
     Key? key,
@@ -36,7 +33,7 @@ class AppBehaviorScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.delete_forever_sharp),
             onPressed: () {
-              AppBehaviorDataRepository.eventsStore.wipeList();
+              eventsStore.wipeList();
             },
           ),
         ],
@@ -60,7 +57,7 @@ class KAppBehaviorListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ManagedStreamBuilder<List<KAppBehaviorEvent>>(
-      stream: AppBehaviorDataRepository.eventsStore.listStateChanges(),
+      stream: AppBehaviorScreen.eventsStore.listStateChanges(),
       onLoading: () => const Center(child: CircularProgressIndicator()),
       onData: (data) => AppBehaviorEventsListView(
         items: data ?? const [],
@@ -186,23 +183,4 @@ class KAppBehaviorInMemoryStore {
     ///TODO: Add async call to send data to remote.
     _state.value.add(event);
   }
-}
-
-class InMemoryStore<T> {
-  InMemoryStore(T initial) : _subject = BehaviorSubject<T>.seeded(initial);
-
-  /// The BehaviorSubject that holds the data
-  final BehaviorSubject<T> _subject;
-
-  /// The output stream that can be used to listen to the data
-  Stream<T> get stream => _subject.stream;
-
-  /// A synchronous getter for the current value
-  T get value => _subject.value;
-
-  /// A setter for updating the value
-  set value(T value) => _subject.add(value);
-
-  /// Don't forget to call this when done
-  void close() => _subject.close();
 }
