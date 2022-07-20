@@ -57,7 +57,7 @@ class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>>
   }
 
   Future<void> navigateToMerchantDetail(MerchantViewData data) async {
-    notifyBusinessLogicRequest(NavigateToMerchantDetail(
+    notifyBusinessLogicRequest(NavigateToMerchantDetails(
       data,
       redirections.merchantDetailPath,
     ));
@@ -74,7 +74,7 @@ class HomeScreenRiverpodController extends StateNotifier<AsyncValue<void>>
   }
 
   Future<void> displayClearActionInstructions(Function() displayView) async {
-    notifyBusinessLogicRequest(DisplayClearActionInstructions(displayView));
+    notifyBusinessLogicRequest(ShowClearActionInstructions(displayView));
   }
 }
 

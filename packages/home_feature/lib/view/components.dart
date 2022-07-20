@@ -53,7 +53,7 @@ class MerchantListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UiEventNotifier(
-      key: const Key(homeMerchantListTile),
+      key: const Key(lbHomeMerchantListTile),
       builder: (widgetId, publisher) {
         return ListTile(
           title: Text(item.name),
@@ -86,7 +86,7 @@ class LoadMerchantsTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UiEventNotifier(
-      key: const Key(homeLoadMerchantsTextButton),
+      key: const Key(lbHomeLoadMerchantsTextButton),
       builder: (widgetId, publisher) {
         return TextButton(
           onPressed: () {
@@ -114,7 +114,7 @@ class ClearMerchantsTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UiEventNotifier(
-      key: const Key(homeClearMerchantsTextButton),
+      key: const Key(lbHomeClearMerchantsTextButton),
       builder: (widgetId, publisher) {
         return TextButton(
           onPressed: () {
@@ -148,7 +148,7 @@ class ActionsIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UiEventNotifier(
-      key: const Key(homeActionsIconButtonName),
+      key: const Key(lgHomeActionsIconButtonName),
       builder: (widgetId, publisher) {
         return Padding(
           padding: const EdgeInsets.only(right: 20.0),

@@ -48,13 +48,13 @@ class HomeViewTemplate extends StatelessWidget {
         actions: [
           if (onSettingsPressed != null)
             ActionsIconButton(
-              name: homeAppBehaviorActionsIconButtonName,
+              name: lgHomeAppBehaviorActionsIconButtonName,
               iconData: Icons.local_see_outlined,
               onTap: onSettingsPressed!,
             ),
           if (onSecondSettingsPressed != null)
             ActionsIconButton(
-              name: homeLogBehaviorActionsIconButtonName,
+              name: lgHomeLogBehaviorActionsIconButtonName,
               iconData: Icons.biotech_outlined,
               onTap: onSecondSettingsPressed!,
             ),

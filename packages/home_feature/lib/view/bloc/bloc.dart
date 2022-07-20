@@ -28,15 +28,15 @@ class HomeState {
   }
 }
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
+class HomeBloc extends Bloc<HomeBlocEvent, HomeState> {
   HomeBloc(this.redirections) : super(const HomeState()) {
     ///TODO: Update outdated naming convention
     on<LoadHomeMerchants>(_onLoadHomeMerchants);
     on<ClearHomeMerchants>(_onClearHomeMerchants);
-    on<NavigateToMerchantDetail>(_onNavigateToMerchantDetail);
+    on<NavigateToMerchantDetails>(_onNavigateToMerchantDetail);
     on<NavigateToAppBehavior>(_onNavigateToSettings);
     on<NavigateToLogBehavior>(_onNavigateToSecondSettings);
-    on<DisplayClearActionInstructions>(_onDisplayClearActionInstructions);
+    on<ShowClearActionInstructions>(_onDisplayClearActionInstructions);
   }
 
   final HomeRedirections redirections;
@@ -75,7 +75,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _onNavigateToMerchantDetail(
-    NavigateToMerchantDetail event,
+    NavigateToMerchantDetails event,
     Emitter<HomeState> emit,
   ) async {
     final MerchantViewData data = event.merchantData;
@@ -102,9 +102,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _onDisplayClearActionInstructions(
-    DisplayClearActionInstructions event,
+    ShowClearActionInstructions event,
     Emitter<HomeState> emit,
   ) async {
-    event.displayView();
+    event.show();
   }
 }

@@ -10,14 +10,11 @@ class MerchantTilePressed extends KAppBehaviorListTilePressed {
   final String merchantName;
 
   @override
-  String get associatedDomain => 'home_merchants';
-
-  @override
-  String get name => 'merchant_tile_pressed';
+  String get associatedDomain => domainHome;
 
   @override
   Map<String, dynamic>? get extraParams => {
-        'merchant_name': merchantName,
+        paramMerchantName: merchantName,
       };
 }
 
@@ -25,38 +22,38 @@ class AppBehaviorButtonPressed extends KAppBehaviorButtonPressed {
   AppBehaviorButtonPressed() : super();
 
   @override
-  String get associatedDomain => homeDomain;
+  String get associatedDomain => domainHome;
 
   @override
-  final String buttonName = 'app_behavior_button_pressed';
+  final String buttonName = uiAppBehaviorButtonPressed;
 }
 
 class LogBehaviorButtonPressed extends KAppBehaviorButtonPressed {
   LogBehaviorButtonPressed() : super();
 
   @override
-  String get associatedDomain => homeDomain;
+  String get associatedDomain => domainHome;
 
   @override
-  final String buttonName = 'log_behavior_button_pressed';
+  final String buttonName = uiLogBehaviorButtonPressed;
 }
 
 class LoadMerchantsButtonPressed extends KAppBehaviorButtonPressed {
   LoadMerchantsButtonPressed() : super();
 
   @override
-  String get associatedDomain => homeDomain;
+  String get associatedDomain => domainHome;
 
   @override
-  final String buttonName = 'load_merchants_button_pressed';
+  final String buttonName = uiLoadMerchantsButtonPressed;
 }
 
 class ClearMerchantsButtonPressed extends KAppBehaviorButtonPressed {
   ClearMerchantsButtonPressed() : super();
 
   @override
-  String get associatedDomain => homeDomain;
+  String get associatedDomain => domainHome;
 
   @override
-  final String buttonName = 'clear_merchants_button_pressed';
+  final String buttonName = uiClearMerchantsButtonPressed;
 }

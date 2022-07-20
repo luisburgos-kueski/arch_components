@@ -41,7 +41,7 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
                   ),
                 );
                 context.read<HomeBloc>().add(
-                      NavigateToMerchantDetail(
+                      NavigateToMerchantDetails(
                         merchantData,
                         redirections.merchantDetailPath,
                       ),
@@ -74,7 +74,7 @@ class HomeBlocView extends StatelessWidget with KAppBehaviorUiNotifier {
             onClearMerchantsTrunked: () {
               ///TODO: Should we send some param to indicate this is not long.
               notifyUi(ClearMerchantsButtonPressed());
-              context.read<HomeBloc>().add(DisplayClearActionInstructions(
+              context.read<HomeBloc>().add(ShowClearActionInstructions(
                 () {
                   KMessenger.showSnackBar(context, 'Long press to clear');
                 },

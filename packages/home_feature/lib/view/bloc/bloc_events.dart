@@ -1,36 +1,37 @@
 //TODO: Verify overrides. Could this be optional to override?
 import 'package:kapp_behavior/kapp_behavior.dart';
 
+import '../../constants.dart';
 import '../view_data_model.dart';
 
-abstract class HomeEvent
+abstract class HomeBlocEvent
     with KTimeMixin
     implements KAppBehaviorBusinessLogicEvent {
   @override
   Map<String, dynamic>? get params => null;
 }
 
-class LoadHomeMerchants extends HomeEvent {
+class LoadHomeMerchants extends HomeBlocEvent {
   @override
-  String get name => 'load_home_merchants';
+  String get name => loadHomeMerchants;
 }
 
-class ClearHomeMerchants extends HomeEvent {
+class ClearHomeMerchants extends HomeBlocEvent {
   @override
-  String get name => 'clear_home_merchants';
+  String get name => clearHomeMerchants;
 }
 
-class DisplayClearActionInstructions extends HomeEvent {
+class ShowClearActionInstructions extends HomeBlocEvent {
   @override
-  String get name => 'display_clear_action_instructions';
+  String get name => showClearActionInstructions;
 
-  DisplayClearActionInstructions(this.displayView);
+  ShowClearActionInstructions(this.show);
 
-  final Function() displayView;
+  final Function() show;
 }
 
 class NavigateToAppBehavior extends KAppBehaviorNavigationEvent
-    implements HomeEvent {
+    implements HomeBlocEvent {
   NavigateToAppBehavior(this.path) : super();
 
   final String path;
@@ -39,11 +40,11 @@ class NavigateToAppBehavior extends KAppBehaviorNavigationEvent
   String get destinationPath => path;
 
   @override
-  String get associatedDomain => 'app_behavior';
+  String get associatedDomain => domainAppBehavior;
 }
 
 class NavigateToLogBehavior extends KAppBehaviorNavigationEvent
-    implements HomeEvent {
+    implements HomeBlocEvent {
   NavigateToLogBehavior(this.path) : super();
 
   final String path;
@@ -52,12 +53,12 @@ class NavigateToLogBehavior extends KAppBehaviorNavigationEvent
   String get destinationPath => path;
 
   @override
-  String get associatedDomain => 'log_behavior';
+  String get associatedDomain => domainLogBehavior;
 }
 
-class NavigateToMerchantDetail extends KAppBehaviorNavigationEvent
-    implements HomeEvent {
-  NavigateToMerchantDetail(
+class NavigateToMerchantDetails extends KAppBehaviorNavigationEvent
+    implements HomeBlocEvent {
+  NavigateToMerchantDetails(
     this.merchantData,
     this.path,
   ) : super();
@@ -69,12 +70,12 @@ class NavigateToMerchantDetail extends KAppBehaviorNavigationEvent
   String get destinationPath => path;
 
   @override
-  String get associatedDomain => 'merchant_detail';
+  String get associatedDomain => domainMerchantDetails;
 
   @override
   Map<String, dynamic>? get params => {
-        'merchant_name': merchantData.name,
-        'merchant_id': merchantData.id,
+        paramMerchantName: merchantData.name,
+        paramMerchantId: merchantData.id,
       };
 
   /** TODO: Cannot extend from Equatable and NavigateToEvent

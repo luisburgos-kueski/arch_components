@@ -1,5 +1,7 @@
 import 'package:kapp_behavior/kapp_behavior.dart';
 
+import '../constants.dart';
+
 abstract class HomeUseCaseEvent implements KAppBehaviorUseCaseEvent {
   HomeUseCaseEvent()
       : timestamp = DateTime.now(),
@@ -17,32 +19,32 @@ abstract class HomeUseCaseEvent implements KAppBehaviorUseCaseEvent {
 
 class ClearingMerchantsList extends HomeUseCaseEvent {
   @override
-  final String name = 'clearing_merchants_list';
+  final String name = useCaseClearingMerchantsList;
 
   ClearingMerchantsList() : super();
 }
 
 class LoadingMerchantsList extends HomeUseCaseEvent {
   @override
-  final String name = 'loading_merchants_list';
+  final String name = useCaseLoadingMerchantsList;
 
   LoadingMerchantsList() : super();
 }
 
 class OnMerchantListCleared extends HomeUseCaseEvent {
   @override
-  final String name = 'merchant_list_cleared';
+  final String name = useCaseMerchantsListCleared;
 
   OnMerchantListCleared() : super();
 }
 
 class OnMerchantListLoaded extends HomeUseCaseEvent {
   @override
-  final String name = 'merchant_list_loaded';
+  final String name = useCaseMerchantsListLoaded;
 
   @override
   Map<String, dynamic>? get params => {
-        'list_length': listLength,
+        paramNumberOfMerchantsLoaded: listLength,
       };
 
   OnMerchantListLoaded({
